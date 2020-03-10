@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<OHD_Project_Sem_3.Models.Request>
 
 @{
     ViewBag.Title = "ListRequest";
@@ -19,34 +19,20 @@
                 <th scope="col">Action</th>
             </tr>
         </thead>
-        <tbody>
+        @foreach (var item in Model)
+        {
+            <tbody>
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>Jack</td>
-                <td>Jack</td>
-                <td>Jack</td>
-                <td>Jack</td>
+                <th scope="row">@item.RequestId</th>
+                <td>@item.Category</td>
+                <td>@item.Facility</td>
+                <td>@item.Message</td>
+                <td>@item.CreatedAt</td>
+                <td>@item.Status</td>
+                <td>null</td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>Jack</td>
-                <td>Jack</td>
-                <td>Jack</td>
-                <td>Jack</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>Jack</td>
-                <td>Jack</td>
-                <td>Jack</td>
-                <td>Jack</td>
-            </tr>
-        </tbody>
+
+            </tbody>
+        }
     </table>
 </div>
