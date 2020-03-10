@@ -17,42 +17,42 @@
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-5">
-                    <form action="#" class="bg-white rounded pb_form_v1">
+                    <form action="/Home/Store" method="post" class="bg-white rounded pb_form_v1">
                         <h2 class="mb-4 mt-0 text-center">Request Form</h2>
-                        <div class="form-group">
-                            <input type="text" class="form-control py-3 reverse" placeholder="Full name">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control py-3 reverse" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control py-3 reverse" placeholder="Number Phone">
-                        </div>
+                        @* <div class="form-group"> *@
+                        @*     <input type="text" class="form-control py-3 reverse" placeholder="Full name"> *@
+                        @* </div> *@
+                        @* <div class="form-group"> *@
+                        @*     <input type="email" class="form-control py-3 reverse" placeholder="Email"> *@
+                        @* </div> *@
+                        @* <div class="form-group"> *@
+                        @*     <input type="text" class="form-control py-3 reverse" placeholder="Number Phone"> *@
+                        @* </div> *@
                         <div class="form-group">
                             <div class="pb_select-wrap">
-                                <select class="form-control pb_height-50 reverse">
-                                    <option value="" selected>Category</option>
-                                    <option value="">Basic</option>
-                                    <option value="">Business</option>
-                                    <option value="">Free</option>
+                                <select class="form-control pb_height-50 reverse" name="category">
+                                    <option value="Null" selected>Category</option>
+                                    <option value="Basic">Basic</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Free">Free</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="pb_select-wrap">
-                                <select class="form-control pb_height-50 reverse">
-                                    <option value="" selected>Facility</option>
-                                    <option value="">Basic</option>
-                                    <option value="">Business</option>
-                                    <option value="">Free</option>
+                                <select class="form-control pb_height-50 reverse" name="facility">
+                                    <option value="Null" selected>Facility</option>
+                                    <option value="Basic">Basic</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Free">Free</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control pb_height-150 reverse" placeholder="Message"></textarea>
+                            <textarea class="form-control pb_height-150 reverse" placeholder="Message" name="message"></textarea>
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue" value="Send">
+                            <input type="submit" class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue" value="Send" >
                         </div>
                     </form>
                 </div>
