@@ -18,7 +18,7 @@ namespace OHD_Project_Sem_3.Controllers
 
         public ActionResult ListRequest()
         {
-            return View();
+            return View(dbContext.Requests.ToList());
         }
 
         [HttpPost]
