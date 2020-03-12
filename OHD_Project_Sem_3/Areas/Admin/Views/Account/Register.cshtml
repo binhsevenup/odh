@@ -1,0 +1,40 @@
+﻿@model IEnumerable<OHD_Project_Sem_3.Areas.Admin.Models.FacilityCategory>
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+<form action="/Account/Store" method="post">
+
+    <div>
+        Email <input type="email" name="username" />
+    </div>
+    <div>
+        FullName <input type="text" name="fullname" />
+    </div>
+    <div>
+        Password <input type="password" name="password" />
+    </div>
+    <div>
+        Role
+        <select name="role">
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+        </select>
+    </div>
+    Ass
+    <select name="ass">
+        <option value="">  </option>
+        @foreach (var item in Model)
+        {
+            
+            <option value="@item.FacilityCategory_Id">@item.FacilityCategory_Name</option>
+        }
+    </select>
+    <div>
+        Phone <input type="number" name="phone" value="" />
+    </div>
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+</form>
