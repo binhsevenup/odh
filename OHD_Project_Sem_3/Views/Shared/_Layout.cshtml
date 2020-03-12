@@ -5,10 +5,10 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Default Layout | Okler Themes | Porto-Admin</title>
+    <title>Dashboard | JSOFT Themes | JSOFT-Admin</title>
     <meta name="keywords" content="HTML5 Admin Template" />
-    <meta name="description" content="Porto Admin - Responsive HTML5 Template">
-    <meta name="author" content="okler.net">
+    <meta name="description" content="JSOFT Admin - Responsive HTML5 Template">
+    <meta name="author" content="JSOFT.net">
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -21,6 +21,11 @@
     <link rel="stylesheet" href="/Content/assets/vendor/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="/Content/assets/vendor/magnific-popup/magnific-popup.css" />
     <link rel="stylesheet" href="/Content/assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
+
+    <!-- Specific Page Vendor CSS -->
+    <link rel="stylesheet" href="/Content/assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/morris/morris.css" />
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="/Content/assets/stylesheets/theme.css" />
@@ -42,7 +47,7 @@
         <header class="header">
             <div class="logo-container">
                 <a href="../" class="logo">
-                    <img src="/Content/assets/images/helpdesk-online.png" height="35" alt="Porto Admin" />
+                    <img src="/Content/assets/images/logo.png" height="35" alt="JSOFT Admin" />
                 </a>
                 <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
                     <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -130,6 +135,7 @@
                                             <figure class="image">
                                                 <img src="/Content/assets/images/!sample-user.jpg" alt="Joseph Doe Junior" class="img-circle" />
                                             </figure>
+                                            <br />
                                             <span class="title">Joseph Doe</span>
                                             <span class="message">Lorem ipsum dolor sit.</span>
                                         </a>
@@ -139,6 +145,7 @@
                                             <figure class="image">
                                                 <img src="/Content/assets/images/!sample-user.jpg" alt="Joseph Junior" class="img-circle" />
                                             </figure>
+                                            <br />
                                             <span class="title">Joseph Junior</span>
                                             <span class="message truncate">Truncated message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet lacinia orci. Proin vestibulum eget risus non luctus. Nunc cursus lacinia lacinia. Nulla molestie malesuada est ac tincidunt. Quisque eget convallis diam, nec venenatis risus. Vestibulum blandit faucibus est et malesuada. Sed interdum cursus dui nec venenatis. Pellentesque non nisi lobortis, rutrum eros ut, convallis nisi. Sed tellus turpis, dignissim sit amet tristique quis, pretium id est. Sed aliquam diam diam, sit amet faucibus tellus ultricies eu. Aliquam lacinia nibh a metus bibendum, eu commodo eros commodo. Sed commodo molestie elit, a molestie lacus porttitor id. Donec facilisis varius sapien, ac fringilla velit porttitor et. Nam tincidunt gravida dui, sed pharetra odio pharetra nec. Duis consectetur venenatis pharetra. Vestibulum egestas nisi quis elementum elementum.</span>
                                         </a>
@@ -148,6 +155,7 @@
                                             <figure class="image">
                                                 <img src="/Content/assets/images/!sample-user.jpg" alt="Joe Junior" class="img-circle" />
                                             </figure>
+                                            <br />
                                             <span class="title">Joe Junior</span>
                                             <span class="message">Lorem ipsum dolor sit.</span>
                                         </a>
@@ -157,6 +165,7 @@
                                             <figure class="image">
                                                 <img src="/Content/assets/images/!sample-user.jpg" alt="Joseph Junior" class="img-circle" />
                                             </figure>
+                                            <br />
                                             <span class="title">Joseph Junior</span>
                                             <span class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet lacinia orci. Proin vestibulum eget risus non luctus. Nunc cursus lacinia lacinia. Nulla molestie malesuada est ac tincidunt. Quisque eget convallis diam.</span>
                                         </a>
@@ -231,7 +240,7 @@
                         <figure class="profile-picture">
                             <img src="/Content/assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
                         </figure>
-                        <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+                        <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
                             <span class="name">John Doe Junior</span>
                             <span class="role">administrator</span>
                         </div>
@@ -265,7 +274,7 @@
 
                 <div class="sidebar-header">
                     <div class="sidebar-title">
-                        Control
+                        Navigation
                     </div>
                     <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
                         <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -276,7 +285,7 @@
                     <div class="nano-content">
                         <nav id="menu" class="nav-main" role="navigation">
                             <ul class="nav nav-main">
-                                <li>
+                                <li class="nav-active">
                                     <a href="index.html">
                                         <i class="fa fa-home" aria-hidden="true"></i>
                                         <span>Dashboard</span>
@@ -290,40 +299,6 @@
                                     </a>
                                 </li>
 
-
-
-
-
-                                @* <li class="nav-parent nav-expanded nav-active"> *@
-                                @*     <a> *@
-                                @*         <i class="fa fa-columns" aria-hidden="true"></i> *@
-                                @*         <span>Layouts</span> *@
-                                @*     </a> *@
-                                @*     <ul class="nav nav-children"> *@
-                                @*         <li class="nav-active"> *@
-                                @*             <a href="layouts-default.html"> *@
-                                @*                 Default *@
-                                @*             </a> *@
-                                @*         </li> *@
-                                @*         <li> *@
-                                @*             <a href="layouts-boxed.html"> *@
-                                @*                 Boxed *@
-                                @*             </a> *@
-                                @*         </li> *@
-                                @*         <li> *@
-                                @*             <a href="layouts-menu-collapsed.html"> *@
-                                @*                 Menu Collapsed *@
-                                @*             </a> *@
-                                @*         </li> *@
-                                @*         <li> *@
-                                @*             <a href="layouts-scroll.html"> *@
-                                @*                 Scroll *@
-                                @*             </a> *@
-                                @*         </li> *@
-                                @*     </ul> *@
-                                @* </li> *@
-
-
                                 <li class="nav-parent">
                                     <a>
                                         <i class="fa fa-align-left" aria-hidden="true"></i>
@@ -331,104 +306,84 @@
                                     </a>
                                     <ul class="nav nav-children">
                                         <li class="nav-parent">
-                                            <a>Account</a>
+                                            <a>- Role</a>
                                             <ul class="nav nav-children">
                                                 <li>
-                                                    <a href="#">+ Add Account</a>
+                                                    <a href="#">+ Add role</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">+ List Account</a>
+                                                    <a href="#">+ List role</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="nav-parent">
-                                            <a>Role</a>
+                                            <a>- Account</a>
                                             <ul class="nav nav-children">
                                                 <li>
-                                                    <a href="#">+ Add Role</a>
+                                                    <a href="#">+ Add account</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">+ List Role</a>
+                                                    <a href="#">+ List account</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="nav-parent">
-                                            <a>Category</a>
+                                            <a>- Facility</a>
                                             <ul class="nav nav-children">
                                                 <li>
-                                                    <a href="#">+ Add Category</a>
+                                                    <a href="#">+ Add facility</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">+ List Category</a>
+                                                    <a href="#">+ List facility</a>
                                                 </li>
-                                                <li class="nav-parent">
-                                                    <a>Facility</a>
-                                                    <ul class="nav nav-children">
-                                                        <li>
-                                                            <a href="#">+ Add Facility</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">+ List Facility</a>
-                                                        </li>
-                                                    </ul>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-parent">
+                                            <a>- Assignee</a>
+                                            <ul class="nav nav-children">
+                                                <li>
+                                                    <a href="#">+ Add assgnee</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">+ List assgnee</a>
                                                 </li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
-
-
                                 <li class="nav-parent">
                                     <a>
                                         <i class="fa fa-align-left" aria-hidden="true"></i>
                                         <span>Facility Head Manager</span>
                                     </a>
                                     <ul class="nav nav-children">
-                                        <li class="nav-parent">
-                                            <a>Manager</a>
-                                            <ul class="nav nav-children">
-                                                <li>
-                                                    <a href="#">+ Something</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">+ List Request</a>
-                                                </li>
-                                            </ul>
+                                        <li>
+                                            <a href="#">- List request</a>
                                         </li>
+
                                     </ul>
                                 </li>
+                                
                                 <li class="nav-parent">
                                     <a>
                                         <i class="fa fa-align-left" aria-hidden="true"></i>
                                         <span>Assignee Manager</span>
                                     </a>
                                     <ul class="nav nav-children">
-                                        <li class="nav-parent">
-                                            <a>Manager</a>
-                                            <ul class="nav nav-children">
-                                                <li>
-                                                    <a href="#">+ Something</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">+ List Request</a>
-                                                </li>
-                                            </ul>
+                                        <li>
+                                            <a href="#">- List request</a>
                                         </li>
+
                                     </ul>
                                 </li>
-                                    </ul>
-                            
-                        </nav>
-                               
-                                
-                                     <hr class="separator" /> 
-                                   
-                                      
-                               
-                          
-                      
 
-                        
+                            </ul>
+                        </nav>
+
+
+
+
+
                     </div>
 
                 </div>
@@ -436,30 +391,45 @@
             </aside>
             <!-- end: sidebar -->
 
-          @RenderSection("_headerPage", required:false);
+            <section role="main" class="content-body">
+                @RenderSection("_headerPage", required: false)
+
+                @RenderBody()
+                <!-- end: page -->
+            </section>
         </div>
-        @RenderBody()
-        
 
-        <!-- Vendor -->
-        <script src="/Content/assets/vendor/jquery/jquery.js"></script>
-        <script src="/Content/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
-        <script src="/Content/assets/vendor/bootstrap/js/bootstrap.js"></script>
-        <script src="/Content/assets/vendor/nanoscroller/nanoscroller.js"></script>
-        <script src="/Content/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-        <script src="/Content/assets/vendor/magnific-popup/magnific-popup.js"></script>
-        <script src="/Content/assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
-
-        <!-- Specific Page Vendor -->
-        <!-- Theme Base, Components and Settings -->
-        <script src="/Content/assets/javascripts/theme.js"></script>
-
-        <!-- Theme Custom -->
-        <script src="/Content/assets/javascripts/theme.custom.js"></script>
-
-        <!-- Theme Initialization Files -->
-        <script src="/Content/assets/javascripts/theme.init.js"></script>
 
     </section>
+
+    <!-- Vendor -->
+    <script src="/Content/assets/vendor/jquery/jquery.js"></script>
+    <script src="/Content/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+    <script src="/Content/assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="/Content/assets/vendor/nanoscroller/nanoscroller.js"></script>
+    <script src="/Content/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="/Content/assets/vendor/magnific-popup/magnific-popup.js"></script>
+    <script src="/Content/assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+
+    <!-- Specific Page Vendor -->
+    <script src="/Content/assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="/Content/assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
+    <script src="/Content/assets/vendor/jquery-appear/jquery.appear.js"></script>
+    <script src="/Content/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+
+
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="/Content/assets/javascripts/theme.js"></script>
+
+    <!-- Theme Custom -->
+    <script src="/Content/assets/javascripts/theme.custom.js"></script>
+
+    <!-- Theme Initialization Files -->
+    <script src="/Content/assets/javascripts/theme.init.js"></script>
+
+
+    <!-- Examples -->
+    <script src="/Content/assets/javascripts/dashboard/examples.dashboard.js"></script>
 </body>
 </html>
