@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OHD_Project_Sem_3.Models.Request>
+
+@{
+    ViewBag.Title = "ListRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container control-list-request">
+
+    <table class="table mt-5">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Id Request</th>
+                <th scope="col">Category</th>
+                <th scope="col">Facility</th>
+                <th scope="col">Message</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+            <tr>
+                <th scope="row">@item.RequestId</th>
+                <td>@item.Category</td>
+                <td>@item.Facility</td>
+                <td>@item.Message</td>
+                <td>@item.CreatedAt</td>
+                <td>@item.Status</td>
+                <td>null</td>
+            </tr>
+
+            </tbody>
+        }
+    </table>
+</div>
