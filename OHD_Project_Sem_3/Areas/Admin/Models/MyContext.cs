@@ -15,5 +15,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Models
 
         public System.Data.Entity.DbSet<OHD_Project_Sem_3.Areas.Admin.Models.Facility> Facilities { get; set; }
         public System.Data.Entity.DbSet<OHD_Project_Sem_3.Areas.Admin.Models.FacilityCategory> FacilityCategories { get; set; }
+        
+        public System.Data.Entity.DbSet<OHD_Project_Sem_3.Areas.Admin.Models.Requests> Requests { get; set; }
     }
 }
