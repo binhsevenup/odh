@@ -20,5 +20,6 @@ namespace OHD_Project_Sem_3.Areas.Admin.Models
             Delete = -1
         }
         public virtual ICollection<Facility> Facilities { get; set; }
+        public virtual ICollection<Requests> Requests { get; set; }
     }
 }

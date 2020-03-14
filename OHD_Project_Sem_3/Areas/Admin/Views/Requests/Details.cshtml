@@ -1,0 +1,94 @@
+﻿@model OHD_Project_Sem_3.Areas.Admin.Models.Request
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Request</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Facility.FacilityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Facility.FacilityName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategory_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FacilityCategory.FacilityCategory_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssgineeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssgineeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created_At)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created_At)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated_At)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated_At)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt>
+            Email
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Requestor.Email)
+        </dd>
+        <dt>
+            Phone
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Requestor.Phone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RequestId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

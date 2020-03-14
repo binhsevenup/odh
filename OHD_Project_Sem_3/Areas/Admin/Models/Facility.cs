@@ -22,5 +22,6 @@ namespace OHD_Project_Sem_3.Areas.Admin.Models
             Deactive = 0,
             Delete = -1
         }
+        public virtual ICollection<Requests> Requests { get; set; }
     }
 }

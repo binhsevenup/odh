@@ -84,14 +84,12 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
-<!-- Conflict fixed -->
-<!--     <Reference Include="System.Runtime.Serialization" /> -->
+    <!-- Conflict fixed -->
+    <!--     <Reference Include="System.Runtime.Serialization" /> -->
     <Reference Include="System.Security" />
-
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -178,14 +176,53 @@
     <Compile Include="Areas\Admin\Controllers\AccountRolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\FacilitiesController.cs" />
     <Compile Include="Areas\Admin\Controllers\FacilityCategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RequestsController.cs" />
     <Compile Include="Areas\Admin\Models\Account.cs" />
     <Compile Include="Areas\Admin\Models\AccountRole.cs" />
     <Compile Include="Areas\Admin\Models\Facility.cs" />
     <Compile Include="Areas\Admin\Models\FacilityCategory.cs" />
     <Compile Include="Areas\Admin\Models\MyContext.cs" />
+    <Compile Include="Areas\Admin\Models\Requests.cs" />
+    <Compile Include="Areas\Admin\Models\TotalData.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003121648442_Request.cs" />
+    <Compile Include="Migrations\202003121648442_Request.Designer.cs">
+      <DependentUpon>202003121648442_Request.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003121744001_GetData.cs" />
+    <Compile Include="Migrations\202003121744001_GetData.Designer.cs">
+      <DependentUpon>202003121744001_GetData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003121748070_GetDatanew.cs" />
+    <Compile Include="Migrations\202003121748070_GetDatanew.Designer.cs">
+      <DependentUpon>202003121748070_GetDatanew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003121807004_removeGetData.cs" />
+    <Compile Include="Migrations\202003121807004_removeGetData.Designer.cs">
+      <DependentUpon>202003121807004_removeGetData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003121911593_updaterequest.cs" />
+    <Compile Include="Migrations\202003121911593_updaterequest.Designer.cs">
+      <DependentUpon>202003121911593_updaterequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003131017486_updaterequest-new.cs" />
+    <Compile Include="Migrations\202003131017486_updaterequest-new.Designer.cs">
+      <DependentUpon>202003131017486_updaterequest-new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003131447185_updaterequest-new2.cs" />
+    <Compile Include="Migrations\202003131447185_updaterequest-new2.Designer.cs">
+      <DependentUpon>202003131447185_updaterequest-new2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003131900527_updatee.cs" />
+    <Compile Include="Migrations\202003131900527_updatee.Designer.cs">
+      <DependentUpon>202003131900527_updatee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003131913506_updateee.cs" />
+    <Compile Include="Migrations\202003131913506_updateee.Designer.cs">
+      <DependentUpon>202003131913506_updateee.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2022,6 +2059,11 @@
     <Content Include="Content\assets\vendor\style-switcher\less\shared.less" />
     <Content Include="Content\assets\vendor\style-switcher\less\skin.less" />
     <Content Include="Content\assets\vendor\style-switcher\less\variables.less" />
+    <Content Include="Areas\Admin\Views\Requests\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Requests\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Requests\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Requests\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Requests\Create.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2065,6 +2107,35 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003121648442_Request.resx">
+      <DependentUpon>202003121648442_Request.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003121744001_GetData.resx">
+      <DependentUpon>202003121744001_GetData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003121748070_GetDatanew.resx">
+      <DependentUpon>202003121748070_GetDatanew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003121807004_removeGetData.resx">
+      <DependentUpon>202003121807004_removeGetData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003121911593_updaterequest.resx">
+      <DependentUpon>202003121911593_updaterequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003131017486_updaterequest-new.resx">
+      <DependentUpon>202003131017486_updaterequest-new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003131447185_updaterequest-new2.resx">
+      <DependentUpon>202003131447185_updaterequest-new2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003131900527_updatee.resx">
+      <DependentUpon>202003131900527_updatee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003131913506_updateee.resx">
+      <DependentUpon>202003131913506_updateee.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
