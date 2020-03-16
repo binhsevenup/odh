@@ -25,6 +25,9 @@ namespace OHD_Project_Sem_3
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Style").Include(
+                "~/Content/style.css"));
         }
     }
 }

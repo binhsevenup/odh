@@ -52,6 +52,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                facility.Created_At = DateTime.Now;
                 db.Facilities.Add(facility);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -86,6 +87,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                facility.Updated_At = DateTime.Now;
                 db.Entry(facility).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

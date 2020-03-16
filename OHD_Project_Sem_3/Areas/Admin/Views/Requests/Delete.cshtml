@@ -1,7 +1,28 @@
-﻿@model OHD_Project_Sem_3.Areas.Admin.Models.Request
+﻿@model OHD_Project_Sem_3.Areas.Admin.Models.Requests
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section _headerPage
+{
+    <header class="page-header">
+        <h2>Delete Request</h2>
+
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Dashboard</span></li>
+            </ol>
+
+            <a class="sidebar-right-toggle"></a>
+        </div>
+    </header>
 }
 
 <h2>Delete</h2>
@@ -77,7 +98,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

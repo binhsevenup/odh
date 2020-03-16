@@ -2,6 +2,27 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section _headerPage
+{
+    <header class="page-header">
+        <h2>List Request</h2>
+
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Admin Manager / Request / List Request</span></li>
+            </ol>
+
+            <a class="sidebar-right-toggle"></a>
+        </div>
+    </header>
 }
 
 <h2>Index</h2>
@@ -35,41 +56,42 @@
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
-        <th></th>
+        <th>Action</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Facility.FacilityName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FacilityCategory.FacilityCategory_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Requestor.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AssgineeId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Remarks)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created_At)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Updated_At)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RequestId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RequestId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RequestId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Facility.FacilityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacilityCategory.FacilityCategory_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Requestor.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssgineeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created_At)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated_At)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.RequestId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.RequestId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.RequestId })
+            </td>
+        </tr>
+    }
 
 </table>

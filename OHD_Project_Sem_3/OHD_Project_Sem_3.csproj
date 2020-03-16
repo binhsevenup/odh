@@ -188,43 +188,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003121648442_Request.cs" />
-    <Compile Include="Migrations\202003121648442_Request.Designer.cs">
-      <DependentUpon>202003121648442_Request.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003121744001_GetData.cs" />
-    <Compile Include="Migrations\202003121744001_GetData.Designer.cs">
-      <DependentUpon>202003121744001_GetData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003121748070_GetDatanew.cs" />
-    <Compile Include="Migrations\202003121748070_GetDatanew.Designer.cs">
-      <DependentUpon>202003121748070_GetDatanew.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003121807004_removeGetData.cs" />
-    <Compile Include="Migrations\202003121807004_removeGetData.Designer.cs">
-      <DependentUpon>202003121807004_removeGetData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003121911593_updaterequest.cs" />
-    <Compile Include="Migrations\202003121911593_updaterequest.Designer.cs">
-      <DependentUpon>202003121911593_updaterequest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003131017486_updaterequest-new.cs" />
-    <Compile Include="Migrations\202003131017486_updaterequest-new.Designer.cs">
-      <DependentUpon>202003131017486_updaterequest-new.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003131447185_updaterequest-new2.cs" />
-    <Compile Include="Migrations\202003131447185_updaterequest-new2.Designer.cs">
-      <DependentUpon>202003131447185_updaterequest-new2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003131900527_updatee.cs" />
-    <Compile Include="Migrations\202003131900527_updatee.Designer.cs">
-      <DependentUpon>202003131900527_updatee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003131913506_updateee.cs" />
-    <Compile Include="Migrations\202003131913506_updateee.Designer.cs">
-      <DependentUpon>202003131913506_updateee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1787,6 +1750,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1797,7 +1761,6 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Register.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <Content Include="Areas\Admin\Views\AccountRoles\Create.cshtml" />
     <Content Include="Areas\Admin\Views\AccountRoles\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Facilities\Create.cshtml" />
@@ -2064,6 +2027,7 @@
     <Content Include="Areas\Admin\Views\Requests\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Requests\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Requests\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2107,35 +2071,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003121648442_Request.resx">
-      <DependentUpon>202003121648442_Request.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003121744001_GetData.resx">
-      <DependentUpon>202003121744001_GetData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003121748070_GetDatanew.resx">
-      <DependentUpon>202003121748070_GetDatanew.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003121807004_removeGetData.resx">
-      <DependentUpon>202003121807004_removeGetData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003121911593_updaterequest.resx">
-      <DependentUpon>202003121911593_updaterequest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003131017486_updaterequest-new.resx">
-      <DependentUpon>202003131017486_updaterequest-new.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003131447185_updaterequest-new2.resx">
-      <DependentUpon>202003131447185_updaterequest-new2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003131900527_updatee.resx">
-      <DependentUpon>202003131900527_updatee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003131913506_updateee.resx">
-      <DependentUpon>202003131913506_updateee.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

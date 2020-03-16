@@ -38,7 +38,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 
             };
             var result = roleManager.Create(role);
-            return Redirect("/Admin/Account/Register");
+            return Redirect("/Admin/AccountRoles");
         }
     }
 }

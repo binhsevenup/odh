@@ -1,16 +1,38 @@
 ﻿
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Create Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Register</h2>
+@section _headerPage
+{
+    <header class="page-header">
+        <h2>Add Role</h2>
 
-<form action="/AccountRoles/Store" method="post">
-    <div>
-        Name <input type="text" name="name" />
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Admin Manager / Role / Add Role</span></li>
+            </ol>
+
+            <a class="sidebar-right-toggle"></a>
+        </div>
+    </header>
+}
+
+<h2 class="text-center">Register</h2>
+<hr style="margin-top: 35px"/>
+
+<form action="/AccountRoles/Store" method="post" style="margin-top: 10%">
+    <div style="margin-left: 35%">
+        <span><b>Name</b></span> &nbsp; <input type="text" name="name" style="width: 275px; height: 35px" />
     </div>
-    <div>
-        <input type="submit" value="Submit" />
+    <div >
+        <input type="submit" value="Submit" style="margin: 20px 0 0 550px" />
     </div>
 </form>
 

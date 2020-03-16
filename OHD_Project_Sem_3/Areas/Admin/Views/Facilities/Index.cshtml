@@ -2,9 +2,30 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@section _headerPage
+{
+    <header class="page-header">
+        <h2>List Facility</h2>
+
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Admin Manager / Facility / List Facility</span></li>
+            </ol>
+
+            <a class="sidebar-right-toggle"></a>
+        </div>
+    </header>
+}
+
+<h2 class="text-center" style="margin-bottom: 30px">List Facility</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -29,35 +50,36 @@
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
-        <th></th>
+        <th>Action</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FacilityCategory.FacilityCategory_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FacilityName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created_At)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Updated_At)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.FacilityId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.FacilityId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FacilityId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacilityCategory.FacilityCategory_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacilityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created_At)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated_At)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.FacilityId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.FacilityId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.FacilityId })
+            </td>
+        </tr>
+    }
 
 </table>

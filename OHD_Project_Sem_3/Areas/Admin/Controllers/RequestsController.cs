@@ -65,15 +65,14 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 Remarks = remarks,
                 Requestor = currentUser,
                 Created_At = DateTime.Now,
-                Updated_At = DateTime.Now,
                 Status = Requests.RequestStatus.Rejected
 
             };
             db.Requests.Add(request);
             db.SaveChanges();
-            return Redirect("Admin/Requests/Index");
+            return Redirect("/Admin/Requests");
         }
-
+     
         // GET: Admin/Requests/Edit/5
         public ActionResult Edit(int id)
         {
@@ -92,6 +91,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                request.Updated_At = DateTime.Now;
                 db.Entry(request).State = EntityState.Modified;
 
                 db.SaveChanges();
