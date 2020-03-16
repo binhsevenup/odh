@@ -1,6 +1,27 @@
 ﻿@model IEnumerable<OHD_Project_Sem_3.Areas.Admin.Models.FacilityCategory>
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section _headerPage
+{
+    <header class="page-header">
+        <h2>Register Account</h2>
+
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Admin Manager / Account / Register</span></li>
+            </ol>
+
+            <a class="sidebar-right-toggle"></a>
+        </div>
+    </header>
 }
 
 <h2>Register</h2>
@@ -27,7 +48,7 @@
         <option value="">  </option>
         @foreach (var item in Model)
         {
-            
+
             <option value="@item.FacilityCategory_Id">@item.FacilityCategory_Name</option>
         }
     </select>

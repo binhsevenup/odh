@@ -1,14 +1,35 @@
 ﻿@model OHD_Project_Sem_3.Areas.Admin.Models.FacilityCategory
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+@section _headerPage
+{
+    <header class="page-header">
+        <h2>Details Category</h2>
 
-<div>
-    <h4>FacilityCategory</h4>
-    <hr />
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Admin Manager / Categories / Details Category</span></li>
+            </ol>
+
+            <a class="sidebar-right-toggle"></a>
+        </div>
+    </header>
+}
+
+<h2 class="text-center">Details Category</h2>
+<hr style="margin-top: 35px" />
+
+<div class="edit-style">
+    
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.FacilityCategory_Name)

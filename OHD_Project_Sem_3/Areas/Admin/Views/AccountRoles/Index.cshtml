@@ -4,9 +4,30 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@section _headerPage
+{
+    <header class="page-header">
+        <h2>List Role</h2>
+
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Admin Manager / Role / List Role</span></li>
+            </ol>
+
+            <a class="sidebar-right-toggle"></a>
+        </div>
+    </header>
+}
+
+<h2 class="text-center" style="margin-bottom: 20px"><b>List Role</b></h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -14,9 +35,9 @@
 <table class="table">
     <tr>
         <th>
-            NAME
+            Name
         </th>
-        <th></th>
+        <th>Action</th>
     </tr>
 
     @foreach (var item in Model)

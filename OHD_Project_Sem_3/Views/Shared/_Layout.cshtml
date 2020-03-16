@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿
+<!doctype html>
 <html class="fixed">
 <head>
 
@@ -38,6 +39,8 @@
 
     <!-- Head Libs -->
     <script src="/Content/assets/vendor/modernizr/modernizr.js"></script>
+    
+    @Styles.Render("~/Content/Style");
 
 </head>
 <body>
@@ -241,7 +244,7 @@
                             <img src="/Content/assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
                         </figure>
                         <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
-                            <span class="name">John Doe Junior</span>
+                            <span class="name"></span>
                             <span class="role">administrator</span>
                         </div>
 
@@ -309,10 +312,10 @@
                                             <a>- Role</a>
                                             <ul class="nav nav-children">
                                                 <li>
-                                                    <a href="#">+ Add role</a>
+                                                    @Html.ActionLink("+ Add Role", "Create", "AccountRoles")
                                                 </li>
                                                 <li>
-                                                    <a href="#">+ List role</a>
+                                                    @Html.ActionLink("+ List Role", "Index", "AccountRoles")
                                                 </li>
                                             </ul>
                                         </li>
@@ -320,7 +323,7 @@
                                             <a>- Account</a>
                                             <ul class="nav nav-children">
                                                 <li>
-                                                    <a href="#">+ Add account</a>
+                                                    @Html.ActionLink("+ Add Account", "Register", "Account")
                                                 </li>
                                                 <li>
                                                     <a href="#">+ List account</a>
@@ -331,21 +334,33 @@
                                             <a>- Facility</a>
                                             <ul class="nav nav-children">
                                                 <li>
-                                                    <a href="#">+ Add facility</a>
+                                                    @Html.ActionLink("+ Add Facility", "Create", "Facilities")
                                                 </li>
                                                 <li>
-                                                    <a href="#">+ List facility</a>
+                                                    @Html.ActionLink("+ List Facility", "Index", "Facilities")
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="nav-parent">
-                                            <a>- Assignee</a>
+                                            <a>- Categories</a>
                                             <ul class="nav nav-children">
                                                 <li>
-                                                    <a href="#">+ Add assgnee</a>
+                                                    @Html.ActionLink("+ Add Category", "Create", "FacilityCategories")
                                                 </li>
                                                 <li>
-                                                    <a href="#">+ List assgnee</a>
+                                                    @Html.ActionLink("+ List Category", "Index", "FacilityCategories")
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-parent">
+                                            <a>- Request</a>
+                                            <ul class="nav nav-children">
+                                                <li>
+                                                    @Html.ActionLink("+ Add Request", "Create", "Requests")
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("+ List Request", "Index", "Requests")
                                                 </li>
                                             </ul>
                                         </li>
@@ -363,7 +378,7 @@
 
                                     </ul>
                                 </li>
-                                
+
                                 <li class="nav-parent">
                                     <a>
                                         <i class="fa fa-align-left" aria-hidden="true"></i>
@@ -431,5 +446,6 @@
 
     <!-- Examples -->
     <script src="/Content/assets/javascripts/dashboard/examples.dashboard.js"></script>
+    @RenderSection("masterjs", required: false)
 </body>
 </html>
