@@ -32,7 +32,14 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
+    @section scripts {
+        <script type="text/javascript">
+        function create_facility() {
+            //var logined = 0;
+            //localStorage.setItem("logined", JSON.stringify(logined + 1));
+            alert("gigigigigigigigig");
+        </script>
+    }
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

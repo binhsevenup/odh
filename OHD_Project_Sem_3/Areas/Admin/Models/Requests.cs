@@ -14,6 +14,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Models
         public int RequestId { get; set; }
         public string RequestorId { get; set; }
         public virtual Account Requestor { get; set; }
+        public virtual Account Assignor { get; set; }
         public string AssgineeId { get; set; }
         public virtual FacilityCategory FacilityCategory { get; set; }
         public string FacilityCategory_Id { get; set; }
@@ -28,12 +29,11 @@ namespace OHD_Project_Sem_3.Areas.Admin.Models
         [Display(Name = "Updated At")]
         public DateTime? Updated_At { get; set; }
         public enum RequestStatus { 
-            Rejected=-1,
-            Closed=0,
-            Unassigned=1,
+            Deleted=-1,
+            Done=0,
+            Processing=1,
             Assigned=2,
-            Word_in_progress=3,
-            Need_more_info=4
+            Waiting=3,
         }
         [Display(Name = "Status")]
         public RequestStatus Status { get; set; }

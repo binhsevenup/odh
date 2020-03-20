@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using OHD_Project_Sem_3.Areas.Admin.Models;
@@ -17,8 +18,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         // GET: Admin/Facilities
         public ActionResult Index()
         {
-            var facilities = db.Facilities.Include(f => f.FacilityCategory);
-            return View(facilities.ToList());
+            return View(db.FacilityCategories.ToList());
         }
 
         // GET: Admin/Facilities/Details/5
@@ -57,7 +57,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.mess = "create succcess!";
             ViewBag.FacilityCategory_Id = new SelectList(db.FacilityCategories, "FacilityCategory_Id", "FacilityCategory_Name", facility.FacilityCategory_Id);
             return View(facility);
         }

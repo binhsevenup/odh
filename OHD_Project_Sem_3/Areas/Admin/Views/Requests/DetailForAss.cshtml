@@ -1,0 +1,91 @@
+﻿@model OHD_Project_Sem_3.Areas.Admin.Models.DataUserAndRequest
+
+@{
+    ViewBag.Title = "DetailForAss";
+}
+
+<h2>DetailForAss</h2>
+
+<div>
+    <h4>Requests</h4>
+    <hr />
+    <form action="/Requests/DetailsForAss" method="post">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.Facility.FacilityName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Request.Facility.FacilityName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.FacilityCategory.FacilityCategory_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Request.FacilityCategory.FacilityCategory_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.Requestor.FullName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Request.Requestor.FullName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.Remarks)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Request.Remarks)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.Created_At)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Request.Created_At)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.Updated_At)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Request.Updated_At)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.Status)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Request.Status)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.Requestor.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Request.Requestor.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.Requestor.Phone)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Request.Requestor.Phone)
+                @Html.HiddenFor(m => m.Request.RequestId)
+            </dd>
+
+        </dl>
+        <div>
+            <input type="submit" value="Save" />
+        </div>
+    </form>
+    
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,82 @@
+﻿@model OHD_Project_Sem_3.Areas.Admin.Models.DataUserAndRequest
+
+@{
+    ViewBag.Title = "DetailsForFacility";
+    var selectAssignorList = new List<SelectListItem>();
+    SelectListItem item = new SelectListItem()
+    {
+        Text = "Select",
+        Value = "0"
+    };
+    selectAssignorList.Add(item);
+    foreach (var it in Model.Accounts)
+    {
+        SelectListItem listItem = new SelectListItem()
+        {
+            Text = it.FullName,
+            Value = it.Id
+        };
+        selectAssignorList.Add(listItem);
+    }
+    var dropDownList = new SelectList(selectAssignorList);
+}
+
+<h2>DetailsForFacility</h2>
+
+<div>
+    <h4>Requests</h4>
+    <hr />
+    <form action="/Requests/DetailsForFacility" method="post">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.Facility.FacilityName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Request.Facility.FacilityName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.FacilityCategory.FacilityCategory_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Request.FacilityCategory.FacilityCategory_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.Requestor.FullName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Request.Requestor.FullName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.Requestor.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Request.Requestor.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.Requestor.Phone)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Request.Requestor.Phone)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Request.AssgineeId)
+            </dt>
+            <dd name="ass">
+                @Html.DropDownListFor(m => m.Request.AssgineeId, selectAssignorList)
+                @Html.HiddenFor(m => m.Request.RequestId)
+            </dd>
+        </dl>
+        <div>
+            <input type="submit" value="Save" />
+        </div>
+    </form>
+
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

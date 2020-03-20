@@ -25,14 +25,11 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             userManager = new UserManager<Account>(userStore);
         }
 
-        public ActionResult Index(string[] ids, string[] roleNames)
+        public ActionResult Index()
         {
-            foreach (var id in ids)
-            {
-                userManager.AddToRoles(id, roleNames);
-            }
-            Account acc = dbContext.Users.Find("");
-            return View("Register");
+
+            var accounts = dbContext.Users.ToList();
+            return View(accounts);
         }
 
         public ActionResult Login()
@@ -53,6 +50,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             var authManager = HttpContext.GetOwinContext().Authentication;
             authManager.SignIn(
                 new AuthenticationProperties { IsPersistent = false }, ident);
+            ViewBag.Mess = "Login success";
             return Redirect("/Home");
         }
 

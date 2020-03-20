@@ -1,0 +1,69 @@
+﻿@model IEnumerable<OHD_Project_Sem_3.Areas.Admin.Models.Requests>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Facility.FacilityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategory_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assignor.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created_At)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Updated_At)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Facility.FacilityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacilityCategory.FacilityCategory_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Requestor.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created_At)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated_At)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "DetailForFacility", new { id = item.RequestId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.RequestId })
+            </td>
+        </tr>
+    }
+
+</table>

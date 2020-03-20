@@ -179,6 +179,7 @@
     <Compile Include="Areas\Admin\Controllers\RequestsController.cs" />
     <Compile Include="Areas\Admin\Models\Account.cs" />
     <Compile Include="Areas\Admin\Models\AccountRole.cs" />
+    <Compile Include="Areas\Admin\Models\DataUserAndRequest.cs" />
     <Compile Include="Areas\Admin\Models\Facility.cs" />
     <Compile Include="Areas\Admin\Models\FacilityCategory.cs" />
     <Compile Include="Areas\Admin\Models\MyContext.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2024,10 +2026,14 @@
     <Content Include="Content\assets\vendor\style-switcher\less\variables.less" />
     <Content Include="Areas\Admin\Views\Requests\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Requests\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Requests\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Requests\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Requests\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Requests\Facility.cshtml" />
+    <Content Include="Areas\Admin\Views\Requests\DetailForFacility.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Requests\Assginee.cshtml" />
+    <Content Include="Areas\Admin\Views\Requests\DetailForAss.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

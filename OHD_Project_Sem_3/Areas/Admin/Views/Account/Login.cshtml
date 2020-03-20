@@ -2,7 +2,18 @@
 @{
     Layout = null;
 }
-
+@section scripts {
+    @if (ViewBag.Mess != null)
+    {
+        <script type="text/javascript">
+            function submit_logined() {
+                var logined = 0;
+                localStorage.setItem("logined", JSON.stringify(logined + 1));
+                return false;
+            }
+        </script>
+    }
+}
 <!doctype html>
 <html class="fixed">
 <head>
@@ -64,7 +75,6 @@
                                 </span>
                             </div>
                         </div>
-
                         <div class="form-group mb-lg">
                             <div class="clearfix">
                                 <label class="pull-left">Password</label>
@@ -88,7 +98,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4 text-right">
-                                <button type="submit" class="btn btn-primary hidden-xs">Sign In</button>
+                                <button type="submit" onclick="submit_logined()" class="btn btn-primary hidden-xs">Sign In</button>
                                 <button type="submit" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Sign In</button>
                             </div>
                         </div>
