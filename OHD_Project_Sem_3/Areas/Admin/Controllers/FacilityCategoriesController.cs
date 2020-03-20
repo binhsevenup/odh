@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -10,14 +11,16 @@ using OHD_Project_Sem_3.Areas.Admin.Models;
 
 namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 {
-    public class FacilityCategoriesController : Controller
+    public class FacilityCategoriesController : BaseController
     {
         private MyContext db = new MyContext();
 
         // GET: Admin/FacilityCategories
         public ActionResult Index()
         {
+
             return View(db.FacilityCategories.ToList());
+
         }
 
         // GET: Admin/FacilityCategories/Details/5
@@ -25,12 +28,14 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                Warning("The record does not exist.", true);
+                return View("Index");
             }
             FacilityCategory facilityCategory = db.FacilityCategories.Find(id);
             if (facilityCategory == null)
             {
-                return HttpNotFound();
+                Warning("The record does not exist.", true);
+                return View("Index");
             }
             return View(facilityCategory);
         }
@@ -48,13 +53,21 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "FacilityCategory_Id,FacilityCategory_Name,Created_At,Updated_At,Status")] FacilityCategory facilityCategory)
         {
+
             if (ModelState.IsValid)
             {
                 facilityCategory.Created_At = DateTime.Now;
                 db.FacilityCategories.Add(facilityCategory);
                 db.SaveChanges();
+                //                TempData["Msg"] = "Add Category Success!";
+                Success("Add category success!", true);
+
+
+                
+
                 return RedirectToAction("Index");
             }
+            Danger("Looks like something went wrong. Please check your form.");
 
             return View(facilityCategory);
         }
@@ -64,12 +77,14 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                Warning("The record does not exist.", true);
+                return View("Index");
             }
             FacilityCategory facilityCategory = db.FacilityCategories.Find(id);
             if (facilityCategory == null)
             {
-                return HttpNotFound();
+                Warning("The record does not exist.", true);
+                return View("Index");
             }
             return View(facilityCategory);
         }
@@ -81,13 +96,29 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "FacilityCategory_Id,FacilityCategory_Name,Created_At,Updated_At,Status")] FacilityCategory facilityCategory)
         {
+            if (facilityCategory.FacilityCategory_Id == null)
+            {
+                Warning("The record does not exist.", true);
+                return View("Index");
+            }
+
+            var existCategory = db.FacilityCategories.Find(facilityCategory.FacilityCategory_Id);
+            if (existCategory == null)
+            {
+                Warning("The record does not exist.", true);
+                return View("Index");
+            }
             if (ModelState.IsValid)
             {
-                facilityCategory.Updated_At = DateTime.Now;
-                db.Entry(facilityCategory).State = EntityState.Modified;
+                existCategory.Updated_At = DateTime.Now;
+                existCategory.FacilityCategory_Id = facilityCategory.FacilityCategory_Id;
+                existCategory.FacilityCategory_Name = facilityCategory.FacilityCategory_Name;
+                db.FacilityCategories.AddOrUpdate(existCategory);
                 db.SaveChanges();
+                Success("Edit category success!", true);
                 return RedirectToAction("Index");
             }
+            Danger("An error occurred while editing, please try again later.", true);
             return View(facilityCategory);
         }
 
@@ -96,12 +127,14 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                Warning("Category does not exist, please check again!");
+                return View("Index");
             }
             FacilityCategory facilityCategory = db.FacilityCategories.Find(id);
             if (facilityCategory == null)
             {
-                return HttpNotFound();
+                Warning("Category does not exist, please check again!");
+                return View("Index");
             }
             return View(facilityCategory);
         }
@@ -111,10 +144,18 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+            if (ModelState.IsValid)
+            {
+                
+            
             FacilityCategory facilityCategory = db.FacilityCategories.Find(id);
             db.FacilityCategories.Remove(facilityCategory);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            Success("Delete success!", true);
+                return RedirectToAction("Index");
+            }
+            Danger("An error occurred while deleting, please try again later", true);
+            return View("Index");
         }
 
         protected override void Dispose(bool disposing)

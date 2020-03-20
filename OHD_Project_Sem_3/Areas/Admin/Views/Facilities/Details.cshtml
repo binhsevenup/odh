@@ -4,7 +4,14 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section _Header
+{
+    @Html.Partial("_HeaderLayout");
+}
+@section _LeftMenu
+{
+    @Html.Partial("_LeftMenu");
+}
 @section _headerPage
 {
     <header class="page-header">
@@ -27,9 +34,9 @@
 
 <h2 class="text-center">Details Facility</h2>
 <hr style="margin-top: 35px" />
-<div  class="edit-style">
-   
-  
+<div class="edit-style">
+
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategory_Name)

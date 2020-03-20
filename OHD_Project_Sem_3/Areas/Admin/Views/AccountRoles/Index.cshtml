@@ -6,12 +6,18 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section _Header
+{
+    @Html.Partial("_HeaderLayout");
+}
+@section _LeftMenu
+{
+    @Html.Partial("_LeftMenu");
+}
 @section _headerPage
 {
     <header class="page-header">
         <h2>List Role</h2>
-
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
                 <li>
@@ -28,7 +34,9 @@
 }
 
 <h2 class="text-center" style="margin-bottom: 20px"><b>List Role</b></h2>
-
+<br />
+@Html.Partial("_AlertMessage")
+<br />
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>

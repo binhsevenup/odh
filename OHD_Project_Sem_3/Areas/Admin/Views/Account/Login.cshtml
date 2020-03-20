@@ -40,11 +40,13 @@
 
 </head>
 <body>
-    <!-- start: page -->
+
+    <!-- start: page --> 
     <section class="body-sign">
+
         <div class="center-sign">
             <a href="/" class="logo pull-left">
-                <img src="/Content/assets/images/logo.png" height="54" alt="Porto Admin" />
+                <img src="/Content/assets/images/helpdesk-online.png" height="54" alt="Porto Admin" />
             </a>
 
             <div class="panel panel-sign">
@@ -52,11 +54,11 @@
                     <h2 class="title text-uppercase text-bold m-none"><i class="fa fa-user mr-xs"></i> Sign In</h2>
                 </div>
                 <div class="panel-body">
-                    <form action="/Account/Login" method="post">
+                    <form action="/Admin/Account/Login" method="post" name="LoginForm">
                         <div class="form-group mb-lg">
                             <label>Email Address</label>
                             <div class="input-group input-group-icon">
-                                <input name="username" type="email" class="form-control input-lg" />
+                                <input name="username" type="email"  class="form-control input-lg" required  />
                                 <span class="input-group-addon">
                                     <span class="icon icon-lg">
                                         <i class="fa fa-user"></i>
@@ -98,18 +100,19 @@
                 </div>
             </div>
 
-            <p class="text-center text-muted mt-md mb-md">&copy; Copyright 2018. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+            @Html.Partial("_AlertMessage");
         </div>
     </section>
     <!-- end: page -->
     <!-- Vendor -->
-    <script src="/Content/assets/vendor/jquery/jquery.js"></script>
+    <script src="/Content/assets/vendor/jquery/jquery.min.js"></script>
     <script src="/Content/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
     <script src="/Content/assets/vendor/bootstrap/js/bootstrap.js"></script>
     <script src="/Content/assets/vendor/nanoscroller/nanoscroller.js"></script>
     <script src="/Content/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     <script src="/Content/assets/vendor/magnific-popup/magnific-popup.js"></script>
     <script src="/Content/assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js "></script>
 
     <!-- Theme Base, Components and Settings -->
     <script src="/Content/assets/javascripts/theme.js"></script>
@@ -119,9 +122,8 @@
 
     <!-- Theme Initialization Files -->
     <script src="/Content/assets/javascripts/theme.init.js"></script>
-
+    @Scripts.Render("~/bundles/js")
 </body>
-<img src="http://www.ten28.com/fref.jpg">
 </html>
 @* <h2>Login</h2> *@
 @* <form action="/Account/Login" method="post"> *@

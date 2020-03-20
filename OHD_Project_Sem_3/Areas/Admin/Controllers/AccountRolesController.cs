@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 {
-    public class AccountRolesController : Controller
+    public class AccountRolesController : BaseController
     {
         private MyContext dbContext = new MyContext();
         private RoleManager<AccountRole> roleManager;
@@ -32,12 +32,20 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Store(string name)
         {
+            if (ModelState.IsValid)
+            {
+                
+            
             var role = new AccountRole()
             {
                 Name = name,
                 
             };
             var result = roleManager.Create(role);
+            Success("Add role success!");
+            return RedirectToAction("Index", "AccountRoles");
+            }
+            Danger("Error, please try again!");
             return Redirect("/Admin/AccountRoles");
         }
     }

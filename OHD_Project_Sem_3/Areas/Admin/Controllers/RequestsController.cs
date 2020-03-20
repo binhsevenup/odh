@@ -12,7 +12,7 @@ using OHD_Project_Sem_3.Areas.Admin.Models;
 
 namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 {
-    public class RequestsController : Controller
+    public class RequestsController : BaseController
     {
         private MyContext db = new MyContext();
         private UserManager<Account> userManager;
@@ -37,7 +37,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             Requests request = db.Requests.Find(id);
             return View(request);
         }
-
+    
         // GET: Admin/Requests/Create
         public ActionResult Create()
         {
@@ -55,6 +55,10 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult CreateStore(string category, string facility, string remarks)
         {
+            if (ModelState.IsValid)
+            {
+                
+         
             string curentuserid = User.Identity.GetUserId();
             Account currentUser = db.Users.FirstOrDefault(x => x.Id == curentuserid);
             var request = new Requests()
@@ -70,6 +74,10 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             };
             db.Requests.Add(request);
             db.SaveChanges();
+            Success("Send request success!", true);
+            return RedirectToAction("Index", "Requests");
+            }
+            Danger("Error, please try again!", true);
             return Redirect("/Admin/Requests");
         }
      

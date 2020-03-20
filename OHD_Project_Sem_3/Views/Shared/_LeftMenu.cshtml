@@ -1,0 +1,131 @@
+﻿<aside id="sidebar-left" class="sidebar-left">
+
+    <div class="sidebar-header">
+        <div class="sidebar-title">
+            Navigation
+        </div>
+        <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+            <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+        </div>
+    </div>
+
+    <div class="nano">
+        <div class="nano-content">
+            <nav id="menu" class="nav-main" role="navigation">
+                <ul class="nav nav-main">
+                    <li class="nav-active">
+                        <a href="index.html">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailbox-folder.html">
+                            <span class="pull-right label label-primary">182</span>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <span>Mailbox</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a>
+                            <i class="fa fa-align-left" aria-hidden="true"></i>
+                            <span>Admin Manager</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="nav-parent">
+                                <a>- Role</a>
+                                <ul class="nav nav-children">
+                                    <li>
+                                        @Html.ActionLink("+ Add Role", "Create", "AccountRoles")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("+ List Role", "Index", "AccountRoles")
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-parent">
+                                <a>- Account</a>
+                                <ul class="nav nav-children">
+                                    <li>
+                                        @Html.ActionLink("+ Add Account", "Register", "Account")
+                                    </li>
+                                    <li>
+                                        <a href="#">+ List account</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-parent">
+                                <a>- Facility</a>
+                                <ul class="nav nav-children">
+                                    <li>
+                                        @Html.ActionLink("+ Add Facility", "Create", "Facilities")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("+ List Facility", "Index", "Facilities")
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-parent">
+                                <a>- Categories</a>
+                                <ul class="nav nav-children">
+                                    <li>
+                                        @Html.ActionLink("+ Add Category", "Create", "FacilityCategories")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("+ List Category", "Index", "FacilityCategories")
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-parent">
+                                <a>- Request</a>
+                                <ul class="nav nav-children">
+                                    <li>
+                                        @Html.ActionLink("+ Add Request", "Create", "Requests")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("+ List Request", "Index", "Requests")
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent">
+                        <a>
+                            <i class="fa fa-align-left" aria-hidden="true"></i>
+                            <span>Facility Head Manager</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <a href="#">- List request</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a>
+                            <i class="fa fa-align-left" aria-hidden="true"></i>
+                            <span>Assignee Manager</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <a href="#">- List request</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
+
+
+
+
+
+        </div>
+
+    </div>
+
+</aside>

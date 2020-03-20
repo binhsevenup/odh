@@ -1,0 +1,45 @@
+﻿@using OHD_Project_Sem_3.Areas.Admin.Models
+@{
+    var alerts = TempData.ContainsKey(Alert.TempDataKey)
+        ? (List<Alert>)TempData[Alert.TempDataKey]
+        : new List<Alert>();
+}
+@*     <span class="kwrd">if</span>  *@
+@* (alerts.Any()) *@
+@* { *@
+@*     &lt; *@
+@*     hr / &gt; *@
+@* } *@
+@* *@
+@* *@
+@*     <span class="kwrd">foreach</span> (var alert <span class="kwrd">in</span> alerts)  *@
+@*     {  *@
+@*         var dismissableClass = alert.Dismissable ? <span class="str">"alert-dismissable"</span> : <span class="kwrd">null</span>;  *@
+@*         &lt;div <span class="kwrd">class</span>=<span class="str">"alert alert-@alerts.AlertStyle @dismissableClass"</span>&gt;  *@
+@*         @<span class="kwrd">if</span> (alert.Dismissable)  *@
+@*         {  *@
+@*             &lt;button type=<span class="str">"button"</span> <span class="kwrd">class</span>=<span class="str">"close"</span> data-dismiss=<span class="str">"alert"</span> aria-hidden=<span class="str">"true"</span>&gt;&amp;times;&lt;/button&gt;  *@
+@*         }  *@
+@*         @Html.Raw(alert.Message)  *@
+@*         &lt;/div&gt;  *@
+@* }  *@
+
+
+@foreach (var alert in alerts)
+{
+    <div class="alert @alert.AlertStyle alert-dismissible " id="hello" role="alert">
+        <strong id="bye">
+
+
+            @alert.Message
+
+
+        </strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+}
+
+

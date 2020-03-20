@@ -15,6 +15,7 @@ namespace OHD_Project_Sem_3.Controllers
         // GET: Home
         public ActionResult Index()
         {
+
             return View();
         }
     }

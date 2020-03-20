@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private MyContext dbContext = new MyContext();
         private UserManager<Account> userManager;
@@ -42,10 +42,16 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
+            if (ModelState.IsValid)
+            {
+                
+            
             Account account = userManager.Find(username, password);
             if (account == null)
             {
-                return HttpNotFound();
+                Danger("The email address or password is incorrect, please try again.", true);
+                return View("Login");
+
             }
             // success
             var ident = userManager.CreateIdentity(account, DefaultAuthenticationTypes.ApplicationCookie);
@@ -53,6 +59,8 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             var authManager = HttpContext.GetOwinContext().Authentication;
             authManager.SignIn(
                 new AuthenticationProperties { IsPersistent = false }, ident);
+            }
+            Success("Login success!");
             return Redirect("/Home");
         }
 
@@ -63,10 +71,16 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             return View(dbContext.FacilityCategories.ToList());
         }
 
+        
+
         [HttpPost]
         public async Task<ActionResult>Store(string username, string password,string role,string ass,int phone,string fullname)
         {
-            var account = new Account()
+
+
+            if (ModelState.IsValid)
+            {
+                var account = new Account()
             {
                 Id = Guid.NewGuid().ToString(),
                 UserName = username,
@@ -78,16 +92,21 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 FullName=fullname,
 
             };
-            var result = await userManager.CreateAsync(account, password);
+            
+                var result = await userManager.CreateAsync(account, password);
             if (result.Succeeded)
             {
                 userManager.AddToRole(account.Id, role);
+                Success("Register success!", true);
+                return RedirectToAction("Login", "Account");
             }
             else
             {
                 Debug.WriteLine(result.Errors);
-            }   
-            return Redirect("/Admin/Account/Login");
+            }
+            }
+            Danger("Error, please try again!");
+            return View("Register");
         }
 
         [Authorize]
