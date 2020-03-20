@@ -3,7 +3,14 @@
     ViewBag.Title = "Create Role";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section _Header
+{
+    @Html.Partial("_HeaderLayout");
+}
+@section _LeftMenu
+{
+    @Html.Partial("_LeftMenu");
+}
 @section _headerPage
 {
     <header class="page-header">
@@ -24,15 +31,30 @@
     </header>
 }
 
-<h2 class="text-center">Register</h2>
-<hr style="margin-top: 35px"/>
+<h2 class="text-center">Form Create Role</h2>
+<hr style="margin-top: 35px" />
 
-<form action="/AccountRoles/Store" method="post" style="margin-top: 10%">
-    <div style="margin-left: 35%">
-        <span><b>Name</b></span> &nbsp; <input type="text" name="name" style="width: 275px; height: 35px" />
+<form action="/Admin/AccountRoles/Store" method="post" name="RoleForm" class=" form-group " style="margin: 90px -20px 0 0">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <span><b>Name</b></span> &nbsp;
+            <input type="text" name="name" class="form-control" style="height: 35px" />
+        </div>
+        <div class="col-md-4"></div>
     </div>
-    <div >
-        <input type="submit" value="Submit" style="margin: 20px 0 0 550px" />
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-4"></div>
+        <div class="col-md-2">
+            <input type="submit" name="submit" value="Submit" class="form-control btn-primary" />
+        </div>
+        <div class="col-md-4" style="margin-top: 7px">
+            @Html.ActionLink("Back to List", "Index", "AccountRoles", null, new
+            {
+                style = "margin-left: 100px"
+            })
+        </div>
     </div>
+
 </form>
 

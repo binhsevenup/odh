@@ -4,7 +4,14 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section _Header
+{
+    @Html.Partial("_HeaderLayout");
+}
+@section _LeftMenu
+{
+    @Html.Partial("_LeftMenu");
+}
 @section _headerPage
 {
     <header class="page-header">
@@ -24,15 +31,17 @@
         </div>
     </header>
 }
-
-@using (Html.BeginForm("Edit","FacilityCategories", FormMethod.Post))
+<h2 class="text-center">Edit Form Category</h2>
+<br />
+@Html.Partial("_AlertMessage");
+<hr  />
+@using (Html.BeginForm("Edit", "FacilityCategories", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <h2 class="text-center">Edit Form Category</h2>
-    <hr style="margin-top: 35px"/>
+   
     <div class="form-horizontal facility-style">
-        
-        
+
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.FacilityCategory_Id)
 
@@ -44,7 +53,7 @@
             </div>
         </div>
 
-        
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })

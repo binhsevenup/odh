@@ -3,7 +3,15 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section _Header
+{
+    @Html.Partial("_HeaderLayout");
+}
 
+@section _LeftMenu
+{
+    @Html.Partial("_LeftMenu");
+}
 @section _headerPage
 {
     <header class="page-header">
@@ -24,38 +32,91 @@
     </header>
 }
 
-<h2>Register</h2>
-<form action="/Account/Store" method="post">
+<h2 class="text-center" style="margin-bottom: 35px">Register Form</h2>
+<br />
+@Html.Partial("_AlertMessage");
+<br />
+<hr style="margin-bottom: 55px" />
+<form action="/Admin/Account/Store" method="post" name="registration">
 
-    <div>
-        Email <input type="email" name="username" />
+    <div class="form-group row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 ">
+            <label><b>Email Address</b></label>
+            <input type="email" name="username" class="form-control " placeholder="Enter the email address." />
+        </div>
+        <div class="col-md-4"></div>
     </div>
-    <div>
-        FullName <input type="text" name="fullname" />
-    </div>
-    <div>
-        Password <input type="password" name="password" />
-    </div>
-    <div>
-        Role
-        <select name="role">
-            <option value="Admin">Admin</option>
-            <option value="User">User</option>
-        </select>
-    </div>
-    Ass
-    <select name="ass">
-        <option value="">  </option>
-        @foreach (var item in Model)
-        {
+    <div class="form-group row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <label><b>Full Name</b></label>
+            <input type="text" name="fullname" class="form-control " placeholder="Enter the full name." />
 
-            <option value="@item.FacilityCategory_Id">@item.FacilityCategory_Name</option>
-        }
-    </select>
-    <div>
-        Phone <input type="number" name="phone" value="" />
+        </div>
+        <div class="col-md-4"></div>
     </div>
-    <div>
-        <input type="submit" value="Submit" />
+    <div class="form-group row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <label><b>Password</b></label>
+            <input type="password" name="password" class="form-control " id="password" placeholder="Enter the password." />
+
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <label><b>Confirm Password</b></label>
+            <input type="password" name="password_confirm" class="form-control " placeholder="Enter the confirm password." />
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-4"></div>
+        <div class="col-md-2">
+
+            <label><b>Role</b></label>
+            <select name="role" class="form-control">
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+            </select>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+            <label><b>Assignee</b></label>
+            <select name="ass" class="form-control">
+                <option value="">Select</option>
+                @foreach (var item in Model)
+                {
+
+                    <option value="@item.FacilityCategory_Id">@item.FacilityCategory_Name</option>
+                }
+
+            </select>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+            <label><b>Phone Number</b></label>
+            <input type="text" name="phone" class="form-control " placeholder="Enter the phone number." />
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-4"></div>
+        <div class="col-md-1">
+            <input type="submit" class="form-control btn-primary" value="Submit" />
+        </div>
+        <div class="col-md-4"></div>
     </div>
 </form>

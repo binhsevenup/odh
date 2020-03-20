@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -10,7 +11,7 @@ using OHD_Project_Sem_3.Areas.Admin.Models;
 
 namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 {
-    public class FacilitiesController : Controller
+    public class FacilitiesController : BaseController
     {
         private MyContext db = new MyContext();
 
@@ -50,15 +51,18 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "FacilityId,FacilityName,Description,Created_At,Updated_At,FacilityCategory_Id,Status")] Facility facility)
         {
-            if (ModelState.IsValid)
+            
+            if (ModelState.IsValid )
             {
                 facility.Created_At = DateTime.Now;
                 db.Facilities.Add(facility);
                 db.SaveChanges();
+                Success("Add facility success!", true);
                 return RedirectToAction("Index");
             }
 
             ViewBag.FacilityCategory_Id = new SelectList(db.FacilityCategories, "FacilityCategory_Id", "FacilityCategory_Name", facility.FacilityCategory_Id);
+            Warning("Please enter full information.", true);
             return View(facility);
         }
 
@@ -85,14 +89,34 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "FacilityId,FacilityName,Description,Created_At,Updated_At,FacilityCategory_Id,Status")] Facility facility)
         {
+            if (facility.FacilityId == null)
+            {
+                Warning("Facility does not exist, please check again!");
+                return View("Index");
+
+            }
+
+            var existFacility = db.Facilities.Find(facility.FacilityId);
+            if (existFacility == null)
+            {
+                Warning("Facility does not exist, please check again!");
+                return View("Index");
+            }
             if (ModelState.IsValid)
             {
-                facility.Updated_At = DateTime.Now;
-                db.Entry(facility).State = EntityState.Modified;
+                existFacility.FacilityId = facility.FacilityId;
+                existFacility.Status = facility.Status;
+                existFacility.FacilityCategory_Id = facility.FacilityCategory_Id;
+                existFacility.FacilityName = facility.FacilityName;
+                existFacility.Description = facility.Description;
+                existFacility.Updated_At = DateTime.Now;
+                db.Facilities.AddOrUpdate(existFacility);
                 db.SaveChanges();
+                Success("Edit success!", true);
                 return RedirectToAction("Index");
             }
             ViewBag.FacilityCategory_Id = new SelectList(db.FacilityCategories, "FacilityCategory_Id", "FacilityCategory_Name", facility.FacilityCategory_Id);
+            Danger("An error occurred while editing, please try again later.", true);
             return View(facility);
         }
 
@@ -101,12 +125,14 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                Warning("Facility does not exist, please check again!");
+                return View("Index");
             }
             Facility facility = db.Facilities.Find(id);
             if (facility == null)
             {
-                return HttpNotFound();
+                Warning("Facility does not exist, please check again!");
+                return View("Index");
             }
             return View(facility);
         }
@@ -116,10 +142,16 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Facility facility = db.Facilities.Find(id);
-            db.Facilities.Remove(facility);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                Facility facility = db.Facilities.Find(id);
+                db.Facilities.Remove(facility);
+                db.SaveChanges();
+                Success("Delete success!", true);
+                return RedirectToAction("Index");
+            }
+            Danger("An error occurred while deleting, please try again later", true);
+            return View("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -19,9 +19,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Models
         public string FacilityCategory_Id { get; set; }
         public virtual Facility Facility{ get; set; }
         public string FacilityId { get; set; }
-        [Required(ErrorMessage = "Please enter message.")]
         [Display(Name = "Message")]
-        [StringLength(500, MinimumLength = 2, ErrorMessage = "Message is only allowed between 2 - 500 characters.")]
         public string Remarks { get; set; }
         [Display(Name = "Created At")]
         public DateTime Created_At { get; set; }
