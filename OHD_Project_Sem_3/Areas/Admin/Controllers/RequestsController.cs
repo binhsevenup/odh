@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -17,16 +18,82 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         private MyContext db = new MyContext();
         private UserManager<Account> userManager;
         private TotalData data = new TotalData();
+        private DataUserAndRequest data2 = new DataUserAndRequest();
         public RequestsController()
         {
             UserStore<Account> userStore = new UserStore<Account>(db);
             userManager = new UserManager<Account>(userStore);
         }
+        public ActionResult Assginee()
+        {
+            string curentuserid = User.Identity.GetUserId();
+            Account currentUser = db.Users.FirstOrDefault(x => x.Id == curentuserid);
+            var requests = db.Requests.Where(r => r.FacilityCategory_Id == currentUser.FacilityCategory_Id && r.Status == Requests.RequestStatus.Assigned);
+            return View(requests.ToList());
+        }
+        public ActionResult DetailForAss(int id)
+        {
+            data2.Request = db.Requests.Find(id);
+            data2.Accounts = db.Users.Where(a => a.Id == data2.Request.AssgineeId).ToList();
+            Requests requests = db.Requests.Find(id);
+            return View(data2);
+        }
+        public ActionResult DetailsForAss([Bind(Include = "RequestId")] Requests request)
+        {
+            var exist = db.Requests.Find(request.RequestId);
+            if (exist == null)
+            {
+                return HttpNotFound();
+            }
+            exist.Updated_At = DateTime.Now;
+            exist.Status = Requests.RequestStatus.Processing;
+            db.Requests.AddOrUpdate(exist);
+            db.SaveChanges();
+            return Redirect("/Admin/Requests/Assginee");
+
+        }
+        public ActionResult Facility()
+        {
+            var re = db.Requests.Where(r => r.Status == Requests.RequestStatus.Waiting).ToList();
+            return View(re);
+        }
+        public ActionResult DetailForFacility(int id)
+        {
+
+            data2.Request = db.Requests.Find(id);
+            data2.Accounts = db.Users.Where(u => u.FacilityCategory_Id == data2.Request.FacilityCategory_Id).ToList();
+
+            return View(data2);
+        }
+        [HttpPost]
+        public ActionResult DetailsForFacility([Bind(Include = "RequestId,AssgineeId")] Requests request)
+        {
+            var exist = db.Requests.Find(request.RequestId);
+            if (exist == null)
+            {
+                return HttpNotFound();
+            }
+            var assignor = db.Users.Find(request.AssgineeId);
+            if (assignor == null)
+            {
+                return HttpNotFound();
+            }
+            exist.AssgineeId = request.AssgineeId;
+            exist.Updated_At = DateTime.Now;
+            exist.Status = Requests.RequestStatus.Assigned;
+            db.Requests.AddOrUpdate(exist);
+            db.SaveChanges();
+            return Redirect("/Admin/Requests/Facility");
+
+        }
 
         // GET: Admin/Requests
         public ActionResult Index()
         {
-            var requests = db.Requests.Include(r => r.Facility).Include(r => r.FacilityCategory);
+            string curentuserid = User.Identity.GetUserId();
+            Account currentUser = db.Users.FirstOrDefault(x => x.Id == curentuserid);
+            var Requestorid = currentUser.Id;
+            var requests = db.Requests.Where(s => s.RequestorId == Requestorid);
             return View(requests.ToList());
         }
 
@@ -69,7 +136,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 Remarks = remarks,
                 Requestor = currentUser,
                 Created_At = DateTime.Now,
-                Status = Requests.RequestStatus.Rejected
+                Status = Requests.RequestStatus.Waiting
 
             };
             db.Requests.Add(request);
