@@ -1,4 +1,5 @@
-﻿
+﻿@using Microsoft.AspNet.Identity;
+
 <header class="header">
     <div class="logo-container">
         <a href="../" class="logo">
@@ -196,8 +197,8 @@
                     <img src="/Content/assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
                 </figure>
                 <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
-                    <span class="name"></span>
-                    <span class="role">administrator</span>
+                    <span class="name">@HttpContext.Current.User.Identity.GetUserName();</span>
+                    @* <span class="role">administrator</span> *@
                 </div>
 
                 <i class="fa custom-caret"></i>
@@ -213,7 +214,7 @@
                         <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
                     </li>
                     <li>
-                        <a role="menuitem" tabindex="-1" href="pages-signin.html"><i class="fa fa-power-off"></i> Logout</a>
+                        <a role="menuitem" tabindex="-1" href="/Admin/Account/Logout"><i class="fa fa-power-off"></i> Logout</a>
                     </li>
                 </ul>
             </div>
