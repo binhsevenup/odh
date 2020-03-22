@@ -110,11 +110,11 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         }
 
         [Authorize]
-        [HttpPost]
+        [HttpGet]
         public ActionResult Logout()
         {
             HttpContext.GetOwinContext().Authentication.SignOut();
-            return Redirect("/Home");
+            return RedirectToAction("Login");
         }
     }
 }
