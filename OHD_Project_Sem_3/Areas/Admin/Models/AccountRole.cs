@@ -8,5 +8,6 @@ namespace OHD_Project_Sem_3.Areas.Admin.Models
 {
     public class AccountRole: IdentityRole
     {
+        public virtual ICollection<Account> Account { get; set; }
     }
 }

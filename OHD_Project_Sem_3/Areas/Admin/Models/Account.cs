@@ -21,6 +21,8 @@ namespace OHD_Project_Sem_3.Areas.Admin.Models
             Delete = -1 
         }
         public List<Requests> Requests { get; set; }
+        public int AccountRoleId { get; set; }
+        public virtual AccountRole AccountRole { get; set; }
 
 
     }

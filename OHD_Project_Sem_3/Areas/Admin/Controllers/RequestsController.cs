@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -38,17 +39,62 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             Requests requests = db.Requests.Find(id);
             return View(data2);
         }
-        public ActionResult DetailsForAss([Bind(Include = "RequestId")] Requests request)
+        public ActionResult ConfirmReturneds()
+        {
+            string curentuserid = User.Identity.GetUserId();
+            Account currentUser = db.Users.FirstOrDefault(x => x.Id == curentuserid);
+            var confirm = db.Requests.Where(c => c.Status == Requests.RequestStatus.Processing && c.FacilityCategory_Id==currentUser.FacilityCategory_Id);
+            return View(confirm.ToList());
+        }
+        public ActionResult ConfirmReturned([Bind(Include = "RequestId,FacilityId")] Requests request)
+        {
+            var requests = db.Requests.Find(request.RequestId);
+            var facility = db.Facilities.Find(request.FacilityId);
+            facility.Status = Models.Facility.FancilitySatus.Active;
+            requests.Status = Requests.RequestStatus.Done;
+            db.Requests.AddOrUpdate(requests);
+            db.Facilities.AddOrUpdate(facility);
+            db.SaveChanges();
+            return Redirect("/Admin/Requests/Assginee");
+        }
+        public ActionResult DetailForConfirmReturned(int id)
+        {
+            data2.Request = db.Requests.Find(id);
+            data2.Accounts = db.Users.Where(a => a.Id == data2.Request.AssgineeId).ToList();
+            Requests requests = db.Requests.Find(id);
+            return View(data2);
+        }
+        public ActionResult DetailsForAss([Bind(Include = "RequestId,FacilityId")] Requests request)
         {
             var exist = db.Requests.Find(request.RequestId);
+            var facility = db.Facilities.Find(request.FacilityId);
             if (exist == null)
             {
                 return HttpNotFound();
             }
+            facility.Status=Models.Facility.FancilitySatus.Deactive;
             exist.Updated_At = DateTime.Now;
             exist.Status = Requests.RequestStatus.Processing;
             db.Requests.AddOrUpdate(exist);
+            db.Facilities.AddOrUpdate(facility);
             db.SaveChanges();
+            string email = "sieuphamyasuo393@gmail.com";
+            string password = "muxcbqdsyjjhbkbq";
+
+            var loginInfo = new NetworkCredential(email, password);
+            var msg = new MailMessage();
+            var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+
+            msg.From = new MailAddress(email);
+            msg.To.Add(new MailAddress(exist.Requestor.Email));
+            msg.Subject = "Request has been Assginor confirm !!! ";
+            msg.Body = "Your request has ID:" + exist.RequestId + "has been Assginor confirm !!!";
+            msg.IsBodyHtml = true;
+
+            smtpClient.EnableSsl = true;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = loginInfo;
+            smtpClient.Send(msg);
             return Redirect("/Admin/Requests/Assginee");
 
         }
@@ -83,6 +129,24 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             exist.Status = Requests.RequestStatus.Assigned;
             db.Requests.AddOrUpdate(exist);
             db.SaveChanges();
+            var emailto = assignor.Email;
+            string email = "sieuphamyasuo393@gmail.com";
+            string password = "muxcbqdsyjjhbkbq";
+
+            var loginInfo = new NetworkCredential(email, password);
+            var msg = new MailMessage();
+            var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+
+            msg.From = new MailAddress(email);
+            msg.To.Add(new MailAddress(emailto));
+            msg.Subject = "Request has been Assginor confirm !!! ";
+            msg.Body = "The request with id:" + exist.RequestId + "is waiting for your confirmation !!!";
+            msg.IsBodyHtml = true;
+
+            smtpClient.EnableSsl = true;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = loginInfo;
+            smtpClient.Send(msg);
             return Redirect("/Admin/Requests/Facility");
 
         }
@@ -109,7 +173,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         public ActionResult Create()
         {
             data.FacilityCategories = db.FacilityCategories.ToList();
-            data.Facilities = db.Facilities.ToList();
+            data.Facilities = db.Facilities.Where(f=>f.Status==Models.Facility.FancilitySatus.Active).ToList();
 
             ViewBag.FacilityId = new SelectList(db.Facilities, "FacilityId", "FacilityName");
             ViewBag.FacilityCategory_Id = new SelectList(db.FacilityCategories, "FacilityCategory_Id", "FacilityCategory_Name");
@@ -142,7 +206,25 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             db.Requests.Add(request);
             db.SaveChanges();
             Success("Send request success!", true);
-            return RedirectToAction("Index", "Requests");
+                //var idRole = db.Roles.Where(r => r.Name == "Facility-Heads");
+                
+                //string email = "sieuphamyasuo393@gmail.com";
+                //string password = "muxcbqdsyjjhbkbq";
+
+                //var loginInfo = new NetworkCredential(email, password);
+                //var msg = new MailMessage();
+                //var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                //msg.From = new MailAddress(email);
+                //msg.To.Add(new MailAddress(request.Requestor.Email));
+                //msg.Subject = "Request has been Assginor confirm !!! ";
+                //msg.Body = "Your request has ID:" + request.RequestId + "has been Assginor confirm !!!";
+                //msg.IsBodyHtml = true;
+
+                //smtpClient.EnableSsl = true;
+                //smtpClient.UseDefaultCredentials = false;
+                //smtpClient.Credentials = loginInfo;
+                //smtpClient.Send(msg);
+                return RedirectToAction("Index", "Requests");
             }
             Danger("Error, please try again!", true);
             return Redirect("/Admin/Requests");
