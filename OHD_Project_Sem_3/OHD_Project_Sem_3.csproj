@@ -195,6 +195,10 @@
     <Compile Include="Migrations\202003211018237_InitializeDatabase.Designer.cs">
       <DependentUpon>202003211018237_InitializeDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003211853225_InitializeDatabase2.cs" />
+    <Compile Include="Migrations\202003211853225_InitializeDatabase2.Designer.cs">
+      <DependentUpon>202003211853225_InitializeDatabase2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2135,6 +2139,9 @@
     <Content Include="Areas\Admin\Views\Requests\DetailForFacility.cshtml" />
     <Content Include="Areas\Admin\Views\Requests\Assginee.cshtml" />
     <Content Include="Areas\Admin\Views\Requests\DetailForAss.cshtml" />
+    <Content Include="Areas\Admin\Views\Requests\ConfirmReturneds.cshtml" />
+    <Content Include="Areas\Admin\Views\Requests\DetailForConfirmReturned.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -2187,6 +2194,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003211018237_InitializeDatabase.resx">
       <DependentUpon>202003211018237_InitializeDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003211853225_InitializeDatabase2.resx">
+      <DependentUpon>202003211853225_InitializeDatabase2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
