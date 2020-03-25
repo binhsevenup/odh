@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using OHD_Project_Sem_3.Areas.Admin.Models;
+using PagedList;
+
 
 namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 {
@@ -16,10 +18,47 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         private MyContext db = new MyContext();
 
         // GET: Admin/Facilities
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var facilities = db.Facilities.Include(f => f.FacilityCategory);
-            return View(facilities.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.FacilityNameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+            var facilities = from f in db.Facilities
+                             select f;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                facilities = facilities.Where(f => f.FacilityName.Contains(searchString)
+                                               || f.FacilityName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    facilities = facilities.OrderByDescending(f => f.FacilityName);
+                    break;
+                case "Date":
+                    facilities = facilities.OrderBy(f => f.Created_At);
+                    break;
+                case "date_desc":
+                    facilities = facilities.OrderByDescending(f => f.Created_At);
+                    break;
+                default:
+                    facilities = facilities.OrderBy(f => f.Created_At);
+                    break;
+            }
+            //            var facilities = db.Facilities.Include(f => f.FacilityCategory);
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(facilities.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/Facilities/Details/5
@@ -51,8 +90,8 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "FacilityId,FacilityName,Description,Created_At,Updated_At,FacilityCategory_Id,Status")] Facility facility)
         {
-            
-            if (ModelState.IsValid )
+
+            if (ModelState.IsValid)
             {
                 facility.Created_At = DateTime.Now;
                 db.Facilities.Add(facility);
