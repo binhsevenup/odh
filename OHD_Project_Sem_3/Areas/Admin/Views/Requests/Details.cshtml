@@ -5,31 +5,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section _Header
+{
+    @Html.Partial("_HeaderLayout");
+}
+@section _LeftMenu
+{
+    @Html.Partial("_LeftMenu");
+}
+
 @section _headerPage
 {
     <header class="page-header">
-        <h2>Details Request</h2>
+        <h2>Details</h2>
 
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
                 <li>
-                    <a href="index.html">
+                    <a href="../Facilities/index.html">
                         <i class="fa fa-home"></i>
                     </a>
                 </li>
-                <li><span>Dashboard</span></li>
+                <li><span>Admin Manager / Request / Details</span></li>
             </ol>
 
             <a class="sidebar-right-toggle"></a>
         </div>
     </header>
 }
+<h2 class="text-center text-bold">Details Request</h2>
+<br />
+@Html.Partial("_AlertMessage");
+<hr />
 
-<h2>Details</h2>
-
-<div>
-    <h4>Request</h4>
-    <hr />
+<div class="edit-style">
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Facility.FacilityName)

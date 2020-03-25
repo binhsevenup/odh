@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "DetailsForFacility";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     var selectAssignorList = new List<SelectListItem>();
     SelectListItem item = new SelectListItem()
     {
@@ -21,11 +22,42 @@
     var dropDownList = new SelectList(selectAssignorList);
 }
 
-<h2>DetailsForFacility</h2>
+
+@section _Header
+{
+    @Html.Partial("_HeaderLayout");
+}
+@section _LeftMenu
+{
+    @Html.Partial("_LeftMenu");
+}
+
+@section _headerPage
+{
+    <header class="page-header">
+        <h2>Details For Facility</h2>
+
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="../Facilities/index.html">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Admin Manager / Request / Details For Facility</span></li>
+            </ol>
+
+            <a class="sidebar-right-toggle"></a>
+        </div>
+    </header>
+}
+<h2 class="text-center text-bold">Details For Facility</h2>
+<br />
+@Html.Partial("_AlertMessage");
+<hr />
 
 <div>
-    <h4>Requests</h4>
-    <hr />
+
     <form action="/Requests/DetailsForFacility" method="post">
         <dl class="dl-horizontal">
             <dt>

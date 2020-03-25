@@ -2164,7 +2164,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Migrations\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

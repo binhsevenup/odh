@@ -43,7 +43,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             string curentuserid = User.Identity.GetUserId();
             Account currentUser = db.Users.FirstOrDefault(x => x.Id == curentuserid);
-            var confirm = db.Requests.Where(c => c.Status == Requests.RequestStatus.Processing && c.FacilityCategory_Id==currentUser.FacilityCategory_Id);
+            var confirm = db.Requests.Where(c => c.Status == Requests.RequestStatus.Processing && c.FacilityCategory_Id == currentUser.FacilityCategory_Id);
             return View(confirm.ToList());
         }
         public ActionResult ConfirmReturned([Bind(Include = "RequestId,FacilityId")] Requests request)
@@ -72,7 +72,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            facility.Status=Models.Facility.FancilitySatus.Deactive;
+            facility.Status = Models.Facility.FancilitySatus.Deactive;
             exist.Updated_At = DateTime.Now;
             exist.Status = Requests.RequestStatus.Processing;
             db.Requests.AddOrUpdate(exist);
@@ -168,12 +168,12 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             Requests request = db.Requests.Find(id);
             return View(request);
         }
-    
+
         // GET: Admin/Requests/Create
         public ActionResult Create()
         {
             data.FacilityCategories = db.FacilityCategories.ToList();
-            data.Facilities = db.Facilities.Where(f=>f.Status==Models.Facility.FancilitySatus.Active).ToList();
+            data.Facilities = db.Facilities.Where(f => f.Status == Models.Facility.FancilitySatus.Active).ToList();
 
             ViewBag.FacilityId = new SelectList(db.Facilities, "FacilityId", "FacilityName");
             ViewBag.FacilityCategory_Id = new SelectList(db.FacilityCategories, "FacilityCategory_Id", "FacilityCategory_Name");
@@ -188,26 +188,26 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                
-         
-            string curentuserid = User.Identity.GetUserId();
-            Account currentUser = db.Users.FirstOrDefault(x => x.Id == curentuserid);
-            var request = new Requests()
-            {
-                RequestorId = curentuserid,
-                FacilityCategory_Id = category,
-                FacilityId = facility,
-                Remarks = remarks,
-                Requestor = currentUser,
-                Created_At = DateTime.Now,
-                Status = Requests.RequestStatus.Waiting
 
-            };
-            db.Requests.Add(request);
-            db.SaveChanges();
-            Success("Send request success!", true);
+
+                string curentuserid = User.Identity.GetUserId();
+                Account currentUser = db.Users.FirstOrDefault(x => x.Id == curentuserid);
+                var request = new Requests()
+                {
+                    RequestorId = curentuserid,
+                    FacilityCategory_Id = category,
+                    FacilityId = facility,
+                    Remarks = remarks,
+                    Requestor = currentUser,
+                    Created_At = DateTime.Now,
+                    Status = Requests.RequestStatus.Waiting
+
+                };
+                db.Requests.Add(request);
+                db.SaveChanges();
+                Success("Send request success!", true);
                 //var idRole = db.Roles.Where(r => r.Name == "Facility-Heads");
-                
+
                 //string email = "sieuphamyasuo393@gmail.com";
                 //string password = "muxcbqdsyjjhbkbq";
 
@@ -229,7 +229,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             Danger("Error, please try again!", true);
             return Redirect("/Admin/Requests");
         }
-     
+
         // GET: Admin/Requests/Edit/5
         public ActionResult Edit(int id)
         {
@@ -246,16 +246,31 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RequestId,RequestorId,AssgineeId,FacilityCategory_Id,FacilityId,Remarks,Created_At,Updated_At,Status")] Requests request)
         {
+            var existRequest = db.Requests.Find(request.RequestId);
+            if (existRequest == null)
+            {
+                Warning("Request not found.");
+                return View("Index");
+            }
             if (ModelState.IsValid)
             {
-                request.Updated_At = DateTime.Now;
-                db.Entry(request).State = EntityState.Modified;
+                existRequest.RequestId = request.RequestId;
+                existRequest.FacilityId = request.FacilityId;
+                existRequest.FacilityCategory_Id = request.FacilityCategory_Id;
+                existRequest.AssgineeId = request.AssgineeId;
+                existRequest.Remarks = request.Remarks;
+                existRequest.Updated_At = DateTime.Now;
+                existRequest.RequestorId = request.RequestorId;
+                existRequest.Status = request.Status;
 
+                db.Requests.AddOrUpdate(existRequest);
                 db.SaveChanges();
+                Success("Edit request success!");
                 return RedirectToAction("Index");
             }
             ViewBag.FacilityId = new SelectList(db.Facilities, "FacilityId", "FacilityName", request.FacilityId);
             ViewBag.FacilityCategory_Id = new SelectList(db.FacilityCategories, "FacilityCategory_Id", "FacilityCategory_Name", request.FacilityCategory_Id);
+            Danger("Error, please try again.");
             return View(request);
         }
 

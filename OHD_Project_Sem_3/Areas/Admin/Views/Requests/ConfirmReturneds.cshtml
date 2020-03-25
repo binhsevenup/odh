@@ -2,10 +2,40 @@
 
 @{
     ViewBag.Title = "ConfirmReturneds";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section _Header
+{
+    @Html.Partial("_HeaderLayout");
+}
+@section _LeftMenu
+{
+    @Html.Partial("_LeftMenu");
 }
 
-<h2>ConfirmReturneds</h2>
+@section _headerPage
+{
+    <header class="page-header">
+        <h2>Confirm Returneds</h2>
 
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="../Facilities/index.html">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Admin Manager / Request / Confirm Returneds</span></li>
+            </ol>
+
+            <a class="sidebar-right-toggle"></a>
+        </div>
+    </header>
+}
+<h2 class="text-center text-bold">Confirm Returneds</h2>
+<br />
+@Html.Partial("_AlertMessage");
+<hr />
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -38,37 +68,38 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Facility.FacilityName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FacilityCategory.FacilityCategory_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Requestor.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AssgineeId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Remarks)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created_At)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Updated_At)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            
-            @Html.ActionLink("Details", "DetailForConfirmReturned", new { id = item.RequestId }) |
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Facility.FacilityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacilityCategory.FacilityCategory_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Requestor.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssgineeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created_At)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated_At)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+
+                @Html.ActionLink("Details", "DetailForConfirmReturned", new { id = item.RequestId }) |
+            </td>
+        </tr>
+    }
 
 </table>
