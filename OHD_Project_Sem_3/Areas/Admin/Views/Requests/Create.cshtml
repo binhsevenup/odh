@@ -86,6 +86,7 @@
                     <div class="col-md-4">
                         <label><b>Category</b></label>
                         <select name="category"  class="form-control" id="filters"  required>
+                            <option value="">Select</option>
                             @foreach (var item in Model.FacilityCategories)
                             {
                                 <option value="@item.FacilityCategory_Id">@item.FacilityCategory_Name</option>

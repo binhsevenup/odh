@@ -18,6 +18,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
     {
         private MyContext dbContext = new MyContext();
         private UserManager<Account> userManager;
+        private AccountsAndFacilityCategory a = new AccountsAndFacilityCategory();
         // GET: Admin/Account
         public AccountController()
         {
@@ -63,14 +64,16 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 
         // GET: Accounts
         public ActionResult Register()
-        {         
-            return View(dbContext.FacilityCategories.ToList());
+        {
+            a.FacilityCategories = dbContext.FacilityCategories.ToList();
+            a.AccountRoles = dbContext.Roles.ToList();
+            return View(a);
         }
 
         
 
         [HttpPost]
-        public async Task<ActionResult>Store(string username, string password,string role,string ass,int phone,string fullname)
+        public async Task<ActionResult>Store(string username, string password,string role,string ass,int phone,string fullname,string r)
         {
 
 
@@ -86,13 +89,15 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 Email=username,
                 Phone=phone,
                 FullName=fullname,
-
+                AccountRoleId = r,
             };
-            
+
                 var result = await userManager.CreateAsync(account, password);
-            if (result.Succeeded)
+                var roles = dbContext.Roles.Find(r);
+                var namerole = roles.Name;
+                if (result.Succeeded)
             {
-                userManager.AddToRole(account.Id, role);
+                userManager.AddToRole(account.Id, namerole);
                 Success("Register success!", true);
                 return RedirectToAction("Login", "Account");
             }

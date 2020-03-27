@@ -186,6 +186,7 @@
     <Compile Include="Areas\Admin\Controllers\RequestsController.cs" />
     <Compile Include="Areas\Admin\Models\Account.cs" />
     <Compile Include="Areas\Admin\Models\AccountRole.cs" />
+    <Compile Include="Areas\Admin\Models\AccountsAndFacilityCategory.cs" />
     <Compile Include="Areas\Admin\Models\Alert.cs" />
     <Compile Include="Areas\Admin\Models\DataUserAndRequest.cs" />
     <Compile Include="Areas\Admin\Models\Facility.cs" />
@@ -197,6 +198,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003270836517_InitializeDatabase.cs" />
+    <Compile Include="Migrations\202003270836517_InitializeDatabase.Designer.cs">
+      <DependentUpon>202003270836517_InitializeDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003271023185_InitializeDatabase2.cs" />
+    <Compile Include="Migrations\202003271023185_InitializeDatabase2.Designer.cs">
+      <DependentUpon>202003271023185_InitializeDatabase2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2188,6 +2198,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003270836517_InitializeDatabase.resx">
+      <DependentUpon>202003270836517_InitializeDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003271023185_InitializeDatabase2.resx">
+      <DependentUpon>202003271023185_InitializeDatabase2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
