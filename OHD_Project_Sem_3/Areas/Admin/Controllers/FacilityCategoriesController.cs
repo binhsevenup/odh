@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using OHD_Project_Sem_3.Areas.Admin.Models;
+using PagedList;
+
 
 namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 {
@@ -16,11 +18,46 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         private MyContext db = new MyContext();
 
         // GET: Admin/FacilityCategories
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.FaciCategoryNameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
-            return View(db.FacilityCategories.ToList());
-
+            ViewBag.CurrentFilter = searchString;
+            var facilitiesCategory = from f in db.Facilities
+                                     select f;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                facilitiesCategory = facilitiesCategory.Where(f => f.FacilityName.Contains(searchString)
+                                                   || f.FacilityId.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    facilitiesCategory = facilitiesCategory.OrderByDescending(f => f.FacilityName);
+                    break;
+                case "Date":
+                    facilitiesCategory = facilitiesCategory.OrderBy(f => f.Created_At);
+                    break;
+                case "date_desc":
+                    facilitiesCategory = facilitiesCategory.OrderByDescending(f => f.Created_At);
+                    break;
+                default:
+                    facilitiesCategory = facilitiesCategory.OrderBy(f => f.Updated_At);
+                    break;
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(facilitiesCategory.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/FacilityCategories/Details/5
@@ -63,7 +100,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 Success("Add category success!", true);
 
 
-                
+
 
                 return RedirectToAction("Index");
             }
@@ -147,12 +184,12 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                
-            
-            FacilityCategory facilityCategory = db.FacilityCategories.Find(id);
-            db.FacilityCategories.Remove(facilityCategory);
-            db.SaveChanges();
-            Success("Delete success!", true);
+
+
+                FacilityCategory facilityCategory = db.FacilityCategories.Find(id);
+                db.FacilityCategories.Remove(facilityCategory);
+                db.SaveChanges();
+                Success("Delete success!", true);
                 return RedirectToAction("Index");
             }
             Danger("An error occurred while deleting, please try again later", true);

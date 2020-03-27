@@ -61,7 +61,6 @@
     <section class="body">
 
         @Html.Partial("_HeaderLayout")
-
         
         <div class="form-v5">
             <div class="page-content">
@@ -70,24 +69,17 @@
                         <h2>Form Request</h2>
                         <div class="form-row">
                             <label class="text-bold">Category</label>
-                            @* <input type="text" name="full-name" id="full-name" class="input-text" placeholder="Your Name" required> *@
-                            @* <i class="fas fa-user"></i> *@
                             <select name="category" class="input-text" id="filters">
                                 <option value="default">Select</option>
                                 @foreach (var item in Model.FacilityCategories)
                                 {
                                     <option value="@item.FacilityCategory_Id">@item.FacilityCategory_Name</option>
-
-
-
                                 }
                             </select>
                             <i class="fas fa-caret-down"></i>
                         </div>
                         <div class="form-row">
                             <label class="text-bold">Facility</label>
-                            @* <input type="text" name="your-email" id="your-email" class="input-text" placeholder="Your Email" required > *@
-                            @* <i class="fas fa-envelope"></i> *@
                             <select name="facility" class="input-text">
                                 <option value="default">Select</option>
                                 @foreach (var item in Model.Facilities)
@@ -107,6 +99,7 @@
                             <input type="submit" name="register" class="register" value="Send">
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

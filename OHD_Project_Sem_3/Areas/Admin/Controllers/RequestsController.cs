@@ -212,24 +212,29 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 db.Requests.Add(request);
                 db.SaveChanges();
                 Success("Send request success!", true);
-                //var idRole = db.Roles.Where(r => r.Name == "Facility-Heads");
+                var role = db.Roles.Where(r => r.Name == "Facility-Heads").FirstOrDefault();
+                var id = role.Id;
+                var accountss = db.Users.Where(a => a.AccountRoleId == id).ToList();
+                
+                string email = "sieuphamyasuo393@gmail.com";
+                string password = "muxcbqdsyjjhbkbq";
 
-                //string email = "sieuphamyasuo393@gmail.com";
-                //string password = "muxcbqdsyjjhbkbq";
+                var loginInfo = new NetworkCredential(email, password);
+                var msg = new MailMessage();
+                var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                msg.From = new MailAddress(email);
+                for (int i = 0; i < accountss.Count(); i++)
+                {
+                    msg.To.Add(new MailAddress(accountss[i].Email));
+                }
+                msg.Subject = "Request has been Assginor confirm !!! ";
+                msg.Body = "Your request has ID:" + request.RequestId + "has been Assginor confirm !!!";
+                msg.IsBodyHtml = true;
 
-                //var loginInfo = new NetworkCredential(email, password);
-                //var msg = new MailMessage();
-                //var smtpClient = new SmtpClient("smtp.gmail.com", 587);
-                //msg.From = new MailAddress(email);
-                //msg.To.Add(new MailAddress(request.Requestor.Email));
-                //msg.Subject = "Request has been Assginor confirm !!! ";
-                //msg.Body = "Your request has ID:" + request.RequestId + "has been Assginor confirm !!!";
-                //msg.IsBodyHtml = true;
-
-                //smtpClient.EnableSsl = true;
-                //smtpClient.UseDefaultCredentials = false;
-                //smtpClient.Credentials = loginInfo;
-                //smtpClient.Send(msg);
+                smtpClient.EnableSsl = true;
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials = loginInfo;
+                smtpClient.Send(msg);
                 return RedirectToAction("Index", "Requests");
             }
             Danger("Error, please try again!", true);

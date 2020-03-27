@@ -1,4 +1,9 @@
-﻿@model IEnumerable<OHD_Project_Sem_3.Areas.Admin.Models.Facility>
+﻿@* @model IEnumerable<OHD_Project_Sem_3.Areas.Admin.Models.Facility> *@
+
+@model PagedList.IPagedList<OHD_Project_Sem_3.Areas.Admin.Models.Facility>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 @{
     ViewBag.Title = "Index";
@@ -39,26 +44,33 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("Index", "Facilities", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategory_Name)
+            FacilytiCategory
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FacilityName)
+            @Html.ActionLink("Facility Name", "Index", new { sortOrder = ViewBag.FacilityNameSortParm, currentFilter = ViewBag.CurrentFilter })
+
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Created_At)
+            @Html.ActionLink("CreatedAt", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Updated_At)
+            UpdateAt
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
+            Status
         <th>Action</th>
     </tr>
 
@@ -93,3 +105,8 @@
 
 </table>
 </div>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
