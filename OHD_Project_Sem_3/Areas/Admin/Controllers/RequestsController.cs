@@ -55,13 +55,15 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             db.Requests.AddOrUpdate(requests);
             db.Facilities.AddOrUpdate(facility);
             db.SaveChanges();
-            return Redirect("/Admin/Requests/Assginee");
+            Success("Save success!", true);
+            return RedirectToAction("Assginee");
         }
         public ActionResult DetailForConfirmReturned(int id)
         {
             data2.Request = db.Requests.Find(id);
             data2.Accounts = db.Users.Where(a => a.Id == data2.Request.AssgineeId).ToList();
             Requests requests = db.Requests.Find(id);
+            Success("Save success!", true);
             return View(data2);
         }
         public ActionResult DetailsForAss([Bind(Include = "RequestId,FacilityId")] Requests request)
@@ -78,6 +80,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             db.Requests.AddOrUpdate(exist);
             db.Facilities.AddOrUpdate(facility);
             db.SaveChanges();
+            Success("Save success!", true);
             string email = "sieuphamyasuo393@gmail.com";
             string password = "muxcbqdsyjjhbkbq";
 
@@ -95,7 +98,8 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = loginInfo;
             smtpClient.Send(msg);
-            return Redirect("/Admin/Requests/Assginee");
+            Success("Save success!", true);
+            return RedirectToAction("Assginee");
 
         }
         public ActionResult Facility()
@@ -129,6 +133,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             exist.Status = Requests.RequestStatus.Assigned;
             db.Requests.AddOrUpdate(exist);
             db.SaveChanges();
+            Success("Save success.", true);
             var emailto = assignor.Email;
             string email = "sieuphamyasuo393@gmail.com";
             string password = "muxcbqdsyjjhbkbq";
@@ -147,7 +152,8 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = loginInfo;
             smtpClient.Send(msg);
-            return Redirect("/Admin/Requests/Facility");
+            Success("Save success.", true);
+            return RedirectToAction("Facility");
 
         }
 
@@ -287,10 +293,18 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (ModelState.IsValid)
+            {
+                
+            
             Requests request = db.Requests.Find(id);
             db.Requests.Remove(request);
             db.SaveChanges();
+            Success("Delete request success.", true);
             return RedirectToAction("Index");
+            }
+            Danger("Error. Please try again.", true);
+            return View("Index");
         }
 
         protected override void Dispose(bool disposing)

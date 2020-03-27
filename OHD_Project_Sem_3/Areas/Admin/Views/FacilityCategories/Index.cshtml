@@ -18,7 +18,7 @@
 {
     <header class="page-header">
         <h2>List Categories</h2>
-        
+
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
                 <li>
@@ -33,60 +33,60 @@
         </div>
     </header>
 }
-
-<h2 class="text-center" style="margin-bottom: 30px">List Category</h2>
-<br />
-@* <div class="alert alert-success alert-dismissible " id="hello" role="alert" style="display: none" > *@
-@*     <strong>@TempData["Msg"]</strong> *@
-@*     <button type="button" class="close" data-dismiss="alert" aria-label="Close"> *@
-@*         <span aria-hidden="true">&times;</span> *@
-@*     </button> *@
-@* </div> *@
-@Html.Partial("_AlertMessage")
-<br />
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FacilityCategory_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Created_At)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Updated_At)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>Action</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div style="margin-top: 150px; padding: 0 30px 0 50px">
+    <h2 class="text-center" style="margin-bottom: 30px; margin-right: 100px">List Category</h2>
+    <hr />
+    @* <div class="alert alert-success alert-dismissible " id="hello" role="alert" style="display: none" > *@
+    @*     <strong>@TempData["Msg"]</strong> *@
+    @*     <button type="button" class="close" data-dismiss="alert" aria-label="Close"> *@
+    @*         <span aria-hidden="true">&times;</span> *@
+    @*     </button> *@
+    @* </div> *@
+    @Html.Partial("_AlertMessage")
+  
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FacilityCategory_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created_At)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Updated_At)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.FacilityCategory_Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.FacilityCategory_Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.FacilityCategory_Id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.FacilityCategory_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created_At)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Updated_At)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>Action</th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FacilityCategory_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created_At)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Updated_At)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.FacilityCategory_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.FacilityCategory_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FacilityCategory_Id })
+                </td>
+            </tr>
+        }
 
+    </table>
 
+</div>

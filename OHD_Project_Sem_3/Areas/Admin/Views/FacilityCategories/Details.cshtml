@@ -32,47 +32,55 @@
     </header>
 }
 
-<h2 class="text-center">Details Category</h2>
-<hr style="margin-top: 35px" />
 
-<div class="edit-style">
+<div class="form-v5">
+    <div class="page-content">
+        <div class="form-v5-content">
+            <div class="form-detail">
+                <h2>Detail Category</h2>
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FacilityCategory_Name)
-        </dt>
+                <dl class="dl-horizontal text-left dl-style" style="margin: 0 50px 0 118px">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FacilityCategory_Name)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FacilityCategory_Name)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.FacilityCategory_Name)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Created_At)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Created_At)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Created_At)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Created_At)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Updated_At)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Updated_At)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Updated_At)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Updated_At)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Status)
+                    </dd>
 
-    </dl>
+                </dl>
+                <div class="form-row-last">
+                    @Html.ActionLink("Edit", "Edit","FacilityCategories", new { id = Model.FacilityCategory_Id }, new {@class="btn btn-primary register",
+                        @style = "padding:15px; margin-right:15px;"})
+                    @Html.ActionLink("Back to list", "Index", "FacilityCategories", null, new { @class = "btn btn-primary register", @style = "padding:14px" })
+                </div>
+            </div>
+
+
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.FacilityCategory_Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

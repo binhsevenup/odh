@@ -144,6 +144,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+
             if (ModelState.IsValid)
             {
                 
