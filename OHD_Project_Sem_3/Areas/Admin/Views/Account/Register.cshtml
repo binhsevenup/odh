@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OHD_Project_Sem_3.Areas.Admin.Models.FacilityCategory>
+﻿@model OHD_Project_Sem_3.Areas.Admin.Models.AccountsAndFacilityCategory
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -77,12 +77,13 @@
     <div class="row form-group">
         <div class="col-md-4"></div>
         <div class="col-md-2">
-
             <label><b>Role</b></label>
-            <select name="role" class="form-control">
-                <option value="Admin">Admin</option>
-                <option value="User">User</option>
-                <option value="Facility-Heads">Facility-Heads</option>
+            <select name="r" class="form-control">
+                <option value="">Select</option>
+                @foreach (var item in Model.AccountRoles)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
             </select>
         </div>
         <div class="col-md-4"></div>
@@ -94,12 +95,10 @@
             <label><b>Assignee</b></label>
             <select name="ass" class="form-control">
                 <option value="">Select</option>
-                @foreach (var item in Model)
+                @foreach (var item in Model.FacilityCategories)
                 {
-
                     <option value="@item.FacilityCategory_Id">@item.FacilityCategory_Name</option>
                 }
-
             </select>
         </div>
         <div class="col-md-4"></div>
