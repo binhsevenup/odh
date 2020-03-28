@@ -1,6 +1,7 @@
-﻿@model PagedList.IPagedList<OHD_Project_Sem_3.Areas.Admin.Models.Facility>
+﻿@model PagedList.IPagedList<OHD_Project_Sem_3.Areas.Admin.Models.FacilityCategory>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 
 @{
@@ -39,30 +40,30 @@
     <h2 class="text-center" style="margin-bottom: 30px; margin-right: 100px">List Category</h2>
     <hr />
     @Html.Partial("_AlertMessage")
-  
+    @using (Html.BeginForm("Index", "FacilityCategories", FormMethod.Get))
+    {
+        <p>
+            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" class="btn btn-primary" value="Search" />
+        </p>
+    }
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-   @using (Html.BeginForm("Index", "FacilityCategories", FormMethod.Get))
-{
-    <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
-    </p>
-}
+   
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FacilityCategory_Name)
+                Category name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Created_At)
+                createdAt
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Updated_At)
+                updatedAt
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                status
             </th>
             <th>Action</th>
         </tr>
@@ -71,16 +72,16 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FacilityCategory_Name)
+                    @Html.DisplayFor(model => item.FacilityCategory_Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Created_At)
+                    @Html.DisplayFor(model => item.Created_At)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Updated_At)
+                    @Html.DisplayFor(model => item.Updated_At)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @Html.DisplayFor(model => item.Status)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.FacilityCategory_Id }) |
@@ -92,8 +93,10 @@
 
 
     </table>
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount 
+ 
+ @Html.PagedListPager(Model, page => Url.Action("Index", 
+     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })) 
 </div>
+
+ 

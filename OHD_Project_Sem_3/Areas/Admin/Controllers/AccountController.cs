@@ -106,7 +106,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 Debug.WriteLine(result.Errors);
             }
             }
-            Danger("Error, please try again!");
+            Danger("Error, please try again!", true);
             return View("Register");
         }
 

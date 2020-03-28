@@ -31,30 +31,25 @@
     </header>
 }
 
-<h2 class="text-center">Form Create Role</h2>
-<hr style="margin-top: 35px" />
+<div class="form-v5">
+    <div class="page-content">
+        <div class="form-v5-content">
+            <form class="form-detail" action="/Admin/AccountRoles/Store" method="post" name="RoleForm">
+                <h2>Form Request</h2>
+                <div class="form-row">
+                    <label class="text-bold">Role Name</label>
+                    <input type="text" name="name" class="input-text" placeholder="Role name">
+                    <i class="far fa-clipboard"></i>
+                </div>
+                <div class="form-row-last" style="margin-top: 20px">
+                    <input type="submit" class="register btn btn-primary" style="margin-right: 30px" value="Create">
+                    @Html.ActionLink("Back to list", "Index", "AccountRoles", null,
+                        new { @class = "btn btn-primary register", @style = "padding:14px" })
+                </div>
 
-<form action="/Admin/AccountRoles/Store" method="post" name="RoleForm" class=" form-group " style="margin: 90px -20px 0 0">
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <span><b>Name</b></span> &nbsp;
-            <input type="text" name="name" class="form-control" style="height: 35px" />
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-    <div class="row" style="margin-top: 20px">
-        <div class="col-md-4"></div>
-        <div class="col-md-2">
-            <input type="submit" name="submit" value="Submit" class="form-control btn-primary" />
-        </div>
-        <div class="col-md-4" style="margin-top: 7px">
-            @Html.ActionLink("Back to List", "Index", "AccountRoles", null, new
-            {
-                style = "margin-left: 100px"
-            })
+
+            </form>
+
         </div>
     </div>
-
-</form>
-
+</div>

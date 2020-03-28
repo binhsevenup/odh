@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace OHD_Project_Sem_3.Areas.Admin.Models
 {
-    public class FacilityCategory
+    public class FacilityCategory : IEnumerable
     {
         [Key]
         [Required(ErrorMessage = "Please enter category.")]
@@ -30,5 +31,9 @@ namespace OHD_Project_Sem_3.Areas.Admin.Models
         }
         public virtual ICollection<Facility> Facilities { get; set; }
         public virtual ICollection<Requests> Requests { get; set; }
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -37,76 +37,76 @@
     </header>
 }
 <div style="margin-top: 150px; padding: 0 30px 0 50px">
-<h2 class="text-center" style="margin-bottom: 30px; margin-right: 100px">List Facility</h2>
-<hr/>
-@Html.Partial("_AlertMessage");
-<br />
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@using (Html.BeginForm("Index", "Facilities", FormMethod.Get))
-{
+    <h2 class="text-center" style="margin-bottom: 30px; margin-right: 100px">List Facility</h2>
+    <hr />
+    @Html.Partial("_AlertMessage");
+    <br />
     <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
+        @Html.ActionLink("Create New", "Create")
     </p>
-}
-<table class="table">
-    <tr>
-        <th>
-            FacilytiCategory
-        </th>
-        <th>
-            @Html.ActionLink("Facility Name", "Index", new { sortOrder = ViewBag.FacilityNameSortParm, currentFilter = ViewBag.CurrentFilter })
-
-        </th>
-        <th>
-            Description
-        </th>
-        <th>
-            @Html.ActionLink("CreatedAt", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            UpdateAt
-        </th>
-        <th>
-            Status
-        <th>Action</th>
-    </tr>
-
-    @foreach (var item in Model)
+    @using (Html.BeginForm("Index", "Facilities", FormMethod.Get))
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FacilityCategory.FacilityCategory_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FacilityName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created_At)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Updated_At)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.FacilityId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.FacilityId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.FacilityId })
-            </td>
-        </tr>
+        <p>
+            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
     }
+    <table class="table">
+        <tr>
+            <th>
+                FacilytiCategory
+            </th>
+            <th>
+                @Html.ActionLink("Facility Name", "Index", new { sortOrder = ViewBag.FacilityNameSortParm, currentFilter = ViewBag.CurrentFilter })
 
-</table>
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                @Html.ActionLink("CreatedAt", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                UpdateAt
+            </th>
+            <th>
+                Status
+            <th>Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FacilityCategory.FacilityCategory_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FacilityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created_At)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Updated_At)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.FacilityId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.FacilityId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FacilityId })
+                </td>
+            </tr>
+        }
+
+    </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
 </div>
-<br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
