@@ -40,23 +40,25 @@
 
     <!-- Head Libs -->
     <script src="/Content/assets/vendor/modernizr/modernizr.js"></script>
-  
-    @Styles.Render("~/Content/Style");
+    <link rel="stylesheet" type="text/css" href="/Content/css/roboto-font.css">
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/font-awesome-5/css/fontawesome-all.min.css">
 
+    @Styles.Render("~/Content/Style")
+    <link rel="stylesheet" type="text/css" href="/Content/css/style.css">
 
 </head>
 <body>
     <section class="body">
 
         <!-- start: header -->
-        @RenderSection("_Header", required: false);
+        @RenderSection("_Header", required: false)
         <!-- end: header -->
         
         <div class="inner-wrapper">
             <!-- start: sidebar -->
-            @RenderSection("_LeftMenu", required: false);
+            @RenderSection("_LeftMenu", required: false)
             <!-- end: sidebar -->
-
+            @* style="margin-top: 150px; padding: 0 30px 0 50px"> *@
             <section role="main" class="content-body">
                 @RenderSection("_headerPage", required: false)
 

@@ -82,6 +82,7 @@
             // of an input field. Validation rules are defined
             // on the right side
             facility: { valueNotEquals: "default" },
+            category: { valueNotEquals: "default" },
 
             remarks: {
                 required: true,
@@ -93,10 +94,11 @@
         messages: {
 
             remarks: {
-                required: "* Please enter the message.",
+                required: "* Please enter the messages.",
                 rangelength: "* Please enter a value between 5 and 500 characters long."
             },
-            facility: { valueNotEquals: "* Please select an item." }
+            facility: { valueNotEquals: "* Please select an item." },
+            category: { valueNotEquals: "* Please select an item." }
 
         },
         // Make sure the form is submitted to the destination defined

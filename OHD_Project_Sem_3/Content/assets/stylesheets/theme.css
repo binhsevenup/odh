@@ -59,7 +59,7 @@ a:active {
 /* Layout Base - Content Body */
 .content-body {
 	display: table-cell;
-	padding: 40px;
+	padding: 0;
 	position: relative;
 	vertical-align: top;
 }
@@ -176,7 +176,7 @@ a:active {
 
 	/* Layout Fixed - Inner Wrapper */
 	html.fixed .inner-wrapper {
-		padding-top: 110px;
+		padding-top: 0px;
 	}
 
 	/* Layout Fixed - Content Body */
