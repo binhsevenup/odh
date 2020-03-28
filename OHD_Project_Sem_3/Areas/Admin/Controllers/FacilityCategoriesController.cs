@@ -33,17 +33,17 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-            var facilitiesCategory = from f in db.Facilities
+            var facilitiesCategory = from f in db.FacilityCategories
                                      select f;
             if (!String.IsNullOrEmpty(searchString))
             {
-                facilitiesCategory = facilitiesCategory.Where(f => f.FacilityName.Contains(searchString)
-                                                   || f.FacilityId.Contains(searchString));
+                facilitiesCategory = facilitiesCategory.Where(f => f.FacilityCategory_Name.Contains(searchString)
+                                                   || f.FacilityCategory_Id.Contains(searchString));
             }
             switch (sortOrder)
             {
                 case "name_desc":
-                    facilitiesCategory = facilitiesCategory.OrderByDescending(f => f.FacilityName);
+                    facilitiesCategory = facilitiesCategory.OrderByDescending(f => f.FacilityCategory_Name);
                     break;
                 case "Date":
                     facilitiesCategory = facilitiesCategory.OrderBy(f => f.Created_At);
