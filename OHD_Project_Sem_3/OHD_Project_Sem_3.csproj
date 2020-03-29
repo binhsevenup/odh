@@ -183,6 +183,7 @@
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\FacilitiesController.cs" />
     <Compile Include="Areas\Admin\Controllers\FacilityCategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\RequestsController.cs" />
     <Compile Include="Areas\Admin\Models\Account.cs" />
     <Compile Include="Areas\Admin\Models\AccountRole.cs" />
@@ -194,7 +195,6 @@
     <Compile Include="Areas\Admin\Models\MyContext.cs" />
     <Compile Include="Areas\Admin\Models\Requests.cs" />
     <Compile Include="Areas\Admin\Models\TotalData.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2170,6 +2170,7 @@
     <Content Include="Content\fonts\Roboto\Roboto-Regular.ttf" />
     <Content Include="Content\fonts\Roboto\Roboto-Thin.ttf" />
     <Content Include="Content\fonts\Roboto\Roboto-ThinItalic.ttf" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -2193,7 +2194,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LeftMenu.cshtml" />
     <Content Include="Views\Shared\_HeaderLayout.cshtml" />
     <Content Include="Views\Shared\_AlertMessage.cshtml" />
@@ -2202,6 +2202,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

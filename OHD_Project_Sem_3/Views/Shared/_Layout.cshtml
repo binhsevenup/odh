@@ -53,7 +53,7 @@
         <!-- start: header -->
         @RenderSection("_Header", required: false)
         <!-- end: header -->
-        
+
         <div class="inner-wrapper">
             <!-- start: sidebar -->
             @RenderSection("_LeftMenu", required: false)
@@ -69,7 +69,7 @@
 
 
     </section>
-  
+
     <!-- Vendor -->
     <script src="/Content/assets/vendor/jquery/jquery.min.js"></script>
     <script src="/Content/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
@@ -86,7 +86,21 @@
     <script src="/Content/assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
     <script src="/Content/assets/vendor/jquery-appear/jquery.appear.js"></script>
     <script src="/Content/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-
+    <script src="/Content/assets/vendor/jquery-easypiechart/jquery.easypiechart.js"></script>
+    <script src="/Content/assets/vendor/flot/jquery.flot.js"></script>
+    <script src="/Content/assets/vendor/flot-tooltip/jquery.flot.tooltip.js"></script>
+    <script src="/Content/assets/vendor/flot/jquery.flot.pie.js"></script>
+    <script src="/Content/assets/vendor/flot/jquery.flot.categories.js"></script>
+    <script src="/Content/assets/vendor/flot/jquery.flot.resize.js"></script>
+    <script src="/Content/assets/vendor/jquery-sparkline/jquery.sparkline.js"></script>
+    <script src="/Content/assets/vendor/raphael/raphael.js"></script>
+    <script src="/Content/assets/vendor/morris/morris.js"></script>
+    <script src="/Content/assets/vendor/gauge/gauge.js"></script>
+    <script src="/Content/assets/vendor/snap-svg/snap.svg.js"></script>
+    <script src="/Content/assets/vendor/liquid-meter/liquid.meter.js"></script>
+    <script src="/Content/assets/vendor/jqvmap/jquery.vmap.js"></script>
+    <script src="/Content/assets/vendor/jqvmap/data/jquery.vmap.sampledata.js"></script>
+    <script src="/Content/assets/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
 
 
     <!-- Theme Base, Components and Settings -->
@@ -102,21 +116,21 @@
     <!-- Examples -->
     <script src="/Content/assets/javascripts/dashboard/examples.dashboard.js"></script>
     @RenderSection("masterjs", required: false)
-  
+
 
     @Scripts.Render("~/bundles/js")
-@RenderSection("ssss", required: false)
-@* <script type="text/javascript"> *@
-@* *@
-@*     if (document.getElementById('bye').length) { *@
-@* *@
-@*         document.getElementById('hello').style.display = "block"; *@
-@* *@
-@*     } else { *@
-@*         document.getElementById('hello').style.display = "none"; *@
-@*     } *@
-@* </script> *@
-@* <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script> *@
-@* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css"> *@
+    @RenderSection("ssss", required: false)
+    @* <script type="text/javascript"> *@
+    @* *@
+    @*     if (document.getElementById('bye').length) { *@
+    @* *@
+    @*         document.getElementById('hello').style.display = "block"; *@
+    @* *@
+    @*     } else { *@
+    @*         document.getElementById('hello').style.display = "none"; *@
+    @*     } *@
+    @* </script> *@
+    @* <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script> *@
+    @* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css"> *@
 </body>
 </html>
