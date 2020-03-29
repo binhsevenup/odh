@@ -58,7 +58,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 new AuthenticationProperties { IsPersistent = false }, ident);
             }
             Success("Login success!");
-            return Redirect("/Home");
+            return Redirect("/Admin/Home");
         }
 
 
