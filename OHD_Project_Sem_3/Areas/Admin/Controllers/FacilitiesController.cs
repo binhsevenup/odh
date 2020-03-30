@@ -23,6 +23,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             ViewBag.CurrentSort = sortOrder;
             ViewBag.FacilityNameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.StatusSortParm = sortOrder == "Status" ? "status_desc" : "Status";
             if (searchString != null)
             {
                 page = 1;
@@ -51,12 +52,18 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 case "date_desc":
                     facilities = facilities.OrderByDescending(f => f.Created_At);
                     break;
+                case "Status":
+                    facilities = facilities.OrderBy(f => f.Status);
+                    break; 
+                case "status_desc":
+                    facilities = facilities.OrderByDescending(f => f.Status);
+                    break;
                 default:
                     facilities = facilities.OrderBy(f => f.Created_At);
                     break;
             }
             //            var facilities = db.Facilities.Include(f => f.FacilityCategory);
-            int pageSize = 3;
+            int pageSize = 6;
             int pageNumber = (page ?? 1);
             return View(facilities.ToPagedList(pageNumber, pageSize));
         }

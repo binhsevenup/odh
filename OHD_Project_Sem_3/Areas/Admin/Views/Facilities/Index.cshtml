@@ -70,8 +70,9 @@
             UpdateAt
         </th>
         <th>
-            Status
-        <th>Action</th>
+        @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm, currentFilter = ViewBag.CurrentFilter })
+
+<th>Action</th>
     </tr>
 
     @foreach (var item in Model)
