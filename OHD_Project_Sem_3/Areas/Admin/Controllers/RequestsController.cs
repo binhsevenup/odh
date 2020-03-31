@@ -57,9 +57,9 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 
             if (!String.IsNullOrEmpty(search))
             {
-                request = !request.Where(s => s.FacilityCategory.(search)
-                                              || s.Requestor.(search) ||
-                                              s.Remarks.(search));
+                request = request.Where(s => s.FacilityCategory_Id.Contains(search)
+                                              || s.FacilityId.Contains(search) ||
+                                              s.Remarks.Contains(search));
             }
 
             switch (sortOrder)

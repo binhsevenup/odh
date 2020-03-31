@@ -98,10 +98,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             ViewBag.account12 = accounts12;
 
            
-            ViewBag.requestswting = totalrequestswting * 100 / totalrequets;
-            ViewBag.requestpro = totalrequestspro * 100 / totalrequets;
-            ViewBag.requestdt = totalrequestsdeleted * 100 / totalrequets;
-            ViewBag.requestass = totalrequestsass * 100 / totalrequets;
+         
 
             if (totalrequestsdone == 0)
             {
@@ -110,6 +107,10 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             else
             {
                 ViewBag.requestdone = totalrequestsdone * 100 / totalrequets;
+                ViewBag.requestswting = totalrequestswting * 100 / totalrequets;
+                ViewBag.requestpro = totalrequestspro * 100 / totalrequets;
+                ViewBag.requestdt = totalrequestsdeleted * 100 / totalrequets;
+                ViewBag.requestass = totalrequestsass * 100 / totalrequets;
             }
 
             ViewBag.AccountsActive = accAT;
