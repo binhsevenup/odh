@@ -102,9 +102,26 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                     userManager.AddToRole(account.Id, namerole);
 
                     Success("Register success!", true);
+                    var emailto = username;
+                    string email = "sieuphamyasuo393@gmail.com";
+                    string password1 = "muxcbqdsyjjhbkbq";
+
+                    var loginInfo = new NetworkCredential(email, password1);
+                    var msg = new MailMessage();
+                    var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+
+                    msg.From = new MailAddress(email);
+                    msg.To.Add(new MailAddress(emailto));
+                    msg.Subject = "Request has been Assginor confirm !!! ";
+                    msg.Body = "Successful registration for account: "+emailto+ " with password: "+password;
+                    msg.IsBodyHtml = true;
+
+                    smtpClient.EnableSsl = true;
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Credentials = loginInfo;
+                    smtpClient.Send(msg);
                     return RedirectToAction("Login", "Account");
-                }
-              
+                }  
             }
             Danger("Error, please try again!", true);
             return View("Register");

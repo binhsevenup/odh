@@ -28,7 +28,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             DateTime dtTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 
 
-            
+
             var totalrequestsdeleted = db.Requests.Where(r => r.Status == Requests.RequestStatus.Deleted).Count();
             var totalrequestsdone = db.Requests.Where(r => r.Status == Requests.RequestStatus.Done).Count();
             var totalrequestspro = db.Requests.Where(r => r.Status == Requests.RequestStatus.Processing).Count();
@@ -38,14 +38,14 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 
             var accAT = db.Users.Where(a => a.Status == Account.AccountStatus.Active).Count();
             var accDAT = db.Users.Where(a => a.Status == Account.AccountStatus.Deactive).Count();
-          
-           
+
+
             var rqdone = db.Requests.Where(r => r.Status == Requests.RequestStatus.Done).Count();
             var rqnodone = db.Requests.Where(r => r.Status != Requests.RequestStatus.Done).Count();
 
-          
-               
-                var requests12 = db.Requests.Where(r => r.Created_At.Month == month).Count();
+
+
+            var requests12 = db.Requests.Where(r => r.Created_At.Month == month).Count();
             var requests11 = db.Requests.Where(r => r.Created_At.Month == month - 1).Count();
             var requests10 = db.Requests.Where(r => r.Created_At.Month == month - 2).Count();
             var requests9 = db.Requests.Where(r => r.Created_At.Month == month - 3).Count();
@@ -97,8 +97,8 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             ViewBag.account11 = accounts11;
             ViewBag.account12 = accounts12;
 
-           
-         
+
+
 
             if (totalrequestsdone == 0)
             {
@@ -107,10 +107,41 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             else
             {
                 ViewBag.requestdone = totalrequestsdone * 100 / totalrequets;
-                ViewBag.requestswting = totalrequestswting * 100 / totalrequets;
-                ViewBag.requestpro = totalrequestspro * 100 / totalrequets;
-                ViewBag.requestdt = totalrequestsdeleted * 100 / totalrequets;
+
+            }
+            if (totalrequestsass == 0)
+            {
+                ViewBag.requestass = 0;
+            }
+            else
+            {
                 ViewBag.requestass = totalrequestsass * 100 / totalrequets;
+            }
+            if (totalrequestswting == 0)
+            {
+                ViewBag.requestswting = 0;
+            }
+            else
+            {
+                ViewBag.requestswting = totalrequestswting * 100 / totalrequets;
+            }
+
+            if (totalrequestsdeleted == 0)
+            {
+                ViewBag.requestdt = 0;
+            }
+            else
+            {
+                ViewBag.requestdt = totalrequestsdeleted * 100 / totalrequets;
+            }
+
+            if (totalrequestspro == 0)
+            {
+                ViewBag.requestpro = 0;
+            }
+            else
+            {
+                ViewBag.requestpro = totalrequestspro * 100 / totalrequets;
             }
 
             ViewBag.AccountsActive = accAT;
