@@ -50,23 +50,24 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-   
-    <table class="table">
-        <tr>
-            <th>
-                Category name
-            </th>
-            <th>
-                createdAt
-            </th>
-            <th>
-                updatedAt
-            </th>
-            <th>
-                status
-            </th>
-            <th>Action</th>
-        </tr>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Facility Name", "Index", new { sortOrder = ViewBag.FaciCategoryNameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("CreatedAt", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            UpdateAt
+        </th>
+        <th>
+            @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm, currentFilter = ViewBag.CurrentFilter })
+
+        </th>
+        <th>Action</th>
+    </tr>
 
         @foreach (var item in Model)
         {

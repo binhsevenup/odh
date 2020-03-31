@@ -1,4 +1,7 @@
-﻿@model IEnumerable<OHD_Project_Sem_3.Areas.Admin.Models.Requests>
+﻿@model PagedList.IPagedList<OHD_Project_Sem_3.Areas.Admin.Models.Requests>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 @{
     ViewBag.Title = "Index";
@@ -32,42 +35,53 @@
     </header>
 }
 <div style="margin-top: 150px; padding: 0 30px 0 50px">
+<br />
+<h2 class="text-center text-bold" style="margin-bottom: 30px; margin-right: 100px">List Request</h2>
 
-    <h2 class="text-center text-bold" style="margin-bottom: 30px; margin-right: 100px">List Request</h2>
-    <hr />
+@using (Html.BeginForm("Index", "Requests", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("Search", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+  }
+      <hr />
     @Html.Partial("_AlertMessage")
     <br />
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Facility.FacilityName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategory_Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RequestorId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AssgineeId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Remarks)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Created_At)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Updated_At)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>Action</th>
-        </tr>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Facility Name", "Index", new { sortOrder = ViewBag.FacilitySortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Facility Category Name", "Index", new { sortOrder = ViewBag.FacilityCategoryNameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("RequestorId", "Index", new { sortOrder = ViewBag.FacilityNameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("AssigneeId", "Index", new { sortOrder = ViewBag.AssineeIdSort, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Remarks", "Index", new { sortOrder = ViewBag.RemarkSort, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("CreatedAt", "Index", new { sortOrder = ViewBag.CreatedSort, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("UpdatedAt", "Index", new { sortOrder = ViewBag.UpdatedSort, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSort, currentFilter = ViewBag.CurrentFilter })
+
+        </th>
+        <th>Action</th>
+    </tr>
+
+
 
         @foreach (var item in Model)
         {
@@ -106,3 +120,7 @@
 
     </table>
     </div>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
