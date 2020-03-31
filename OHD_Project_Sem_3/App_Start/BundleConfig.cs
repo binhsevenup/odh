@@ -31,7 +31,7 @@ namespace OHD_Project_Sem_3
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/Style").Include(
-                "~/Content/style.css"));
+                "~/Content/Style.css"));
         }
     }
 }
