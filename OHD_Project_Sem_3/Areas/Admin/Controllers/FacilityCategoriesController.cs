@@ -90,7 +90,6 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "FacilityCategory_Id,FacilityCategory_Name,Created_At,Updated_At,Status")] FacilityCategory facilityCategory)
         {
-
             if (ModelState.IsValid)
             {
                 facilityCategory.Created_At = DateTime.Now;
@@ -98,13 +97,9 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 db.SaveChanges();
                 //                TempData["Msg"] = "Add Category Success!";
                 Success("Add category success!", true);
-
-
-
-
                 return RedirectToAction("Index");
             }
-            Danger("Looks like something went wrong. Please check your form.");
+            Danger("Looks like something went wrong. Please check your form.", true);
 
             return View(facilityCategory);
         }
@@ -164,13 +159,13 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                Warning("Category does not exist, please check again!");
+                Warning("Category does not exist, please check again!", true);
                 return View("Index");
             }
             FacilityCategory facilityCategory = db.FacilityCategories.Find(id);
             if (facilityCategory == null)
             {
-                Warning("Category does not exist, please check again!");
+                Warning("Category does not exist, please check again!", true);
                 return View("Index");
             }
             return View(facilityCategory);

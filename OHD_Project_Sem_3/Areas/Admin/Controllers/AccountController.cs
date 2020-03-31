@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -41,21 +43,21 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                
-            
-            Account account = userManager.Find(username, password);
-            if (account == null)
-            {
-                Danger("The email address or password is incorrect, please try again.", true);
-                return View("Login");
 
-            }
-            // success
-            var ident = userManager.CreateIdentity(account, DefaultAuthenticationTypes.ApplicationCookie);
-            //use the instance that has been created. 
-            var authManager = HttpContext.GetOwinContext().Authentication;
-            authManager.SignIn(
-                new AuthenticationProperties { IsPersistent = false }, ident);
+
+                Account account = userManager.Find(username, password);
+                if (account == null)
+                {
+                    Danger("The email address or password is incorrect, please try again.", true);
+                    return View("Login");
+
+                }
+                // success
+                var ident = userManager.CreateIdentity(account, DefaultAuthenticationTypes.ApplicationCookie);
+                //use the instance that has been created. 
+                var authManager = HttpContext.GetOwinContext().Authentication;
+                authManager.SignIn(
+                    new AuthenticationProperties { IsPersistent = false }, ident);
             }
             Success("Login success!");
             return Redirect("/Admin/Home");
@@ -70,41 +72,39 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             return View(a);
         }
 
-        
+
 
         [HttpPost]
-        public async Task<ActionResult>Store(string username, string password,string role,string ass,int phone,string fullname,string r)
+        public async Task<ActionResult> Store(string username, string password, string role, string ass, int phone, string fullname, string r)
         {
 
 
             if (ModelState.IsValid)
             {
                 var account = new Account()
-            {
-                Id = Guid.NewGuid().ToString(),
-                UserName = username,
-                Created_At=DateTime.Now,
-                Update_At=DateTime.Now,
-                FacilityCategory_Id=ass,
-                Email=username,
-                Phone=phone,
-                FullName=fullname,
-                AccountRoleId = r,
-            };
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = username,
+                    Created_At = DateTime.Now,
+                    Update_At = DateTime.Now,
+                    FacilityCategory_Id = ass,
+                    Email = username,
+                    Phone = phone,
+                    FullName = fullname,
+                    AccountRoleId = r,
+                };
 
                 var result = await userManager.CreateAsync(account, password);
                 var roles = dbContext.Roles.Find(r);
                 var namerole = roles.Name;
                 if (result.Succeeded)
-            {
-                userManager.AddToRole(account.Id, namerole);
-                Success("Register success!", true);
-                return RedirectToAction("Login", "Account");
-            }
-            else
-            {
-                Debug.WriteLine(result.Errors);
-            }
+                {
+                    userManager.AddToRole(account.Id, namerole);
+
+                    Success("Register success!", true);
+                    return RedirectToAction("Login", "Account");
+                }
+              
             }
             Danger("Error, please try again!", true);
             return View("Register");

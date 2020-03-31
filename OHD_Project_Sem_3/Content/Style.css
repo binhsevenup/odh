@@ -1,14 +1,17 @@
 ﻿.facility-style {
     margin: 50px 0 0 28%;
 }
+
 .list-facility {
     margin: 20px 0 0 33%;
 }
+
 .edit-style {
     font-size: 18px;
     margin-left: 34%;
     margin-top: 5%;
 }
+
 .delete-style {
     font-size: 18px;
     margin-left: 34%;
@@ -22,3 +25,26 @@
 .dl-style dd {
     line-height: 2;
 }
+
+.nav-bar-control ul {
+    margin-top: 15px;
+    list-style-type: none;
+    text-align: center
+}
+
+    .nav-bar-control ul li {
+        display: inline;
+        font-size: 18px;
+        margin: 0px 40px;
+        text-decoration: none;
+        font-weight: bold;
+        color:rgb(52, 73, 94);
+    }
+.nav-bar-control ul li a{
+    text-decoration: none;
+    color:rgb(52, 73, 94);
+}
+
+/* .nav-bar-control ul li a:hover { */
+/*     color:rgb(); */
+/* } */

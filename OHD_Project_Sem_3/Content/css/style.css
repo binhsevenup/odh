@@ -72,8 +72,8 @@ body {
 	font-size: 18px;
 	padding-bottom: 10px;
 }
-.form-detail .input-text {
-	margin-bottom: 26px;
+.form-detail .form-row .input-text {
+	margin-bottom: 0;
 }
 .form-detail input {
 	width: 100%;
@@ -189,14 +189,13 @@ input:-moz-placeholder { /* Firefox 18- */
 	}
 }
 
-label.error {
-    margin-top: -7px;
-    font-size: 13px
-}
-
-.text-danger {
-
-    margin-top: -7px;
-    font-size: 13px
-
-}
+ label.error { 
+     font-size: 13px 
+ } 
+ 
+ .text-danger { 
+ 
+ 
+     font-size: 13px 
+ 
+ } 

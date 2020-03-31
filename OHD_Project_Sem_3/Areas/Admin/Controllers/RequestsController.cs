@@ -32,6 +32,15 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             var requests = db.Requests.Where(r => r.FacilityCategory_Id == currentUser.FacilityCategory_Id && r.Status == Requests.RequestStatus.Assigned);
             return View(requests.ToList());
         }
+
+        public ActionResult HistoryAssginee()
+        {
+            string curentuserid = User.Identity.GetUserId();
+            Account currentUser = db.Users.FirstOrDefault(x => x.Id == curentuserid);
+            var requests = db.Requests.Where(r => r.FacilityCategory_Id == currentUser.FacilityCategory_Id);
+            return View(requests.ToList());
+        }
+
         public ActionResult DetailForAss(int id)
         {
             data2.Request = db.Requests.Find(id);
@@ -106,6 +115,12 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             var re = db.Requests.Where(r => r.Status == Requests.RequestStatus.Waiting).ToList();
             return View(re);
+        }
+
+        public ActionResult TotalFacility()
+        {
+           
+            return View(db.Requests.ToList());
         }
         public ActionResult DetailForFacility(int id)
         {
