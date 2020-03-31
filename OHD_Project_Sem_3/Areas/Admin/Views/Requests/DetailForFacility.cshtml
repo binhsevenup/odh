@@ -51,64 +51,71 @@
         </div>
     </header>
 }
-<h2 class="text-center text-bold">Details For Facility</h2>
-<br />
-@Html.Partial("_AlertMessage");
-<hr />
 
-<div>
+<div class="form-v5">
+    <div class="page-content">
+        <div class="form-v5-content">
+            <div class="form-detail">
+                <h2>Detail For Facility</h2>
+                <form action="/Admin/Requests/DetailsForFacility" method="post" class="form-detail">
+                    <dl class="dl-horizontal dl-style" style="margin-left: 75px">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Request.Facility.FacilityName)
+                        </dt>
 
-    <form action="/Requests/DetailsForFacility" method="post">
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Request.Facility.FacilityName)
-            </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Request.Facility.FacilityName)
+                        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Request.Facility.FacilityName)
-            </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Request.FacilityCategory.FacilityCategory_Name)
+                        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Request.FacilityCategory.FacilityCategory_Name)
-            </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Request.FacilityCategory.FacilityCategory_Name)
+                        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Request.FacilityCategory.FacilityCategory_Name)
-            </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Request.Requestor.FullName)
+                        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Request.Requestor.FullName)
-            </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Request.Requestor.FullName)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Request.Requestor.Email)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Request.Requestor.Email)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Request.Requestor.Phone)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Request.Requestor.Phone)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Request.AssgineeId)
+                        </dt>
+                        <dd name="ass" class="dropdown-asgn" >
+                            @Html.DropDownListFor(m => m.Request.AssgineeId, selectAssignorList, new {@class="input-text"})
+                            @Html.HiddenFor(m => m.Request.RequestId)
 
-            <dd>
-                @Html.DisplayFor(model => model.Request.Requestor.FullName)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Request.Requestor.Email)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Request.Requestor.Email)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Request.Requestor.Phone)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Request.Requestor.Phone)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Request.AssgineeId)
-            </dt>
-            <dd name="ass">
-                @Html.DropDownListFor(m => m.Request.AssgineeId, selectAssignorList)
-                @Html.HiddenFor(m => m.Request.RequestId)
-            </dd>
-        </dl>
-        <div>
-            <input type="submit" value="Save" />
+
+                        </dd>
+                    </dl>
+
+
+                    <div class="form-row-last">
+
+                        <input type="submit" value="Save" class="btn btn-primary register" style="margin-right: 15px" />
+                        @Html.ActionLink("Back to list", "Index", "Requests", null,
+                            new { @class = "btn btn-primary register", @style = "padding:14px" })
+                    </div>
+                </form>
+                </div>
+            </div>
+
+
         </div>
-    </form>
-
-</div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    </div>

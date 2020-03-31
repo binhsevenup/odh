@@ -49,7 +49,11 @@
     <!-- Head Libs -->
     <script src="/Content/assets/vendor/modernizr/modernizr.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="/Content/css/roboto-font.css">
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/font-awesome-5/css/fontawesome-all.min.css">
+
     @Styles.Render("~/Content/Style")
+    <link rel="stylesheet" type="text/css" href="/Content/css/style.css">
 
 
 </head>
@@ -57,86 +61,47 @@
     <section class="body">
 
         @Html.Partial("_HeaderLayout")
+        
+        <div class="form-v5">
+            <div class="page-content">
+                <div class="form-v5-content">
+                    <form class="form-detail" action="/Admin/Requests/CreateStore" method="post" name="RequestForm">
+                        <h2>Form Request</h2>
+                        <div class="form-row">
+                            <label class="text-bold">Category</label>
+                            <select name="category" class="input-text" id="filters">
+                                <option value="default">Select</option>
+                                @foreach (var item in Model.FacilityCategories)
+                                {
+                                    <option value="@item.FacilityCategory_Id">@item.FacilityCategory_Name</option>
+                                }
+                            </select>
+                            <i class="fas fa-caret-down"></i>
+                        </div>
+                        <div class="form-row">
+                            <label class="text-bold">Facility</label>
+                            <select name="facility" class="input-text">
+                                <option value="default">Select</option>
+                                @foreach (var item in Model.Facilities)
+                                {
+                                    <option class="row3" data-type="@item.FacilityCategory_Id" value="@item.FacilityId">@item.FacilityName</option>
 
-        @*  @section _headerPage  *@
-        @*  {  *@
-        @*      <header class="page-header">  *@
-        @*          <h2>Add Request</h2>  *@
-        @*   *@
-        @*          <div class="right-wrapper pull-right">  *@
-        @*              <ol class="breadcrumbs">  *@
-        @*                  <li>  *@
-        @*                      <a href="index.html">  *@
-        @*                          <i class="fa fa-home"></i>  *@
-        @*                      </a>  *@
-        @*                  </li>  *@
-        @*                  <li><span>Dashboard</span></li>  *@
-        @*              </ol>  *@
-        @*   *@
-        @*              <a class="sidebar-right-toggle"></a>  *@
-        @*          </div>  *@
-        @*      </header>  *@
-        @*  }  *@
-        <div>
-            <h2 class="text-center" style="margin-bottom: 35px"><b>Create Request</b></h2>
-            <hr style="margin-bottom: 50px" />
-            <form action="/Admin/Requests/CreateStore" method="post" name="RequestForm">
-                <div class="row form-group">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <label><b>Category</b></label>
-                        <select name="category"  class="form-control" id="filters"  required>
-                            <option value="">Select</option>
-                            @foreach (var item in Model.FacilityCategories)
-                            {
-                                <option value="@item.FacilityCategory_Id">@item.FacilityCategory_Name</option>
-
-                            }
-                        </select>
-                    </div>
-                    <div class="col-md-4"></div>
-
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <label><b>Facility</b></label>
-                        <select name="facility" class="form-control">
-                            <option value="default">Seclect</option>
-                            @foreach (var item in Model.Facilities)
-                            {
-                                <option class="row3" data-type="@item.FacilityCategory_Id" value="@item.FacilityId">@item.FacilityName</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="col-md-4"></div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-6">
-
-                        <label><b>Message</b></label>
-                        <textarea class="form-control" name="remarks" rows="6" cols="65" placeholder="Enter the message." required></textarea>
-                    </div>
-                    <div class="col-md-2"></div>
-                </div>
-
-
-                <div class="row form-group">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-1">
-                        <input type="submit" value="Submit" class="form-control btn-primary" />
-                    </div>
-                    <div class="col-md-4"></div>
+                                }
+                            </select>
+                            <i class="fas fa-caret-down"></i>
+                        </div>
+                        <div class="form-row">
+                            <label class="text-bold">Message</label>
+                            <textarea class="input-text" name="remarks" rows="7" cols="65" placeholder="Enter the message." required></textarea>
+                      
+                        </div>
+                        <div class="form-row-last">
+                            <input type="submit" name="register" class="register" value="Send">
+                        </div>
+                    </form>
 
                 </div>
-            </form>
-
-
-
-
-
-
+            </div>
         </div>
     </section>
 

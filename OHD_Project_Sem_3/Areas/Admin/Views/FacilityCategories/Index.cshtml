@@ -3,6 +3,7 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -35,27 +36,21 @@
         </div>
     </header>
 }
-
-<h2 class="text-center" style="margin-bottom: 30px">List Category</h2>
-<br />
-@* <div class="alert alert-success alert-dismissible " id="hello" role="alert" style="display: none" > *@
-@*     <strong>@TempData["Msg"]</strong> *@
-@*     <button type="button" class="close" data-dismiss="alert" aria-label="Close"> *@
-@*         <span aria-hidden="true">&times;</span> *@
-@*     </button> *@
-@* </div> *@
-@Html.Partial("_AlertMessage")
-<br />
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@using (Html.BeginForm("Index", "FacilityCategories", FormMethod.Get))
-{
+<div style="margin-top: 150px; padding: 0 30px 0 50px">
+    <h2 class="text-center" style="margin-bottom: 30px; margin-right: 100px">List Category</h2>
+    <hr />
+    @Html.Partial("_AlertMessage")
+    @using (Html.BeginForm("Index", "FacilityCategories", FormMethod.Get))
+    {
+        <p>
+            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" class="btn btn-primary" value="Search" />
+        </p>
+    }
     <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
+        @Html.ActionLink("Create New", "Create")
     </p>
-}
+
 <table class="table">
     <tr>
         <th>
@@ -74,34 +69,35 @@
         <th>Action</th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FacilityCategory_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created_At)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Updated_At)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.FacilityCategory_Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.FacilityCategory_Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.FacilityCategory_Id })
-            </td>
-        </tr>
-    }
-
-</table>
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.FacilityCategory_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Created_At)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Updated_At)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.FacilityCategory_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.FacilityCategory_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FacilityCategory_Id })
+                </td>
+            </tr>
+        }
 
 
+    </table>
+     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount 
+ 
+ @Html.PagedListPager(Model, page => Url.Action("Index", 
+     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })) 
+</div>
 
+ 

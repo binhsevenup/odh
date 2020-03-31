@@ -31,64 +31,72 @@
         </div>
     </header>
 }
+<div class="form-v5">
+    <div class="page-content">
+        <div class="form-v5-content">
+            <div class="form-detail">
+                <h2>Detail Facility</h2>
 
-<h2 class="text-center">Details Facility</h2>
-<hr style="margin-top: 35px" />
-<div class="edit-style">
+                <dl class="dl-horizontal text-left dl-style" style="margin: 0 50px 0 118px" >
+                    <dt >
+                        @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategory_Name)
+                    </dt>
 
+                    <dd >
+                        @Html.DisplayFor(model => model.FacilityCategory.FacilityCategory_Name)
+                    </dd>
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategory_Name)
-        </dt>
+                    <dt >
+                        @Html.DisplayNameFor(model => model.FacilityName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FacilityCategory.FacilityCategory_Name)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.FacilityName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FacilityName)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FacilityName)
-        </dd>
+                    <dd style="line-height: 2"> 
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Created_At)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                    <dd >
+                        @Html.DisplayFor(model => model.Created_At)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Created_At)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Updated_At)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Created_At)
-        </dd>
+                    <dd >
+                        @Html.DisplayFor(model => model.Updated_At)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Updated_At)
-        </dt>
+                    <dt > 
+                        @Html.DisplayNameFor(model => model.Status)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Updated_At)
-        </dd>
+                    <dd >
+                        @Html.DisplayFor(model => model.Status)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+                </dl>
+                <div class="form-row-last">
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.FacilityId }, new {@class="btn btn-primary register",
+                        @style = "padding:15px; margin-right:15px;"})
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+                    @Html.ActionLink("Back to list", "Index", "Facilities",
+                        new { @class = "btn btn-primary register", @style = "padding:15px" })
+                </div>
+            </div>
+           
 
-    </dl>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.FacilityId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

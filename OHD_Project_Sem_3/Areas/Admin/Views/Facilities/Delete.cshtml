@@ -32,71 +32,73 @@
     </header>
 }
 
+<div class="form-v5">
+<div class="page-content">
+<div class="form-v5-content">
+<div class="form-detail">
+    <h2>Delete Facility</h2>
+         <dl class="dl-horizontal dl-style " style="margin: 0 50px 0 118px"> 
+             <dt> 
+                 @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategory_Name) 
+             </dt> 
+     
+             <dd > 
+                 @Html.DisplayFor(model => model.FacilityCategory.FacilityCategory_Name) 
+             </dd> 
+     
+             <dt > 
+                 @Html.DisplayNameFor(model => model.FacilityName) 
+             </dt> 
+     
+             <dd > 
+                 @Html.DisplayFor(model => model.FacilityName) 
+             </dd> 
+     
+             <dt > 
+                 @Html.DisplayNameFor(model => model.Description) 
+             </dt> 
+     
+             <dd > 
+                 @Html.DisplayFor(model => model.Description) 
+             </dd> 
+     
+             <dt > 
+                 @Html.DisplayNameFor(model => model.Created_At) 
+             </dt> 
+     
+             <dd > 
+                 @Html.DisplayFor(model => model.Created_At) 
+             </dd> 
+     
+             <dt > 
+                 @Html.DisplayNameFor(model => model.Updated_At) 
+             </dt> 
+     
+             <dd > 
+                 @Html.DisplayFor(model => model.Updated_At) 
+             </dd> 
+     
+             <dt class="dt-style">  
+                 @Html.DisplayNameFor(model => model.Status) 
+             </dt> 
+     
+             <dd > 
+                 @Html.DisplayFor(model => model.Status) 
+             </dd> 
+     
+         </dl> 
+    <div class="form-row-last" style="margin-top: 25px">
+                 @using (Html.BeginForm("Delete", "Facilities", FormMethod.Post))
+                 {
+                     @Html.AntiForgeryToken()
 
-<h2 class="text-center">Delete Facility</h2>
-<hr style="margin-top: 35px" />
-<div class="delete-style">
-
-    <dl class="dl-horizontal ">
-        <dt>
-            @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategory_Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FacilityCategory.FacilityCategory_Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FacilityName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FacilityName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Created_At)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Created_At)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Updated_At)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Updated_At)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-    </dl>
-    <div style="margin-left: 13%">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-        }
+                     <input type="submit" value="Delete" class="btn btn-primary register" style="margin-right: 15px"/>
+                     @Html.ActionLink("Back to list", "Index", "Facilities", null,new {@class = "btn btn-primary register", @style = "padding:14px"})
+                 }
     </div>
 </div>
+           
 
+</div>
+</div>
+</div>

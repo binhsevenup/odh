@@ -183,6 +183,7 @@
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\FacilitiesController.cs" />
     <Compile Include="Areas\Admin\Controllers\FacilityCategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\RequestsController.cs" />
     <Compile Include="Areas\Admin\Models\Account.cs" />
     <Compile Include="Areas\Admin\Models\AccountRole.cs" />
@@ -194,7 +195,6 @@
     <Compile Include="Areas\Admin\Models\MyContext.cs" />
     <Compile Include="Areas\Admin\Models\Requests.cs" />
     <Compile Include="Areas\Admin\Models\TotalData.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,9 +204,7 @@
     <Content Include="Content\assets\ajax\ajax-treeview-nodes.html" />
     <Content Include="Content\assets\ajax\ui-elements-lightbox-ajax.html" />
     <Content Include="Content\assets\ajax\ui-elements-modals-ajax.html" />
-    <Content Include="Content\assets\images\!happy-face.png" />
     <Content Include="Content\assets\images\!logged-user.jpg" />
-    <Content Include="Content\assets\images\!sample-user.jpg" />
     <Content Include="Content\assets\images\apple-touch-icon-precomposed.png" />
     <Content Include="Content\assets\images\arrows.png" />
     <Content Include="Content\assets\images\blog-image-1.jpg" />
@@ -1798,6 +1796,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\roboto-font.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\fonts\font-awesome-5\css\fontawesome-all.min.css" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\fonts\Roboto\LICENSE.txt" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Style.css" />
     <Content Include="favicon.ico" />
@@ -2141,6 +2146,34 @@
     <Content Include="Areas\Admin\Views\Requests\ConfirmReturneds.cshtml" />
     <Content Include="Areas\Admin\Views\Requests\DetailForConfirmReturned.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\fonts\font-awesome-5\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\fonts\Roboto\Roboto-Black.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-Bold.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-Italic.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-Light.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-LightItalic.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-Medium.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-Regular.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-Thin.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-ThinItalic.ttf" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Requests\HistoryAssginee.cshtml" />
+    <Content Include="Areas\Admin\Views\Requests\TotalFacility.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Faq.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -2164,14 +2197,15 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LeftMenu.cshtml" />
     <Content Include="Views\Shared\_HeaderLayout.cshtml" />
     <Content Include="Views\Shared\_AlertMessage.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

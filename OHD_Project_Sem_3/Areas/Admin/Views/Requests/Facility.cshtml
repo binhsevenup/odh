@@ -32,70 +32,71 @@
         </div>
     </header>
 }
+<div style="margin-top: 150px; padding: 0 30px 0 50px">
+    <h2 class="text-center text-bold" style="margin-bottom: 30px; margin-right: 100px">Facility</h2>
+    <hr />
+    @Html.Partial("_AlertMessage")
+    <br />
 
-<h2 class="text-center text-bold">Facility</h2>
-<br />
-@Html.Partial("_AlertMessage")
-<br />
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Facility.FacilityName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategory_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Assignor.FullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Remarks)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Created_At)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Updated_At)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Facility.FacilityName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FacilityCategory.FacilityCategory_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Requestor.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Remarks)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created_At)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Updated_At)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "DetailForFacility", new { id = item.RequestId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.RequestId })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Facility.FacilityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategory_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assignor.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created_At)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Updated_At)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Facility.FacilityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FacilityCategory.FacilityCategory_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Requestor.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created_At)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Updated_At)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "DetailForFacility", new { id = item.RequestId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.RequestId })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

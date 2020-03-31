@@ -33,88 +33,90 @@
         </div>
     </header>
 }
-<h2 class="text-center text-bold">Delete Request</h2>
-<br />
-@Html.Partial("_AlertMessage");
-<hr />
 
-<div class="delete-style">
-    
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Facility.FacilityName)
-        </dt>
+<div class="form-v5">
+    <div class="page-content">
+        <div class="form-v5-content">
+            <div class="form-detail">
+                <h2>Delete Category</h2>
+                <dl class="dl-horizontal dl-style" style="margin: 0 50px 0 118px">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Facility.FacilityName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Facility.FacilityName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Facility.FacilityName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategory_Name)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategory_Name)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FacilityCategory.FacilityCategory_Name)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.FacilityCategory.FacilityCategory_Name)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RequestorId)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.RequestorId)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RequestorId)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.RequestorId)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AssgineeId)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AssgineeId)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AssgineeId)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.AssgineeId)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Remarks)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Remarks)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Remarks)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Remarks)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Created_At)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Created_At)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Created_At)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Created_At)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Updated_At)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Updated_At)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Updated_At)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Updated_At)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Status)
+                    </dd>
 
-    </dl>
-    <div style="margin-left: 13%">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+                </dl>
+                <div class="form-row-last">
+                    @using (Html.BeginForm("Delete", "Requests", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
 
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-primary" /> |
-                @Html.ActionLink("Back to List", "Index")
+                        <input type="submit" value="Delete" class="btn btn-primary register" style="margin-right: 15px" />
+                        @Html.ActionLink("Back to list", "Index", "Requests", null, new { @class = "btn btn-primary register", @style = "padding:14px" })
+                    }
+                </div>
             </div>
-        }
+
+
+        </div>
     </div>
 </div>

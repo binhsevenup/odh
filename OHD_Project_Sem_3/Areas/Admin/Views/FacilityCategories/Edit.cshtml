@@ -31,46 +31,37 @@
         </div>
     </header>
 }
-<h2 class="text-center">Edit Form Category</h2>
-<br />
 @Html.Partial("_AlertMessage");
-<hr  />
-@using (Html.BeginForm("Edit", "FacilityCategories", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-   
-    <div class="form-horizontal facility-style">
 
+<div class="form-v5">
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.FacilityCategory_Id)
+    <div class="page-content">
+        <div class="form-v5-content">
+            @using (Html.BeginForm("Edit", "FacilityCategories", FormMethod.Post, new { @class = "form-detail" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.FacilityCategory_Id)
+                <h2>Form Edit Category</h2>
+                <div class="form-row">
+                    @Html.LabelFor(model => model.FacilityCategory_Name, htmlAttributes: new { @class = "control-label text-bold" })
+                    @Html.EditorFor(model => model.FacilityCategory_Name, new { htmlAttributes = new { @class = "input-text" } })
+                    @Html.ValidationMessageFor(model => model.FacilityCategory_Name, "", new { @class = "text-danger" })
+                    <i class="far fa-clipboard"></i>
+                </div>
+                <div class="form-row">
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label text-bold" })
+                    @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "input-text" })
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="form-row-last" style="margin-top: 20px">
+                    <input type="submit" class="register btn btn-primary" style="margin-right: 30px" value="Submit">
+                    @Html.ActionLink("Back to list", "Index", "FacilityCategories",null,
+                        new { @class = "btn btn-primary register", @style = "padding:14px" })
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FacilityCategory_Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.FacilityCategory_Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FacilityCategory_Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+            }
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>

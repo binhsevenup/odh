@@ -140,6 +140,15 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             var requests = db.Requests.Where(r => r.FacilityCategory_Id == currentUser.FacilityCategory_Id && r.Status == Requests.RequestStatus.Assigned);
             return View(requests.ToList());
         }
+
+        public ActionResult HistoryAssginee()
+        {
+            string curentuserid = User.Identity.GetUserId();
+            Account currentUser = db.Users.FirstOrDefault(x => x.Id == curentuserid);
+            var requests = db.Requests.Where(r => r.FacilityCategory_Id == currentUser.FacilityCategory_Id);
+            return View(requests.ToList());
+        }
+
         public ActionResult DetailForAss(int id)
         {
             data2.Request = db.Requests.Find(id);
@@ -163,13 +172,15 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             db.Requests.AddOrUpdate(requests);
             db.Facilities.AddOrUpdate(facility);
             db.SaveChanges();
-            return Redirect("/Admin/Requests/Assginee");
+            Success("Save success!", true);
+            return RedirectToAction("Assginee");
         }
         public ActionResult DetailForConfirmReturned(int id)
         {
             data2.Request = db.Requests.Find(id);
             data2.Accounts = db.Users.Where(a => a.Id == data2.Request.AssgineeId).ToList();
             Requests requests = db.Requests.Find(id);
+            Success("Save success!", true);
             return View(data2);
         }
         public ActionResult DetailsForAss([Bind(Include = "RequestId,FacilityId")] Requests request)
@@ -186,6 +197,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             db.Requests.AddOrUpdate(exist);
             db.Facilities.AddOrUpdate(facility);
             db.SaveChanges();
+            Success("Save success!", true);
             string email = "sieuphamyasuo393@gmail.com";
             string password = "muxcbqdsyjjhbkbq";
 
@@ -203,13 +215,20 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = loginInfo;
             smtpClient.Send(msg);
-            return Redirect("/Admin/Requests/Assginee");
+            Success("Save success!", true);
+            return RedirectToAction("Assginee");
 
         }
         public ActionResult Facility()
         {
             var re = db.Requests.Where(r => r.Status == Requests.RequestStatus.Waiting).ToList();
             return View(re);
+        }
+
+        public ActionResult TotalFacility()
+        {
+           
+            return View(db.Requests.ToList());
         }
         public ActionResult DetailForFacility(int id)
         {
@@ -237,6 +256,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             exist.Status = Requests.RequestStatus.Assigned;
             db.Requests.AddOrUpdate(exist);
             db.SaveChanges();
+            Success("Save success.", true);
             var emailto = assignor.Email;
             string email = "sieuphamyasuo393@gmail.com";
             string password = "muxcbqdsyjjhbkbq";
@@ -255,7 +275,8 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = loginInfo;
             smtpClient.Send(msg);
-            return Redirect("/Admin/Requests/Facility");
+            Success("Save success.", true);
+            return RedirectToAction("Facility");
 
         }
 
@@ -393,10 +414,18 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (ModelState.IsValid)
+            {
+                
+            
             Requests request = db.Requests.Find(id);
             db.Requests.Remove(request);
             db.SaveChanges();
+            Success("Delete request success.", true);
             return RedirectToAction("Index");
+            }
+            Danger("Error. Please try again.", true);
+            return View("Index");
         }
 
         protected override void Dispose(bool disposing)

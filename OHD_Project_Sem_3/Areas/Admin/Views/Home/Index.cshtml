@@ -1,0 +1,263 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section _Header
+{
+    @Html.Partial("_HeaderLayout");
+}
+
+@section _LeftMenu
+{
+    @Html.Partial("_LeftMenu");
+}
+@section _headerPage
+{
+    <header class="page-header">
+        <h2>Dash Board</h2>
+
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Admin Manager / Categories / List Categories</span></li>
+            </ol>
+
+            <a class="sidebar-right-toggle"></a>
+        </div>
+    </header>
+}
+
+
+<div style="margin-top: 150px; padding: 0 30px 0 50px">
+<!-- start: page -->
+<div class="row">
+    <div class="col-md-6 col-lg-12 col-xl-6">
+        <section class="panel">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="chart-data-selector" id="salesSelectorWrapper">
+                            <h2>
+                                DashBoard:
+                                <strong>
+                                    <select class="form-control" id="salesSelector">
+                                        <option value="JSOFT Admin" selected>Total Requests</option>
+                                        <option value="JSOFT Drupal">Total Accounts</option>
+                                        <option value="JSOFT Wordpress">Account send request the most</option>       
+                                    </select>
+                                </strong>
+                            </h2>
+
+                            <div id="salesSelectorItems" class="chart-data-selector-items mt-sm">
+                                <!-- Flot: Sales JSOFT Admin -->
+                                <div class="chart chart-sm" data-sales-rel="JSOFT Admin" id="flotDashSales1" class="chart-active"></div>
+                                <script>
+
+                                    var flotDashSales1Data = [{
+                                        data: [
+                                            ["Jan", @ViewBag.requests1],
+                                            ["Feb", @ViewBag.requests2],
+                                            ["Mar", @ViewBag.requests3],
+                                            ["Apr", @ViewBag.requests4],
+                                            ["May", @ViewBag.requests5],
+                                            ["Jun", @ViewBag.requests6],
+                                            ["Jul", @ViewBag.requests7],
+                                            ["Aug", @ViewBag.requests8],
+                                            ["September", @ViewBag.requests9],
+                                            ["October", @ViewBag.requests10],
+                                            ["November", @ViewBag.requests11],
+                                            ["December", @ViewBag.requests12]
+                                        ],
+                                        color: "#0088cc"
+                                    }];
+
+                                    // See: assets/javascripts/dashboard/examples.dashboard.js for more settings.
+
+                                </script>
+
+                                <!-- Flot: Sales JSOFT Drupal -->
+                                <div class="chart chart-sm" data-sales-rel="JSOFT Drupal" id="flotDashSales2" class="chart-hidden"></div>
+                                <script>
+
+                                    var flotDashSales2Data = [{
+                                        data: [
+                                            ["January", @ViewBag.account1],
+                                            ["February", @ViewBag.account2],
+                                            ["March", @ViewBag.account3],
+                                            ["April", @ViewBag.account4],
+                                            ["May", @ViewBag.account5],
+                                            ["June", @ViewBag.account6],
+                                            ["July", @ViewBag.account7],
+                                            ["Aug", @ViewBag.account8],
+                                            ["September", @ViewBag.account9],
+                                            ["October", @ViewBag.account10],
+                                            ["November", @ViewBag.account11],
+                                            ["December", @ViewBag.account12]
+                                        ],
+                                        color: "#2baab1"
+                                    }];
+
+                                    // See: assets/javascripts/dashboard/examples.dashboard.js for more settings.
+
+                                </script>
+
+                                <!-- Flot: Sales JSOFT Wordpress -->
+                                <div class="chart chart-sm" data-sales-rel="JSOFT Wordpress" id="flotDashSales3" class="chart-hidden"></div>
+                                <script>
+
+                                    var flotDashSales3Data = [{
+                                        data: [
+                                            ["January", @ViewBag.account1],
+                                            ["February", @ViewBag.account2],
+                                            ["March", @ViewBag.account3],
+                                            ["April", @ViewBag.account4],
+                                            ["May", @ViewBag.account5],
+                                            ["June", @ViewBag.account6],
+                                            ["July", @ViewBag.account7],
+                                            ["Aug", @ViewBag.account8],
+                                            ["September", @ViewBag.account9],
+                                            ["October", @ViewBag.account10],
+                                            ["November", @ViewBag.account11],
+                                            ["December", @ViewBag.account12]
+                                        ],
+                                        color: "#734ba9"
+                                    }];
+
+                                    // See: assets/javascripts/dashboard/examples.dashboard.js for more settings.
+
+                                </script>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <h2 class="panel-title mt-md">Requests</h2>
+                        <div class="liquid-meter-wrapper liquid-meter-sm mt-lg">
+                            <div class="liquid-meter">
+                                <meter min="0" max="100" value="0" id="meterSales"></meter>
+                            </div>
+                            <div class="liquid-meter-selector" id="meterSalesSel">
+                                
+                                <a href="#" data-val="@ViewBag.requestdone" class="active">Finish</a>
+                                <a href="#" data-val="@ViewBag.requestpro">Processing</a>
+                                <a href="#" data-val="@ViewBag.requestass">Assigned</a>
+                                <a href="#" data-val="@ViewBag.requestswting">Waiting</a>
+                                <a href="#" data-val="@ViewBag.requestdt">Not completed</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-6 col-lg-12 col-xl-6">
+        <div class="row">
+            <div class="col-md-12 col-lg-6 col-xl-6">
+                <section class="panel panel-featured-left panel-featured-primary">
+                    <div class="panel-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-primary">
+                                    <i class="fa fa-life-ring"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="title">The Request Has Been Completed</h4>
+                                    <div class="info">
+                                        <strong class="amount">@ViewBag.RequestsDone Requests</strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a href="#">Views All</a>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-6">
+                <section class="panel panel-featured-left panel-featured-secondary">
+                    <div class="panel-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-secondary">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="title">Accounts Active</h4>
+                                    <div class="info">
+                                        <strong class="amount">@ViewBag.AccountsActive Accounts</strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a href="#">Views All</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-6">
+                <section class="panel panel-featured-left panel-featured-tertiary">
+                    <div class="panel-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-tertiary">
+                                    <i class="fa fa-life-ring"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="title">The request has not been completed</h4>
+                                    <div class="info">
+                                        <strong class="amount">@ViewBag.RequestNoDone Requests</strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a href="#">Views All</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-6">
+                <section class="panel panel-featured-left panel-featured-quartenary">
+                    <div class="panel-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-quartenary">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="title">Accounts DeActive</h4>
+                                    <div class="info">
+                                        <strong class="amount">@ViewBag.AccountDeActive Accounts</strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a href="#">Views All</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: page -->
+</div>
+

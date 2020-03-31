@@ -32,91 +32,69 @@
     </header>
 }
 
-<h2 class="text-center" style="margin-bottom: 35px">Register Form</h2>
-<br />
-@Html.Partial("_AlertMessage");
-<br />
-<hr style="margin-bottom: 55px" />
-<form action="/Admin/Account/Store" method="post" name="registration">
 
-    <div class="form-group row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4 ">
-            <label><b>Email Address</b></label>
-            <input type="email" name="username" class="form-control " placeholder="Enter the email address." />
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-    <div class="form-group row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <label><b>Full Name</b></label>
-            <input type="text" name="fullname" class="form-control " placeholder="Enter the full name." />
+<div class="form-v5">
+    <div class="page-content">
+        <div class="form-v5-content">
+            <form class="form-detail" action="/Admin/Account/Store" method="post" name="registration">
+                <h2>Form Register</h2>
+                <div class="form-row">
+                    <label class="text-bold">Email address</label>
+                    <input type="email" name="username"  class="input-text" placeholder="Email address">
+                    <span> <i class="fas fa-envelope"></i></span>
+                </div>
+                <div class="form-row">
+                    <label class="text-bold">Fullname</label>
+                    <input type="text" name="fullname"  class="input-text" placeholder="Full name"  >
+                    <i class="far fa-clipboard"></i>
+                </div>
+                <div class="form-row">
+                    <label class="text-bold">Phone</label>
+                    <input type="text" name="phone"  class="input-text" placeholder="Phone number"  >
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="form-row">
+                    <label class="text-bold">Password</label>
+                    <input type="password" name="password" id="password" class="input-text" placeholder="Password"  >
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="form-row">
+                    <label class="text-bold">Confirm password</label>
+                    <input type="password" name="password_confirm"  class="input-text" placeholder="Confirm password"  >
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="form-row">
+                    <label class="text-bold">Role</label>
+                    <select name="r" class="input-text">
+                        @foreach (var item in Model.AccountRoles)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
 
+                    </select>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="form-row">
+                    <label class="text-bold">Assignee</label>
+                    <select name="ass" class="input-text"> 
+                                     <option value="">Select</option> 
+                                     @foreach (var item in Model.FacilityCategories) 
+                                     { 
+                     
+                                         <option value="@item.FacilityCategory_Id">@item.FacilityCategory_Name</option> 
+                                     } 
+                     
+                                 </select> 
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="form-row-last" style="margin-top: 20px">
+                    <input type="submit" class="register btn btn-primary" style="margin-right: 30px" value="Create">
+                    @Html.ActionLink("Back to list", "Index", "Account",null,
+                        new { @class = "btn btn-primary register", @style = "padding:14px" })
+                </div>
+            </form>
         </div>
-        <div class="col-md-4"></div>
     </div>
-    <div class="form-group row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <label><b>Password</b></label>
-            <input type="password" name="password" class="form-control " id="password" placeholder="Enter the password." />
+</div>
 
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-    <div class="form-group row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <label><b>Confirm Password</b></label>
-            <input type="password" name="password_confirm" class="form-control " placeholder="Enter the confirm password." />
-        </div>
-        <div class="col-md-4"></div>
-    </div>
 
-    <div class="row form-group">
-        <div class="col-md-4"></div>
-        <div class="col-md-2">
-            <label><b>Role</b></label>
-            <select name="r" class="form-control">
-                <option value="">Select</option>
-                @foreach (var item in Model.AccountRoles)
-                {
-                    <option value="@item.Id">@item.Name</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-
-    <div class="row form-group">
-        <div class="col-md-4"></div>
-        <div class="col-md-3">
-            <label><b>Assignee</b></label>
-            <select name="ass" class="form-control">
-                <option value="">Select</option>
-                @foreach (var item in Model.FacilityCategories)
-                {
-                    <option value="@item.FacilityCategory_Id">@item.FacilityCategory_Name</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-
-    <div class="form-group row">
-        <div class="col-md-4"></div>
-        <div class="col-md-3">
-            <label><b>Phone Number</b></label>
-            <input type="text" name="phone" class="form-control " placeholder="Enter the phone number." />
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-    <div class="row form-group">
-        <div class="col-md-4"></div>
-        <div class="col-md-1">
-            <input type="submit" class="form-control btn-primary" value="Submit" />
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-</form>
