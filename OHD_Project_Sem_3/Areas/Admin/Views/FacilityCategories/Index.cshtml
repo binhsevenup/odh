@@ -39,28 +39,41 @@
 <div style="margin-top: 150px; padding: 0 30px 0 50px">
     <h2 class="text-center" style="margin-bottom: 30px; margin-right: 100px">List Category</h2>
     <hr />
-    @Html.Partial("_AlertMessage")
-    @using (Html.BeginForm("Index", "FacilityCategories", FormMethod.Get))
-    {
-        <p>
-            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-            <input type="submit" class="btn btn-primary" value="Search" />
-        </p>
-    }
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        </div>
+        <div class="col-md-6">
+            @using (Html.BeginForm("Index", "FacilityCategories", FormMethod.Get))
+            {
+                <p style="margin-left: 60%">
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                    <input type="submit" value="Search" />
+                </p>
+            }
+        </div>
+  
 
+
+    </div>
+    <br />
+    @Html.Partial("_AlertMessage")
 <table class="table">
     <tr>
         <th>
             @Html.ActionLink("Facility Name", "Index", new { sortOrder = ViewBag.FaciCategoryNameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("CreatedAt", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            @Html.ActionLink("Created At", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            UpdateAt
+            @Html.ActionLink("Updated At", "Index", 
+                new { sortOrder = ViewBag.UpdatedFa, currentFilter = ViewBag.CurrentFilter })
+
         </th>
         <th>
             @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm, currentFilter = ViewBag.CurrentFilter })

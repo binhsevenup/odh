@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 {
@@ -24,9 +25,41 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             return View();
         }
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(dbContext.Roles.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.RoleName = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+            var roles = from f in dbContext.Roles
+                select f;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                roles = roles.Where(f => f.Name.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    roles = roles.OrderByDescending(f => f.Name);
+                    break;
+                default:
+                    roles = roles.OrderBy(f => f.Name);
+                    break;
+            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(roles.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpPost]
