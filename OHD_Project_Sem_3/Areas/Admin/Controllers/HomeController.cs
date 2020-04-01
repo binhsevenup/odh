@@ -1,6 +1,7 @@
 ﻿using OHD_Project_Sem_3.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,8 +27,6 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 
             //-- set to - current date (with 00.00.00 time)
             DateTime dtTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-
-
 
             var totalrequestsdeleted = db.Requests.Where(r => r.Status == Requests.RequestStatus.Deleted).Count();
             var totalrequestsdone = db.Requests.Where(r => r.Status == Requests.RequestStatus.Done).Count();
@@ -57,6 +56,221 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             var requests3 = db.Requests.Where(r => r.Created_At.Month == month - 9).Count();
             var requests2 = db.Requests.Where(r => r.Created_At.Month == month - 10).Count();
             var requests1 = db.Requests.Where(r => r.Created_At.Month == month - 11).Count();
+
+
+            var TopAccountsSendRequest12 = db.Requests.Where(r => r.Created_At.Month == month).ToList()
+                                    .GroupBy(q => q.RequestorId)
+                                    .OrderByDescending(gp => gp.Count())
+                                    .Take(1)
+                                    .Select(g => g.Key).ToList();
+            string Id12;
+
+            if (TopAccountsSendRequest12.Count()!=0)
+            {
+                Id12 = TopAccountsSendRequest12[0];                               
+            }
+            else
+            {
+                Id12 = "0";
+            }
+            var Top12 = db.Requests.Where(t => t.RequestorId == Id12).Count();
+
+            var TopAccountsSendRequest1 = db.Requests.Where(r => r.Created_At.Month == month).ToList()
+                                    .GroupBy(q => q.RequestorId)
+                                    .OrderByDescending(gp => gp.Count())
+                                    .Take(1)
+                                    .Select(g => g.Key).ToList();
+
+            string Id1;
+
+            if (TopAccountsSendRequest1.Count() != 0)
+            {
+                Id1 = TopAccountsSendRequest1[0];
+            }
+            else
+            {
+                Id1 = "0";
+            }
+            var Top1 = db.Requests.Where(t => t.RequestorId == Id1).Count();
+
+            var TopAccountsSendRequest2 = db.Requests.Where(r => r.Created_At.Month == month).ToList()
+                                    .GroupBy(q => q.RequestorId)
+                                    .OrderByDescending(gp => gp.Count())
+                                    .Take(1)
+                                    .Select(g => g.Key).ToList();
+
+            string Id2;
+
+            if (TopAccountsSendRequest2.Count() != 0)
+            {
+                Id2 = TopAccountsSendRequest2[0];
+            }
+            else
+            {
+                Id2 = "0";
+            }
+            var Top2 = db.Requests.Where(t => t.RequestorId == Id2).Count();
+
+            var TopAccountsSendRequest3 = db.Requests.Where(r => r.Created_At.Month == month - 9).ToList()
+                                    .GroupBy(q => q.RequestorId)
+                                    .OrderByDescending(gp => gp.Count())
+                                    .Take(3)
+                                    .Select(g => g.Key).ToList();
+
+            string Id3;
+
+            if (TopAccountsSendRequest3.Count() != 0)
+            {
+                Id3 = TopAccountsSendRequest3[0];
+            }
+            else
+            {
+                Id3 = "0";
+            }
+            var Top3 = db.Requests.Where(t => t.RequestorId == Id3).Count();
+
+            var TopAccountsSendRequest4 = db.Requests.Where(r => r.Created_At.Month == month - 8).ToList()
+                                    .GroupBy(q => q.RequestorId)
+                                    .OrderByDescending(gp => gp.Count())
+                                    .Take(1)
+                                    .Select(g => g.Key).ToList();
+            string Id4;
+            if (TopAccountsSendRequest4.Count() != 0)
+            {
+                Id4 = TopAccountsSendRequest4[0];               
+            }
+            else
+            {
+                Id4 = "0";
+            }
+            var Top4 = db.Requests.Where(t => t.RequestorId == Id4).Count();
+
+            var TopAccountsSendRequest5 = db.Requests.Where(r => r.Created_At.Month == month - 7).ToList()
+                                    .GroupBy(q => q.RequestorId)
+                                    .OrderByDescending(gp => gp.Count())
+                                    .Take(1)
+                                    .Select(g => g.Key).ToList();
+
+            string Id5;
+
+            if (TopAccountsSendRequest5.Count() != 0)
+            {
+                Id5 = TopAccountsSendRequest5[0];
+            }
+            else
+            {
+                Id5 = "0";
+            }
+            var Top5 = db.Requests.Where(t => t.RequestorId == Id5).Count();
+
+            var TopAccountsSendRequest6 = db.Requests.Where(r => r.Created_At.Month == month - 6).ToList()
+                                    .GroupBy(q => q.RequestorId)
+                                    .OrderByDescending(gp => gp.Count())
+                                    .Take(1)
+                                    .Select(g => g.Key).ToList();
+
+            string Id6;
+
+            if (TopAccountsSendRequest6.Count() != 0)
+            {
+                Id6 = TopAccountsSendRequest6[0];
+            }
+            else
+            {
+                Id6 = "0";
+            }
+            var Top6 = db.Requests.Where(t => t.RequestorId == Id6).Count();
+
+            var TopAccountsSendRequest7 = db.Requests.Where(r => r.Created_At.Month == month - 5).ToList()
+                                    .GroupBy(q => q.RequestorId)
+                                    .OrderByDescending(gp => gp.Count())
+                                    .Take(1)
+                                    .Select(g => g.Key).ToList();
+
+            string Id7;
+
+            if (TopAccountsSendRequest7.Count() != 0)
+            {
+                Id7 = TopAccountsSendRequest7[0];
+            }
+            else
+            {
+                Id7 = "0";
+            }
+            var Top7 = db.Requests.Where(t => t.RequestorId == Id7).Count();
+
+            var TopAccountsSendRequest8 = db.Requests.Where(r => r.Created_At.Month == month - 4).ToList()
+                                    .GroupBy(q => q.RequestorId)
+                                    .OrderByDescending(gp => gp.Count())
+                                    .Take(1)
+                                    .Select(g => g.Key).ToList();
+
+            string Id8;
+
+            if (TopAccountsSendRequest8.Count() != 0)
+            {
+                Id8 = TopAccountsSendRequest8[0];
+            }
+            else
+            {
+                Id8 = "0";
+            }
+            var Top8 = db.Requests.Where(t => t.RequestorId == Id8).Count();
+
+            var TopAccountsSendRequest9 = db.Requests.Where(r => r.Created_At.Month == month - 3).ToList()
+                                    .GroupBy(q => q.RequestorId)
+                                    .OrderByDescending(gp => gp.Count())
+                                    .Take(1)
+                                    .Select(g => g.Key).ToList();
+
+            string Id9;
+
+            if (TopAccountsSendRequest9.Count() != 0)
+            {
+                Id9 = TopAccountsSendRequest9[0];
+            }
+            else
+            {
+                Id9 = "0";
+            }
+            var Top9 = db.Requests.Where(t => t.RequestorId == Id9).Count();
+
+            var TopAccountsSendRequest10 = db.Requests.Where(r => r.Created_At.Month == month - 2).ToList()
+                                    .GroupBy(q => q.RequestorId)
+                                    .OrderByDescending(gp => gp.Count())
+                                    .Take(1)
+                                    .Select(g => g.Key).ToList();
+
+            string Id10;
+
+            if (TopAccountsSendRequest10.Count() != 0)
+            {
+                Id10 = TopAccountsSendRequest10[0];
+            }
+            else
+            {
+                Id10 = "0";
+            }
+            var Top10 = db.Requests.Where(t => t.RequestorId == Id10).Count();
+
+            var TopAccountsSendRequest11 = db.Requests.Where(r => r.Created_At.Month == month - 1).ToList()
+                                    .GroupBy(q => q.RequestorId)
+                                    .OrderByDescending(gp => gp.Count())
+                                    .Take(1)
+                                    .Select(g => g.Key).ToList();
+
+            string Id11;
+
+            if (TopAccountsSendRequest11.Count() != 0)
+            {
+                Id11 = TopAccountsSendRequest11[0];
+            }
+            else
+            {
+                Id11 = "0";
+            }
+            var Top11 = db.Requests.Where(t => t.RequestorId == Id11).Count();
+
 
             var accounts12 = db.Users.Where(a => a.Created_At.Month == month).Count();
             var accounts11 = db.Users.Where(a => a.Created_At.Month == month - 1).Count();
@@ -96,6 +310,19 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             ViewBag.account10 = accounts10;
             ViewBag.account11 = accounts11;
             ViewBag.account12 = accounts12;
+
+            ViewBag.Top1 = Top1;
+            ViewBag.Top2 = Top2;
+            ViewBag.Top3 = Top3;
+            ViewBag.Top4 = Top4;
+            ViewBag.Top5 = Top5;
+            ViewBag.Top6 = Top6;
+            ViewBag.Top7 = Top7;
+            ViewBag.Top8 = Top8;
+            ViewBag.Top9 = Top9;
+            ViewBag.Top10 = Top10;
+            ViewBag.Top11 = Top11;
+            ViewBag.Top12 = Top12;
 
 
 
