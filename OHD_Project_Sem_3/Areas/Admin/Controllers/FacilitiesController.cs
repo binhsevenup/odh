@@ -21,9 +21,11 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
-            ViewBag.FacilityNameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-            ViewBag.StatusSortParm = sortOrder == "Status" ? "status_desc" : "Status";
+            ViewBag.NameFa = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.NameCa = sortOrder == "Category" ? "category_desc" : "Category";
+            ViewBag.CreatedFa = sortOrder == "Created" ? "created_desc" : "Created";
+            ViewBag.UpdatedFa = sortOrder == "Updated" ? "updated_desc" : "Updated";
+            ViewBag.StatusFa = sortOrder == "Status" ? "status_desc" : "Status";
             if (searchString != null)
             {
                 page = 1;
@@ -39,31 +41,43 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 facilities = facilities.Where(f => f.FacilityName.Contains(searchString)
-                                               || f.FacilityName.Contains(searchString));
+                                               || f.FacilityCategory.FacilityCategory_Name.Contains(searchString));
             }
             switch (sortOrder)
             {
                 case "name_desc":
                     facilities = facilities.OrderByDescending(f => f.FacilityName);
                     break;
-                case "Date":
-                    facilities = facilities.OrderBy(f => f.Created_At);
+                case "Category":
+                    facilities = facilities.OrderBy(f => f.FacilityCategory.FacilityCategory_Name);
                     break;
-                case "date_desc":
+                case "category_desc":
+                    facilities = facilities.OrderByDescending(f => f.FacilityCategory.FacilityCategory_Name);
+                    break;
+                case "Created":
+                    facilities = facilities.OrderBy(f => f.Created_At);
+                    break; 
+                case "created_desc":
                     facilities = facilities.OrderByDescending(f => f.Created_At);
+                    break;
+                case "Updated":
+                    facilities = facilities.OrderBy(f => f.Updated_At);
+                    break;
+                case "updated_desc":
+                    facilities = facilities.OrderByDescending(f => f.Updated_At);
                     break;
                 case "Status":
                     facilities = facilities.OrderBy(f => f.Status);
-                    break; 
+                    break;
                 case "status_desc":
                     facilities = facilities.OrderByDescending(f => f.Status);
                     break;
                 default:
-                    facilities = facilities.OrderBy(f => f.Created_At);
+                    facilities = facilities.OrderBy(f => f.FacilityName);
                     break;
             }
             //            var facilities = db.Facilities.Include(f => f.FacilityCategory);
-            int pageSize = 6;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(facilities.ToPagedList(pageNumber, pageSize));
         }

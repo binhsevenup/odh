@@ -1,5 +1,7 @@
-﻿@model List<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
-
+﻿@* @model List<Microsoft.AspNet.Identity.EntityFramework.IdentityRole> *@
+@model PagedList.IPagedList<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 
 @{
@@ -32,35 +34,54 @@
         </div>
     </header>
 }
-<div  style="margin-top: 150px; padding: 0 30px 0 50px">
-<h2 class="text-center" style="margin-bottom: 30px;margin-right: 100px"><b>List Role</b></h2>
-<br />
-@Html.Partial("_AlertMessage")
-<br />
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>Action</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div style="margin-top: 150px; padding: 0 30px 0 50px">
+    <h2 class="text-center" style="margin-bottom: 30px;margin-right: 100px"><b>List Role</b></h2>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        </div>
+        <div class="col-md-6">
+            @using (Html.BeginForm("Index", "AccountRoles", FormMethod.Get))
+            {
+                <p style="margin-left: 60%">
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                    <input type="submit" value="Search" />
+                </p>
+            }
+        </div>
+    </div>
+    <br />
+    @Html.Partial("_AlertMessage")
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            <th>
+                @Html.ActionLink("Role Name", "Index", "AccountRoles",
+                    new { sortOrder = ViewBag.RoleName, currentFilter = ViewBag.CurrentFilter }, null)
+            </th>
+            <th>Action</th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>

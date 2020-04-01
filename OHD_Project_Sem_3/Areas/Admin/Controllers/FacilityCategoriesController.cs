@@ -23,6 +23,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             ViewBag.CurrentSort = sortOrder;
             ViewBag.FaciCategoryNameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.UpdatedFa = sortOrder == "Updated" ? "updated_desc" : "Updated";
             ViewBag.StatusSortParm = sortOrder == "Status" ? "status_desc" : "Status";
 
             if (searchString != null)
@@ -39,8 +40,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                                      select f;
             if (!String.IsNullOrEmpty(searchString))
             {
-                facilitiesCategory = facilitiesCategory.Where(f => f.FacilityCategory_Name.Contains(searchString)
-                                                   || f.FacilityCategory_Id.Contains(searchString));
+                facilitiesCategory = facilitiesCategory.Where(f => f.FacilityCategory_Name.Contains(searchString));
             }
             switch (sortOrder)
             {
@@ -53,6 +53,12 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 case "date_desc":
                     facilitiesCategory = facilitiesCategory.OrderByDescending(f => f.Created_At);
                     break;
+                case "Updated":
+                    facilitiesCategory = facilitiesCategory.OrderBy(f => f.Updated_At);
+                    break;
+                case "updated_desc":
+                    facilitiesCategory = facilitiesCategory.OrderByDescending(f => f.Updated_At);
+                    break;
                 case "Status":
                     facilitiesCategory = facilitiesCategory.OrderBy(f => f.Status);
                     break;
@@ -63,7 +69,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                     facilitiesCategory = facilitiesCategory.OrderBy(f => f.Updated_At);
                     break;
             }
-            int pageSize = 5;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(facilitiesCategory.ToPagedList(pageNumber, pageSize));
         }

@@ -84,7 +84,7 @@
                 </div>
                 <div class="form-row-last" style="margin-top: 20px">
                     <input type="submit" class="register btn btn-primary" style="margin-right: 30px" value="Submit">
-                    @Html.ActionLink("Back to list", "Index", "Requests", null,
+                    @Html.ActionLink("Back to list", "Index", "Requests", new { id = Model. RequestId},
                         new { @class = "btn btn-primary register", @style = "padding:14px" })
                 </div>
 
