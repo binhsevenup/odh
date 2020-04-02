@@ -27,6 +27,8 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             UserStore<Account> userStore = new UserStore<Account>(db);
             userManager = new UserManager<Account>(userStore);
         }
+
+//        [Authorize]
         public ActionResult Index(string sortOrder, string currentFilter, string search, int? page)
         {
 
@@ -108,28 +110,93 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 
             }
 
-
+            string curentuserid = User.Identity.GetUserId();
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(request.ToPagedList(pageNumber, pageSize));
+            return View(request.Where(s => s.RequestorId == curentuserid).ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult Assginee()
+//        [Authorize]
+        public ActionResult Assginee(string sortOrder, string currentFilter, string search, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.FacilityNameAs = String.IsNullOrEmpty(sortOrder) ? "facility_desc" : "";
+            ViewBag.CategoryNameAs = sortOrder == "Category" ? "category_desc" : "Category";
+            ViewBag.FullNameAs = sortOrder == "Fullname" ? "fullname_desc" : "Fullname";
+            ViewBag.CreatedAs = sortOrder == "Created" ? "created_desc" : "Created";
+            ViewBag.UpdatedAs = sortOrder == "Updated" ? "updated_desc" : "Updated";
+            ViewBag.StatusAs = sortOrder == "Status" ? "status_desc" : "Status";
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = search;
+
+            var request = from s in db.Requests select s;
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                request = request.Where(s => s.Facility.FacilityName.Contains(search)
+                                             || s.FacilityCategory.FacilityCategory_Name.Contains(search)
+                                             || s.Requestor.FullName.Contains(search)
+                                             || s.AssgineeId.Contains(search));
+            }
+
+            switch (sortOrder)
+            {
+                case "facility_desc":
+                    request = request.OrderByDescending(s => s.Facility.FacilityName);
+                    break;
+                case "Category":
+                    request = request.OrderBy(s => s.FacilityCategory.FacilityCategory_Name);
+                    break;
+                case "category_desc":
+                    request = request.OrderByDescending(s => s.FacilityCategory.FacilityCategory_Name);
+                    break;
+                case "Fullname":
+                    request = request.OrderBy(s => s.Requestor.FullName);
+                    break;
+                case "fullname_desc":
+                    request = request.OrderByDescending(s => s.Requestor.FullName);
+                    break;
+                case "Created":
+                    request = request.OrderBy(s => s.AssgineeId);
+                    break;
+                case "created_desc":
+                    request = request.OrderByDescending(s => s.AssgineeId);
+                    break;
+                case "Updated":
+                    request = request.OrderBy(s => s.Updated_At);
+                    break;
+                case "updated_desc":
+                    request = request.OrderByDescending(s => s.Updated_At);
+                    break;
+                case "Status":
+                    request = request.OrderBy(s => s.Status);
+                    break;
+                case "status_desc":
+                    request = request.OrderByDescending(s => s.Status);
+                    break;
+                default:
+                    request = request.OrderBy(s => s.Facility.FacilityName);
+                    break;
+
+            }
+        
             string curentuserid = User.Identity.GetUserId();
             Account currentUser = db.Users.FirstOrDefault(x => x.Id == curentuserid);
-            var requests = db.Requests.Where(r => r.FacilityCategory_Id == currentUser.FacilityCategory_Id && r.Status == Requests.RequestStatus.Assigned);
-            return View(requests.ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(request.Where(r => r.FacilityCategory_Id == currentUser.FacilityCategory_Id && r.Status == Requests.RequestStatus.Assigned).ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult HistoryAssginee()
-        {
-            string curentuserid = User.Identity.GetUserId();
-            Account currentUser = db.Users.FirstOrDefault(x => x.Id == curentuserid);
-            var requests = db.Requests.Where(r => r.FacilityCategory_Id == currentUser.FacilityCategory_Id);
-            return View(requests.ToList());
-        }
-
+      
+//        [Authorize]
         public ActionResult DetailForAss(int id)
         {
             data2.Request = db.Requests.Find(id);
@@ -137,13 +204,84 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             Requests requests = db.Requests.Find(id);
             return View(data2);
         }
-        public ActionResult ConfirmReturneds()
+//        [Authorize]
+        public ActionResult ConfirmReturneds(string sortOrder, string currentFilter, string search, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.FacilityNameCr = String.IsNullOrEmpty(sortOrder) ? "facility_desc" : "";
+            ViewBag.CategoryNameCr = sortOrder == "Category" ? "category_desc" : "Category";
+            ViewBag.FullNameCr = sortOrder == "Fullname" ? "fullname_desc" : "Fullname";
+            ViewBag.CreatedCr = sortOrder == "Created" ? "created_desc" : "Created";
+            ViewBag.UpdatedCr = sortOrder == "Updated" ? "updated_desc" : "Updated";
+            ViewBag.StatusCr = sortOrder == "Status" ? "status_desc" : "Status";
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = search;
+
+            var request = from s in db.Requests select s;
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                request = request.Where(s => s.Facility.FacilityName.Contains(search)
+                                             || s.FacilityCategory.FacilityCategory_Name.Contains(search)
+                                             || s.Requestor.FullName.Contains(search)
+                                             || s.AssgineeId.Contains(search));
+            }
+
+            switch (sortOrder)
+            {
+                case "facility_desc":
+                    request = request.OrderByDescending(s => s.Facility.FacilityName);
+                    break;
+                case "Category":
+                    request = request.OrderBy(s => s.FacilityCategory.FacilityCategory_Name);
+                    break;
+                case "category_desc":
+                    request = request.OrderByDescending(s => s.FacilityCategory.FacilityCategory_Name);
+                    break;
+                case "Fullname":
+                    request = request.OrderBy(s => s.Requestor.FullName);
+                    break;
+                case "fullname_desc":
+                    request = request.OrderByDescending(s => s.Requestor.FullName);
+                    break;
+                case "Created":
+                    request = request.OrderBy(s => s.AssgineeId);
+                    break;
+                case "created_desc":
+                    request = request.OrderByDescending(s => s.AssgineeId);
+                    break;
+                case "Updated":
+                    request = request.OrderBy(s => s.Updated_At);
+                    break;
+                case "updated_desc":
+                    request = request.OrderByDescending(s => s.Updated_At);
+                    break;
+                case "Status":
+                    request = request.OrderBy(s => s.Status);
+                    break;
+                case "status_desc":
+                    request = request.OrderByDescending(s => s.Status);
+                    break;
+                default:
+                    request = request.OrderBy(s => s.Facility.FacilityName);
+                    break;
+
+            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
             string curentuserid = User.Identity.GetUserId();
             Account currentUser = db.Users.FirstOrDefault(x => x.Id == curentuserid);
-            var confirm = db.Requests.Where(c => c.Status == Requests.RequestStatus.Processing && c.FacilityCategory_Id == currentUser.FacilityCategory_Id);
-            return View(confirm.ToList());
+            return View(request.Where(c => c.Status == Requests.RequestStatus.Processing && c.FacilityCategory_Id == currentUser.FacilityCategory_Id).ToPagedList(pageNumber, pageSize));
         }
+
         public ActionResult ConfirmReturned([Bind(Include = "RequestId,FacilityId")] Requests request)
         {
             var requests = db.Requests.Find(request.RequestId);
@@ -156,6 +294,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             Success("Save success!", true);
             return RedirectToAction("Assginee");
         }
+        [Authorize]
         public ActionResult DetailForConfirmReturned(int id)
         {
             data2.Request = db.Requests.Find(id);
@@ -164,6 +303,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             Success("Save success!", true);
             return View(data2);
         }
+      
         public ActionResult DetailsForAss([Bind(Include = "RequestId,FacilityId")] Requests request)
         {
             var exist = db.Requests.Find(request.RequestId);
@@ -200,17 +340,82 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             return RedirectToAction("Assginee");
 
         }
-        public ActionResult Facility()
+//        [Authorize(Roles = "Facility-Heads")]
+        public ActionResult Facility(string sortOrder, string currentFilter, string search, int? page)
         {
-            var re = db.Requests.Where(r => r.Status == Requests.RequestStatus.Waiting).ToList();
-            return View(re);
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.FacilityNameRqFa = String.IsNullOrEmpty(sortOrder) ? "facility_desc" : "";
+            ViewBag.CategoryNameRqFa = sortOrder == "Category" ? "category_desc" : "Category";
+            ViewBag.FullNameRqFa = sortOrder == "Fullname" ? "fullname_desc" : "Fullname";
+            ViewBag.CreatedRqFa = sortOrder == "Created" ? "created_desc" : "Created";
+            ViewBag.UpdatedRqFa = sortOrder == "Updated" ? "updated_desc" : "Updated";
+            ViewBag.StatusRqFa = sortOrder == "Status" ? "status_desc" : "Status";
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = search;
+
+            var request = from s in db.Requests select s;
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                request = request.Where(s => s.Facility.FacilityName.Contains(search)
+                                             || s.FacilityCategory.FacilityCategory_Name.Contains(search)
+                                             || s.Requestor.FullName.Contains(search));
+            }
+
+            switch (sortOrder)
+            {
+                case "facility_desc":
+                    request = request.OrderByDescending(s => s.Facility.FacilityName);
+                    break;
+                case "Category":
+                    request = request.OrderBy(s => s.FacilityCategory.FacilityCategory_Name);
+                    break;
+                case "category_desc":
+                    request = request.OrderByDescending(s => s.FacilityCategory.FacilityCategory_Name);
+                    break;
+                case "Fullname":
+                    request = request.OrderBy(s => s.Requestor.FullName);
+                    break;
+                case "fullname_desc":
+                    request = request.OrderByDescending(s => s.Requestor.FullName);
+                    break;
+                case "Created":
+                    request = request.OrderBy(s => s.AssgineeId);
+                    break;
+                case "created_desc":
+                    request = request.OrderByDescending(s => s.AssgineeId);
+                    break;
+                case "Updated":
+                    request = request.OrderBy(s => s.Updated_At);
+                    break;
+                case "updated_desc":
+                    request = request.OrderByDescending(s => s.Updated_At);
+                    break;
+                case "Status":
+                    request = request.OrderBy(s => s.Status);
+                    break;
+                case "status_desc":
+                    request = request.OrderByDescending(s => s.Status);
+                    break;
+                default:
+                    request = request.OrderBy(s => s.Facility.FacilityName);
+                    break;
+
+            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(request.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult TotalFacility()
-        {
-           
-            return View(db.Requests.ToList());
-        }
+//        [Authorize(Roles = "Facility-Heads")]
         public ActionResult DetailForFacility(int id)
         {
 
@@ -265,6 +470,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
       
 
         // GET: Admin/Requests/Details/5
+//        [Authorize]
         public ActionResult Details(int id)
         {
 
@@ -273,6 +479,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         }
 
         // GET: Admin/Requests/Create
+//        [Authorize]
         public ActionResult Create()
         {
             data.FacilityCategories = db.FacilityCategories.ToList();
@@ -339,6 +546,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         }
 
         // GET: Admin/Requests/Edit/5
+//        [Authorize]
         public ActionResult Edit(int id)
         {
             Requests request = db.Requests.Find(id);
@@ -383,6 +591,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         }
 
         // GET: Admin/Requests/Delete/5
+//        [Authorize]
         public ActionResult Delete(int id)
         {
             Requests request = db.Requests.Find(id);

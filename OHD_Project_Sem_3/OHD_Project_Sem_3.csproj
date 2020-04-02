@@ -2176,8 +2176,6 @@
     <Content Include="Content\fonts\Roboto\Roboto-Thin.ttf" />
     <Content Include="Content\fonts\Roboto\Roboto-ThinItalic.ttf" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Requests\HistoryAssginee.cshtml" />
-    <Content Include="Areas\Admin\Views\Requests\TotalFacility.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Faq.cshtml" />
     <Content Include="Areas\Admin\Views\Account\ProfileUser.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

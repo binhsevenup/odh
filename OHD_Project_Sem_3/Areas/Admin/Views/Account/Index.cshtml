@@ -52,7 +52,7 @@
             @using (Html.BeginForm("Index", "Account", FormMethod.Get))
             {
                 <p style="margin-left: 60%">
-                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                    @Html.TextBox("searchString", ViewBag.CurrentFilter as string)
                     <input type="submit" value="Search" />
                 </p>
             }

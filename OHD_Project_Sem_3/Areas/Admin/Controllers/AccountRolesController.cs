@@ -10,6 +10,7 @@ using PagedList;
 
 namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 {
+//    [Authorize(Roles = "Admin")]
     public class AccountRolesController : BaseController
     {
         private MyContext dbContext = new MyContext();
