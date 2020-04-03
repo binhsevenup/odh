@@ -17,6 +17,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             return View();
         }
         // GET: Admin/Home
+//        [Authorize(Roles = "Admin, Facility-Heads")]
         public ActionResult Index()
         {
             var month = 12;

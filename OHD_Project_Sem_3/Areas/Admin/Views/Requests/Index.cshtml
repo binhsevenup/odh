@@ -52,7 +52,7 @@
             @using (Html.BeginForm("Index", "Requests", FormMethod.Get))
             {
                 <p style="margin-left: 60%">
-                    @Html.TextBox("Search", ViewBag.CurrentFilter as string)
+                    @Html.TextBox("search", ViewBag.CurrentFilter as string)
                     <input type="submit" value="Search"/>
                 </p>
             }
@@ -63,28 +63,33 @@
     <table class="table" style="margin-top: 15px">
         <tr>
             <th>
-                @Html.ActionLink("Facility", "Index", new { sortOrder = ViewBag.NameRq, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Facility", "Index","Requests", 
+                    new { sortOrder = ViewBag.NameRq, currentFilter = ViewBag.CurrentFilter }, null)
             </th>
             <th>
-                @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.NameCate, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Category", "Index","Requests", 
+                    new { sortOrder = ViewBag.NameCate, currentFilter = ViewBag.CurrentFilter },null)
             </th>
             <th>
-                @Html.ActionLink("Requestor Id", "Index", new { sortOrder = ViewBag.IdRqt, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Requestor Id", "Index", "Requests",
+                    new { sortOrder = ViewBag.IdRqt, currentFilter = ViewBag.CurrentFilter }, null)
             </th>
             <th>
-                @Html.ActionLink("Assignee Id", "Index", new { sortOrder = ViewBag.IdAsn, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Assignee Id", "Index", "Requests",
+                    new { sortOrder = ViewBag.IdAsn, currentFilter = ViewBag.CurrentFilter }, null)
+            </th>
+          
+            <th>
+                @Html.ActionLink("Created At", "Index", "Requests",
+                    new { sortOrder = ViewBag.CreatedRq, currentFilter = ViewBag.CurrentFilter }, null)
             </th>
             <th>
-                Message
+                @Html.ActionLink("Updated At", "Index", "Requests",
+                    new { sortOrder = ViewBag.UpdatedRq, currentFilter = ViewBag.CurrentFilter }, null)
             </th>
             <th>
-                @Html.ActionLink("Created At", "Index", new { sortOrder = ViewBag.CreatedRq, currentFilter = ViewBag.CurrentFilter })
-            </th>
-            <th>
-                @Html.ActionLink("Updated At", "Index", new { sortOrder = ViewBag.UpdatedRq, currentFilter = ViewBag.CurrentFilter })
-            </th>
-            <th>
-                @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusRq, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Status", "Index", "Requests",
+                    new { sortOrder = ViewBag.StatusRq, currentFilter = ViewBag.CurrentFilter }, null)
 
             </th>
             <th>Action</th>
@@ -106,9 +111,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.AssgineeId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Remarks)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Created_At)
