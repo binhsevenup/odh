@@ -13,6 +13,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using PagedList;
 
 namespace OHD_Project_Sem_3.Areas.Admin.Controllers
@@ -40,6 +41,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             return View(currentUser);
         }
 
+//        [Authorize(Roles = "Admin")]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -151,11 +153,12 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                     new AuthenticationProperties { IsPersistent = false }, ident);
             }
             Success("Login success!");
-            return Redirect("/Admin/Home");
+            return Redirect("/Admin/Requests");
         }
 
 
         // GET: Accounts
+//        [Authorize(Roles = "Admin")]
         public ActionResult Register()
         {
             a.FacilityCategories = dbContext.FacilityCategories.ToList();
