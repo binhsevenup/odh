@@ -28,7 +28,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             userManager = new UserManager<Account>(userStore);
         }
 
-//        [Authorize]
+        //        [Authorize]
         public ActionResult Index(string sortOrder, string currentFilter, string search, int? page)
         {
 
@@ -40,7 +40,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             ViewBag.CreatedRq = sortOrder == "Created" ? "created_desc" : "Created";
             ViewBag.UpdatedRq = sortOrder == "Updated" ? "updated_desc" : "Updated";
             ViewBag.StatusRq = sortOrder == "Status" ? "status_desc" : "Status";
-  
+
 
             if (search != null)
             {
@@ -58,7 +58,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             if (!String.IsNullOrEmpty(search))
             {
                 request = request.Where(s => s.Facility.FacilityName.Contains(search)
-                                              || s.FacilityCategory.FacilityCategory_Name.Contains(search) 
+                                              || s.FacilityCategory.FacilityCategory_Name.Contains(search)
                                               || s.Requestor.FullName.Contains(search)
                                               || s.AssgineeId.Contains(search));
             }
@@ -116,7 +116,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             return View(request.Where(s => s.RequestorId == curentuserid).ToPagedList(pageNumber, pageSize));
         }
 
-//        [Authorize]
+        //        [Authorize]
         public ActionResult Assginee(string sortOrder, string currentFilter, string search, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -165,10 +165,10 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                     request = request.OrderByDescending(s => s.Requestor.FullName);
                     break;
                 case "Created":
-                    request = request.OrderBy(s => s.AssgineeId);
+                    request = request.OrderBy(s => s.Created_At);
                     break;
                 case "created_desc":
-                    request = request.OrderByDescending(s => s.AssgineeId);
+                    request = request.OrderByDescending(s => s.Created_At);
                     break;
                 case "Updated":
                     request = request.OrderBy(s => s.Updated_At);
@@ -187,7 +187,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                     break;
 
             }
-        
+
             string curentuserid = User.Identity.GetUserId();
             Account currentUser = db.Users.FirstOrDefault(x => x.Id == curentuserid);
             int pageSize = 10;
@@ -195,8 +195,8 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             return View(request.Where(r => r.FacilityCategory_Id == currentUser.FacilityCategory_Id && r.Status == Requests.RequestStatus.Assigned).ToPagedList(pageNumber, pageSize));
         }
 
-      
-//        [Authorize]
+
+        //        [Authorize]
         public ActionResult DetailForAss(int id)
         {
             data2.Request = db.Requests.Find(id);
@@ -204,7 +204,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             Requests requests = db.Requests.Find(id);
             return View(data2);
         }
-//        [Authorize]
+        //        [Authorize]
         public ActionResult ConfirmReturneds(string sortOrder, string currentFilter, string search, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -253,10 +253,10 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                     request = request.OrderByDescending(s => s.Requestor.FullName);
                     break;
                 case "Created":
-                    request = request.OrderBy(s => s.AssgineeId);
+                    request = request.OrderBy(s => s.Created_At);
                     break;
                 case "created_desc":
-                    request = request.OrderByDescending(s => s.AssgineeId);
+                    request = request.OrderByDescending(s => s.Created_At);
                     break;
                 case "Updated":
                     request = request.OrderBy(s => s.Updated_At);
@@ -291,8 +291,10 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             db.Requests.AddOrUpdate(requests);
             db.Facilities.AddOrUpdate(facility);
             db.SaveChanges();
-            Success("Save success!", true);
-            return RedirectToAction("Assginee");
+            Success("Confirmed!", true);
+            return RedirectToAction("ConfirmReturneds");
+
+
         }
         [Authorize]
         public ActionResult DetailForConfirmReturned(int id)
@@ -300,10 +302,10 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             data2.Request = db.Requests.Find(id);
             data2.Accounts = db.Users.Where(a => a.Id == data2.Request.AssgineeId).ToList();
             Requests requests = db.Requests.Find(id);
-            Success("Save success!", true);
             return View(data2);
         }
-      
+
+        [HttpPost]
         public ActionResult DetailsForAss([Bind(Include = "RequestId,FacilityId")] Requests request)
         {
             var exist = db.Requests.Find(request.RequestId);
@@ -318,7 +320,6 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             db.Requests.AddOrUpdate(exist);
             db.Facilities.AddOrUpdate(facility);
             db.SaveChanges();
-            Success("Save success!", true);
             string email = "sieuphamyasuo393@gmail.com";
             string password = "muxcbqdsyjjhbkbq";
 
@@ -328,19 +329,19 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 
             msg.From = new MailAddress(email);
             msg.To.Add(new MailAddress(exist.Requestor.Email));
-            msg.Subject = "Request has been Assginor confirm !!! ";
-            msg.Body = "Your request has ID:" + exist.RequestId + "has been Assginor confirm !!!";
+            msg.Subject = "Your request are being in progress!";
+            msg.Body = "Request " + exist.RequestId + " has been assigned and being progress.";
             msg.IsBodyHtml = true;
 
             smtpClient.EnableSsl = true;
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = loginInfo;
             smtpClient.Send(msg);
-            Success("Save success!", true);
+            Success("Accepted!", true);
             return RedirectToAction("Assginee");
 
         }
-//        [Authorize(Roles = "Facility-Heads")]
+        //        [Authorize(Roles = "Facility-Heads")]
         public ActionResult Facility(string sortOrder, string currentFilter, string search, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -388,10 +389,10 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                     request = request.OrderByDescending(s => s.Requestor.FullName);
                     break;
                 case "Created":
-                    request = request.OrderBy(s => s.AssgineeId);
+                    request = request.OrderBy(s => s.Created_At);
                     break;
                 case "created_desc":
-                    request = request.OrderByDescending(s => s.AssgineeId);
+                    request = request.OrderByDescending(s => s.Created_At);
                     break;
                 case "Updated":
                     request = request.OrderBy(s => s.Updated_At);
@@ -415,7 +416,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             return View(request.ToPagedList(pageNumber, pageSize));
         }
 
-//        [Authorize(Roles = "Facility-Heads")]
+        //        [Authorize(Roles = "Facility-Heads")]
         public ActionResult DetailForFacility(int id)
         {
 
@@ -442,7 +443,6 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             exist.Status = Requests.RequestStatus.Assigned;
             db.Requests.AddOrUpdate(exist);
             db.SaveChanges();
-            Success("Save success.", true);
             var emailto = assignor.Email;
             string email = "sieuphamyasuo393@gmail.com";
             string password = "muxcbqdsyjjhbkbq";
@@ -453,24 +453,24 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 
             msg.From = new MailAddress(email);
             msg.To.Add(new MailAddress(emailto));
-            msg.Subject = "Request has been Assginor confirm !!! ";
-            msg.Body = "The request with id:" + exist.RequestId + "is waiting for your confirmation !!!";
+            msg.Subject = "You have a request need to confirm!";
+            msg.Body = "An assigned request with ID " + exist.RequestId + " is waiting for your confirmation.";
             msg.IsBodyHtml = true;
 
             smtpClient.EnableSsl = true;
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = loginInfo;
             smtpClient.Send(msg);
-            Success("Save success.", true);
+            Success("Save success!", true);
             return RedirectToAction("Facility");
 
         }
 
         // GET: Admin/Requests
-      
+
 
         // GET: Admin/Requests/Details/5
-//        [Authorize]
+        //        [Authorize]
         public ActionResult Details(int id)
         {
 
@@ -479,7 +479,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         }
 
         // GET: Admin/Requests/Create
-//        [Authorize]
+        //        [Authorize]
         public ActionResult Create()
         {
             data.FacilityCategories = db.FacilityCategories.ToList();
@@ -515,11 +515,10 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 };
                 db.Requests.Add(request);
                 db.SaveChanges();
-                Success("Send request success!", true);
                 var role = db.Roles.Where(r => r.Name == "Facility-Heads").FirstOrDefault();
                 var id = role.Id;
                 var accountss = db.Users.Where(a => a.AccountRoleId == id).ToList();
-                
+
                 string email = "sieuphamyasuo393@gmail.com";
                 string password = "muxcbqdsyjjhbkbq";
 
@@ -531,14 +530,15 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 {
                     msg.To.Add(new MailAddress(accountss[i].Email));
                 }
-                msg.Subject = "Request has been Assginor confirm !!! ";
-                msg.Body = "Your request has ID:" + request.RequestId + "has been Assginor confirm !!!";
+                msg.Subject = "A new request sent!";
+                msg.Body = "A request has been created and waitng for your assignment.";
                 msg.IsBodyHtml = true;
 
                 smtpClient.EnableSsl = true;
                 smtpClient.UseDefaultCredentials = false;
                 smtpClient.Credentials = loginInfo;
                 smtpClient.Send(msg);
+                Success("Send request success!", true);
                 return RedirectToAction("Index", "Requests");
             }
             Danger("Error, please try again!", true);
@@ -546,7 +546,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         }
 
         // GET: Admin/Requests/Edit/5
-//        [Authorize]
+        //        [Authorize]
         public ActionResult Edit(int id)
         {
             Requests request = db.Requests.Find(id);
@@ -591,7 +591,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         }
 
         // GET: Admin/Requests/Delete/5
-//        [Authorize]
+        //        [Authorize]
         public ActionResult Delete(int id)
         {
             Requests request = db.Requests.Find(id);
@@ -604,15 +604,19 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            var existRequest = db.Requests.Find(id);
+            if (existRequest == null)
+            {
+                return HttpNotFound("Record Not Found!");
+            }
+
             if (ModelState.IsValid)
             {
-                
-            
-            Requests request = db.Requests.Find(id);
-            db.Requests.Remove(request);
-            db.SaveChanges();
-            Success("Delete request success.", true);
-            return RedirectToAction("Index");
+                existRequest.Status = Requests.RequestStatus.Deleted;
+                existRequest.Updated_At = DateTime.Now;
+                db.SaveChanges();
+                Success("Delete request success.", true);
+                return RedirectToAction("Index");
             }
             Danger("Error. Please try again.", true);
             return View("Index");

@@ -1,4 +1,5 @@
 ﻿@model PagedList.IPagedList<OHD_Project_Sem_3.Areas.Admin.Models.Requests>
+@using OHD_Project_Sem_3.Areas.Admin.Models
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -18,16 +19,16 @@
 @section _headerPage
 {
     <header class="page-header">
-        <h2>Assignee</h2>
+        <h2>Request Manager</h2>
 
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
                 <li>
-                    <a href="../Facilities/index.html">
+                    <a href="/Admin/Requests/Create">
                         <i class="fa fa-home"></i>
                     </a>
                 </li>
-                <li><span>Admin Manager / Request / Assignee</span></li>
+                <li><span>Assignee Manager / Request Manager</span></li>
             </ol>
 
             <a class="sidebar-right-toggle"></a>
@@ -36,14 +37,14 @@
 }
 <div style="margin-top: 150px; padding: 0 30px 0 50px">
 
-    <h2 class="text-center text-bold" style="margin-bottom: 30px; margin-right: 100px">Assginee</h2>
+    <h2 class="text-center text-bold" style="margin-bottom: 30px; margin-right: 100px"><b>Request Manager</b></h2>
     <hr />
     <br />
     <br />
     <div class="row">
         <div class="col-md-6">
             <p>
-                @Html.ActionLink("Create New", "Create")
+                @Html.ActionLink("Confirm Request", "ConfirmReturneds","Requests")
             </p>
         </div>
         <div class="col-md-6">
@@ -88,7 +89,7 @@
                 @Html.ActionLink("Status", "Assginee", "Requests",
                     new { sortOrder = ViewBag.StatusAs, currentFilter = ViewBag.CurrentFilter }, null)
             </th>
-            <th></th>
+            <th>Action</th>
         </tr>
 
         @foreach (var item in Model)
@@ -112,8 +113,26 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Updated_At)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                <td>@if (item.Status == Requests.RequestStatus.Waiting)
+                    {
+                        <b style="color: #008080">@Html.DisplayFor(modelItem => item.Status)</b>
+                    }
+                    else if (item.Status == Requests.RequestStatus.Processing)
+                    {
+                        <b style="color: #d2691e">@Html.DisplayFor(modelItem => item.Status)</b>
+                    }
+                    else if (item.Status == Requests.RequestStatus.Assigned)
+                    {
+                        <b style="color:#808000 ">@Html.DisplayFor(modelItem => item.Status)</b>
+                    }
+                    else if (item.Status == Requests.RequestStatus.Done)
+                    {
+                        <b style="color:#008000">@Html.DisplayFor(modelItem => item.Status)</b>
+                    }
+                    else
+                    {
+                        <b style="color:#a52a2a ">@Html.DisplayFor(modelItem => item.Status)</b>  
+                    }
                 </td>
                 <td>
 

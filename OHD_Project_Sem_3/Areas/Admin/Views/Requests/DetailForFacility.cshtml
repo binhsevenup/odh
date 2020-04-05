@@ -35,16 +35,16 @@
 @section _headerPage
 {
     <header class="page-header">
-        <h2>Details For Facility</h2>
+        <h2>Details Request Manager</h2>
 
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
                 <li>
-                    <a href="../Facilities/index.html">
+                    <a href="/Admin/Requests/Create">
                         <i class="fa fa-home"></i>
                     </a>
                 </li>
-                <li><span>Admin Manager / Request / Details For Facility</span></li>
+                <li><span>Facility Head Manager / Request Manager / Details Request Manager</span></li>
             </ol>
 
             <a class="sidebar-right-toggle"></a>
@@ -56,7 +56,7 @@
     <div class="page-content">
         <div class="form-v5-content">
             <div class="form-detail">
-                <h2>Detail For Facility</h2>
+                <h2>Details Request Manager</h2>
                 <form action="/Admin/Requests/DetailsForFacility" method="post" class="form-detail">
                     <dl class="dl-horizontal dl-style" style="margin-left: 75px">
                         <dt>
@@ -97,8 +97,8 @@
                         <dt>
                             @Html.DisplayNameFor(model => model.Request.AssgineeId)
                         </dt>
-                        <dd name="ass" class="dropdown-asgn" >
-                            @Html.DropDownListFor(m => m.Request.AssgineeId, selectAssignorList, new {@class="input-text"})
+                        <dd name="ass">
+                            @Html.DropDownListFor(m => m.Request.AssgineeId, selectAssignorList, new { @class = "form-control dropdown-asgn" })
                             @Html.HiddenFor(m => m.Request.RequestId)
 
 
@@ -109,7 +109,7 @@
                     <div class="form-row-last">
 
                         <input type="submit" value="Save" class="btn btn-primary register" style="margin-right: 15px" />
-                        @Html.ActionLink("Back to list", "Index", "Requests", null,
+                        @Html.ActionLink("Back to list", "Facility", "Requests", null,
                             new { @class = "btn btn-primary register", @style = "padding:14px" })
                     </div>
                 </form>

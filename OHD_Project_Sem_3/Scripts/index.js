@@ -157,7 +157,7 @@
         }
     });
 
-
+  
 });
 
 
@@ -170,7 +170,10 @@ $(document).ready(function () {
         });
     }, 3000);
 
+
 });
+
+
 
 //$(document).ready(function() {
 //    $('#showAlert').click(function() {
