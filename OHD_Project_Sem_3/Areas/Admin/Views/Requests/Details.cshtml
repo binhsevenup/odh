@@ -17,12 +17,12 @@
 @section _headerPage
 {
     <header class="page-header">
-        <h2>Details</h2>
+        <h2>Details Request</h2>
 
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
                 <li>
-                    <a href="../Facilities/index.html">
+                    <a href="/Admin/Requests/Create">
                         <i class="fa fa-home"></i>
                     </a>
                 </li>
@@ -120,7 +120,7 @@
 
                 </dl>
                 <div class="form-row-last">
-                    @Html.ActionLink("Edit", "Edit","Requests", new { id = Model.RequestId }, new {@class="btn btn-primary register",
+                    @Html.ActionLink("Delete", "Delete","Requests", new { id = Model.RequestId }, new {@class="btn btn-primary register",
                         @style = "padding:15px; margin-right:15px;"})
                     @Html.ActionLink("Back to list", "Index", "Requests", null,
                         new {@class = "btn btn-primary register", @style = "padding:14px"})

@@ -17,16 +17,16 @@
 @section _headerPage
 {
     <header class="page-header">
-        <h2>Detail For Assignee</h2>
+        <h2>Details Request Manager</h2>
 
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
                 <li>
-                    <a href="../Facilities/index.html">
+                    <a href="/Admin/Requests/Createl">
                         <i class="fa fa-home"></i>
                     </a>
                 </li>
-                <li><span>Admin Manager / Request / Detail For Assignee</span></li>
+                <li><span>Assignee Manager / Request Manager / Details Request Manager</span></li>
             </ol>
 
             <a class="sidebar-right-toggle"></a>
@@ -38,7 +38,7 @@
     <div class="page-content">
         <div class="form-v5-content">
             <div class="form-detail">
-                <h2>Detail For Assignee</h2>
+                <h2>Details Request Manager</h2>
                 <form action="/Admin/Requests/DetailsForAss" method="post">
 
                     <dl class="dl-horizontal dl-style" style="margin: 0 50px 0 118px">
@@ -114,8 +114,8 @@
 
                     <div class="form-row-last">
 
-                        <input type="submit" value="Save" class="btn btn-primary register" style="margin-right: 15px" />
-                        @Html.ActionLink("Back to list", "Index", "Requests", null,
+                        <input type="submit" value="Accept" class="btn btn-primary register" style="margin-right: 15px" />
+                        @Html.ActionLink("Back to list", "Assginee", "Requests", null,
                             new { @class = "btn btn-primary register", @style = "padding:14px" })
                     </div>
                 </form>

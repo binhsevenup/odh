@@ -1,4 +1,5 @@
 ﻿@model PagedList.IPagedList<OHD_Project_Sem_3.Areas.Admin.Models.Requests>
+@using OHD_Project_Sem_3.Areas.Admin.Models
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -23,11 +24,11 @@
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
                 <li>
-                    <a href="index.html">
+                    <a href="/Admin/Requests/Create">
                         <i class="fa fa-home"></i>
                     </a>
                 </li>
-                <li><span>Admin Manager / Request / List Request</span></li>
+                <li><span>Admin / Request / List Request</span></li>
             </ol>
 
             <a class="sidebar-right-toggle"></a>
@@ -48,12 +49,12 @@
                 @Html.ActionLink("Create New", "Create")
             </p>
         </div>
-        <div class="col-md-6 "  >
+        <div class="col-md-6 ">
             @using (Html.BeginForm("Index", "Requests", FormMethod.Get))
             {
                 <p style="margin-left: 60%">
                     @Html.TextBox("search", ViewBag.CurrentFilter as string)
-                    <input type="submit" value="Search"/>
+                    <input type="submit" value="Search" />
                 </p>
             }
         </div>
@@ -63,12 +64,12 @@
     <table class="table" style="margin-top: 15px">
         <tr>
             <th>
-                @Html.ActionLink("Facility", "Index","Requests", 
+                @Html.ActionLink("Facility", "Index", "Requests",
                     new { sortOrder = ViewBag.NameRq, currentFilter = ViewBag.CurrentFilter }, null)
             </th>
             <th>
-                @Html.ActionLink("Category", "Index","Requests", 
-                    new { sortOrder = ViewBag.NameCate, currentFilter = ViewBag.CurrentFilter },null)
+                @Html.ActionLink("Category", "Index", "Requests",
+                    new { sortOrder = ViewBag.NameCate, currentFilter = ViewBag.CurrentFilter }, null)
             </th>
             <th>
                 @Html.ActionLink("Requestor Id", "Index", "Requests",
@@ -78,7 +79,7 @@
                 @Html.ActionLink("Assignee Id", "Index", "Requests",
                     new { sortOrder = ViewBag.IdAsn, currentFilter = ViewBag.CurrentFilter }, null)
             </th>
-          
+
             <th>
                 @Html.ActionLink("Created At", "Index", "Requests",
                     new { sortOrder = ViewBag.CreatedRq, currentFilter = ViewBag.CurrentFilter }, null)
@@ -119,10 +120,31 @@
                     @Html.DisplayFor(modelItem => item.Updated_At)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @if (item.Status == Requests.RequestStatus.Waiting)
+                    {
+                        <b style="color:#008080 ">@Html.DisplayFor(modelItem => item.Status)</b>
+                    }
+                    else if (item.Status == Requests.RequestStatus.Processing)
+                    {
+                        <b style="color:#d2691e ">@Html.DisplayFor(modelItem => item.Status)</b>
+
+                    }
+                    else if (item.Status == Requests.RequestStatus.Assigned)
+                    {
+                        <b style="color:#808000 ">@Html.DisplayFor(modelItem => item.Status)</b>
+                    }
+                    else if (item.Status == Requests.RequestStatus.Done)
+                    {
+                        <b style="color: #008000">@Html.DisplayFor(modelItem => item.Status)</b>
+                    }
+                    else
+                    {
+                        <b style="color:#a52a2a ">@Html.DisplayFor(modelItem => item.Status)</b>
+                    }
+
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.RequestId }) |
+                    @* @Html.ActionLink("Edit", "Edit", new { id = item.RequestId }) | *@
                     @Html.ActionLink("Details", "Details", new { id = item.RequestId }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.RequestId })
                 </td>

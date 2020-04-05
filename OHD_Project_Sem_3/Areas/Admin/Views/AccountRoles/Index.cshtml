@@ -10,11 +10,11 @@
 }
 @section _Header
 {
-    @Html.Partial("_HeaderLayout");
+    @Html.Partial("_HeaderLayout")
 }
 @section _LeftMenu
 {
-    @Html.Partial("_LeftMenu");
+    @Html.Partial("_LeftMenu")
 }
 @section _headerPage
 {
@@ -23,7 +23,7 @@
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
                 <li>
-                    <a href="index.html">
+                    <a href="/Admin/Requests/Create">
                         <i class="fa fa-home"></i>
                     </a>
                 </li>
@@ -72,9 +72,9 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    <a href="#">Edit</a> |
+                    <a href="#">Details</a> |
+                    <a href="#">Delete</a>
                 </td>
             </tr>
         }

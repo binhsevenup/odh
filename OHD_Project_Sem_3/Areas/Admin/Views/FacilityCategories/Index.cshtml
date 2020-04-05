@@ -1,4 +1,5 @@
 ﻿@model PagedList.IPagedList<OHD_Project_Sem_3.Areas.Admin.Models.FacilityCategory>
+@using OHD_Project_Sem_3.Areas.Admin.Models
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -25,7 +26,7 @@
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
                 <li>
-                    <a href="index.html">
+                    <a href="/Admin/Requests/Create">
                         <i class="fa fa-home"></i>
                     </a>
                 </li>
@@ -37,7 +38,7 @@
     </header>
 }
 <div style="margin-top: 150px; padding: 0 30px 0 50px">
-    <h2 class="text-center" style="margin-bottom: 30px; margin-right: 100px">List Category</h2>
+    <h2 class="text-center" style="margin-bottom: 30px; margin-right: 100px"><b>List Category</b></h2>
     <hr />
     <br />
     <br />
@@ -56,31 +57,31 @@
                 </p>
             }
         </div>
-  
+
 
 
     </div>
     <br />
     @Html.Partial("_AlertMessage")
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("Facility Name", "Index", new { sortOrder = ViewBag.FaciCategoryNameSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            @Html.ActionLink("Created At", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            @Html.ActionLink("Updated At", "Index", 
-                new { sortOrder = ViewBag.UpdatedFa, currentFilter = ViewBag.CurrentFilter })
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Facility Name", "Index", new { sortOrder = ViewBag.FaciCategoryNameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Created At", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Updated At", "Index",
+                    new { sortOrder = ViewBag.UpdatedFa, currentFilter = ViewBag.CurrentFilter })
 
-        </th>
-        <th>
-            @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm, currentFilter = ViewBag.CurrentFilter })
 
-        </th>
-        <th>Action</th>
-    </tr>
+            </th>
+            <th>Action</th>
+        </tr>
 
         @foreach (var item in Model)
         {
@@ -95,22 +96,34 @@
                     @Html.DisplayFor(model => item.Updated_At)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.Status)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.FacilityCategory_Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.FacilityCategory_Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.FacilityCategory_Id })
-                </td>
-            </tr>
-        }
+                    @if (item.Status == FacilityCategory.FacilityCategoryStatus.Active)
+                    {
+                        <b style="color: #1e90ff"> @Html.DisplayFor(model => item.Status)</b>
+                    }
+                    else if (item.Status == FacilityCategory.FacilityCategoryStatus.Deactive)
+                    {
+                        <b style="color: #696969"> @Html.DisplayFor(model => item.Status)</b>
+                    }
+                    else
+                    {
+                        <b style="color: #a52a2a"> @Html.DisplayFor(model => item.Status)</b>
+ 
+                    }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.FacilityCategory_Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.FacilityCategory_Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.FacilityCategory_Id })
+            </td>
+        </tr>
+    }
 
 
     </table>
-     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount 
- 
- @Html.PagedListPager(Model, page => Url.Action("Index", 
-     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })) 
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
 
- 
+

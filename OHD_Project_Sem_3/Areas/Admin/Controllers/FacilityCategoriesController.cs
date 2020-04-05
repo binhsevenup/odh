@@ -67,7 +67,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                     facilitiesCategory = facilitiesCategory.OrderByDescending(f => f.Status);
                     break;
                 default:
-                    facilitiesCategory = facilitiesCategory.OrderBy(f => f.Updated_At);
+                    facilitiesCategory = facilitiesCategory.OrderBy(f => f.FacilityCategory_Name);
                     break;
             }
             int pageSize = 10;
@@ -191,13 +191,22 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+            if (id == null)
+            {
+                return HttpNotFound("Record Not Found!");
+            }
 
+            var existCategory = db.FacilityCategories.Find(id);
+
+            if (existCategory == null)
+            {
+                return HttpNotFound("Record Not Found!");
+
+            }
             if (ModelState.IsValid)
             {
-
-
-                FacilityCategory facilityCategory = db.FacilityCategories.Find(id);
-                db.FacilityCategories.Remove(facilityCategory);
+                existCategory.Status = FacilityCategory.FacilityCategoryStatus.Delete;
+                existCategory.Updated_At = DateTime.Now;
                 db.SaveChanges();
                 Success("Delete success!", true);
                 return RedirectToAction("Index");

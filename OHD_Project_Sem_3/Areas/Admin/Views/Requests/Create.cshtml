@@ -4,163 +4,78 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!doctype html>
-<html class="fixed">
-<head>
-
-    <!-- Basic -->
-    <meta charset="UTF-8">
-
-    <title>Dashboard | JSOFT Themes | JSOFT-Admin</title>
-    <meta name="keywords" content="HTML5 Admin Template" />
-    <meta name="description" content="JSOFT Admin - Responsive HTML5 Template">
-    <meta name="author" content="JSOFT.net">
-
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-    <!-- Web Fonts  -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
-
-    <!-- Vendor CSS -->
-    <link rel="stylesheet" href="/Content/assets/vendor/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="/Content/assets/vendor/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="/Content/assets/vendor/magnific-popup/magnific-popup.css" />
-    <link rel="stylesheet" href="/Content/assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
-
-    <!-- Specific Page Vendor CSS -->
-    <link rel="stylesheet" href="/Content/assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
-    <link rel="stylesheet" href="/Content/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
-    <link rel="stylesheet" href="/Content/assets/vendor/morris/morris.css" />
-
-    <!-- Theme CSS -->
-    <link rel="stylesheet" href="/Content/assets/stylesheets/theme.css" />
-
-    <!-- Skin CSS -->
-    <link rel="stylesheet" href="/Content/assets/stylesheets/skins/default.css" />
-
-    <!-- Theme Custom CSS -->
-    <link rel="stylesheet" href="/Content/assets/stylesheets/theme-custom.css">
 
 
-    <!-- Head Libs -->
-    <script src="/Content/assets/vendor/modernizr/modernizr.js"></script>
+@section _Header
+{
+    @Html.Partial("_HeaderLayout");
+}
+@section _LeftMenu
+{
+    @Html.Partial("_LeftMenu");
+}
+@section _headerPage
+{
+    <header class="page-header">
+        <h2>Categories</h2>
 
-    <link rel="stylesheet" type="text/css" href="/Content/css/roboto-font.css">
-    <link rel="stylesheet" type="text/css" href="/Content/fonts/font-awesome-5/css/fontawesome-all.min.css">
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href=/Admin/Requests/Create">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Admin Manager / Categories / Add Categories</span></li>
+            </ol>
 
-    @Styles.Render("~/Content/Style")
-    <link rel="stylesheet" type="text/css" href="/Content/css/style.css">
+            <a class="sidebar-right-toggle"></a>
+        </div>
+    </header>
+}
+@Html.Partial("_HeaderLayout")
 
+<div class="form-v5">
+    <div class="page-content">
+        <div class="form-v5-content">
+            <form class="form-detail" action="/Admin/Requests/CreateStore" method="post" name="RequestForm">
+                <h2>Form Request</h2>
+                <div class="form-row">
+                    <label class="text-bold">Category</label>
+                    <select name="category" class="input-text" id="filters">
+                        <option value="default">Select</option>
+                        @foreach (var item in Model.FacilityCategories)
+                        {
+                            <option value="@item.FacilityCategory_Id">@item.FacilityCategory_Name</option>
+                        }
+                    </select>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="form-row">
+                    <label class="text-bold">Facility</label>
+                    <select name="facility" class="input-text">
+                        <option value="default">Select</option>
+                        @foreach (var item in Model.Facilities)
+                        {
+                            <option class="row3" data-type="@item.FacilityCategory_Id" value="@item.FacilityId">@item.FacilityName</option>
 
-</head>
-<body>
-    <section class="body">
-
-        @Html.Partial("_HeaderLayout")
-        
-        <div class="form-v5">
-            <div class="page-content">
-                <div class="form-v5-content">
-                    <form class="form-detail" action="/Admin/Requests/CreateStore" method="post" name="RequestForm">
-                        <h2>Form Request</h2>
-                        <div class="form-row">
-                            <label class="text-bold">Category</label>
-                            <select name="category" class="input-text" id="filters">
-                                <option value="default">Select</option>
-                                @foreach (var item in Model.FacilityCategories)
-                                {
-                                    <option value="@item.FacilityCategory_Id">@item.FacilityCategory_Name</option>
-                                }
-                            </select>
-                            <i class="fas fa-caret-down"></i>
-                        </div>
-                        <div class="form-row">
-                            <label class="text-bold">Facility</label>
-                            <select name="facility" class="input-text">
-                                <option value="default">Select</option>
-                                @foreach (var item in Model.Facilities)
-                                {
-                                    <option class="row3" data-type="@item.FacilityCategory_Id" value="@item.FacilityId">@item.FacilityName</option>
-
-                                }
-                            </select>
-                            <i class="fas fa-caret-down"></i>
-                        </div>
-                        <div class="form-row">
-                            <label class="text-bold">Message</label>
-                            <textarea class="input-text" name="remarks" rows="7" cols="65" placeholder="Enter the message." required></textarea>
-                      
-                        </div>
-                        <div class="form-row-last">
-                            <input type="submit" name="register" class="register" value="Send">
-                        </div>
-                    </form>
+                        }
+                    </select>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="form-row">
+                    <label class="text-bold">Message</label>
+                    <textarea class="input-text" name="remarks" rows="7" cols="65" placeholder="Enter the message." required></textarea>
 
                 </div>
-            </div>
+                <div class="form-row-last">
+                    <input type="submit" name="register" class="register" value="Send">
+                </div>
+            </form>
+
         </div>
-    </section>
-
-
-
-    <!-- Vendor -->
-    <script src="/Content/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="/Content/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
-    <script src="/Content/assets/vendor/bootstrap/js/bootstrap.js"></script>
-    <script src="/Content/assets/vendor/nanoscroller/nanoscroller.js"></script>
-    <script src="/Content/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-    <script src="/Content/assets/vendor/magnific-popup/magnific-popup.js"></script>
-    <script src="/Content/assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js "></script>
-
-
-    <!-- Specific Page Vendor -->
-    <script src="/Content/assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
-    <script src="/Content/assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
-    <script src="/Content/assets/vendor/jquery-appear/jquery.appear.js"></script>
-    <script src="/Content/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-
-
-
-    <!-- Theme Base, Components and Settings -->
-    <script src="/Content/assets/javascripts/theme.js"></script>
-
-    <!-- Theme Custom -->
-    <script src="/Content/assets/javascripts/theme.custom.js"></script>
-
-    <!-- Theme Initialization Files -->
-    <script src="/Content/assets/javascripts/theme.init.js"></script>
-
-
-    <!-- Examples -->
-    <script src="/Content/assets/javascripts/dashboard/examples.dashboard.js"></script>
-    @* @RenderSection("masterjs", required: false) *@
-
- <script type="text/javascript"> 
-     $(document).ready(function () { 
-         $('#filters').change(function () { 
-             var filterValue = $(this).val(); 
-             var row = $('.row3'); 
-                    
-             row.hide(); 
-             row.each(function (i, el) { 
-                 if ($(el).attr('data-type') == filterValue) { 
-                     $(el).show(); 
-                 } 
-             }); 
- 
-         }); 
-     }); 
-           
- </script> 
-
-    @Scripts.Render("~/bundles/js")
-
-    @* <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script> *@
-    @* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css"> *@
-</body>
-</html>
+    </div>
+</div>
