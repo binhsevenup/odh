@@ -30,6 +30,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             userManager = new UserManager<Account>(userStore);
         }
 
+
         public ActionResult ProfileUser()
         {
             string curentuserid = User.Identity.GetUserId();
@@ -106,16 +107,22 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                     users = users.OrderByDescending(f => f.FacilityCategory_Id);
                     break;
                 case "Role":
-                    users = users.OrderBy(f => f.Phone);
+                    users = users.OrderBy(f => f.AccountRole.Name);
                     break;
                 case "role_desc":
-                    users = users.OrderByDescending(f => f.FacilityCategory_Id);
+                    users = users.OrderByDescending(f => f.AccountRole.Name);
                     break;
                 case "Email":
-                    users = users.OrderBy(f => f.Phone);
+                    users = users.OrderBy(f => f.Email);
                     break;
                 case "email_desc":
-                    users = users.OrderByDescending(f => f.FacilityCategory_Id);
+                    users = users.OrderByDescending(f => f.Email);
+                    break;
+                case "Status":
+                    users = users.OrderBy(f => f.Status);
+                    break;
+                case "status_desc":
+                    users = users.OrderByDescending(f => f.Status);
                     break;
                 default:
                     users = users.OrderBy(f => f.FullName);
@@ -123,7 +130,12 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             }
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-//            var accounts = dbContext.Users.ToList();
+//            string curentuserid = User.Identity.GetUserId();
+//            Account currentUser = dbContext.Users.FirstOrDefault(x => x.Id == curentuserid);
+//            var idRole = currentUser.AccountRoleId;
+//            var inRole = dbContext.Roles.Find(idRole);
+//            ViewBag.NameRole = inRole.Name;
+
             return View(users.ToPagedList(pageNumber, pageSize));
         }
 
@@ -152,12 +164,11 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 authManager.SignIn(
                     new AuthenticationProperties { IsPersistent = false }, ident);
             }
-            Success("Login success!");
+//            Success("Login success!");
             return Redirect("/Admin/Requests");
         }
 
 
-        // GET: Accounts
 //        [Authorize(Roles = "Admin")]
         public ActionResult Register()
         {
@@ -195,7 +206,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
                 {
                     userManager.AddToRole(account.Id, namerole);
 
-                    Success("Register success!", true);
+                
                     var emailto = username;
                     string email = "sieuphamyasuo393@gmail.com";
                     string password1 = "muxcbqdsyjjhbkbq";
@@ -206,15 +217,16 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 
                     msg.From = new MailAddress(email);
                     msg.To.Add(new MailAddress(emailto));
-                    msg.Subject = "Request has been Assginor confirm !!! ";
-                    msg.Body = "Successful registration for account: " + emailto + " with password: " + password;
+                    msg.Subject = "Your OHD account arrived!";
+                    msg.Body = "Your OHD membership account has been created successfully with Email: "+ emailto + " Password: " + password;
                     msg.IsBodyHtml = true;
 
                     smtpClient.EnableSsl = true;
                     smtpClient.UseDefaultCredentials = false;
                     smtpClient.Credentials = loginInfo;
                     smtpClient.Send(msg);
-                    return RedirectToAction("Login", "Account");
+                    Success("Register success!", true);
+                    return RedirectToAction("Index", "Account");
                 }
             }
             Danger("Error, please try again!", true);
@@ -227,6 +239,9 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         {
             HttpContext.GetOwinContext().Authentication.SignOut();
             return RedirectToAction("Login");
+
         }
+
     }
+
 }

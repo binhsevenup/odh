@@ -20,8 +20,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="mailbox-folder.html">
-                            <span class="pull-right label label-primary">182</span>
+                        <a href="https://mail.google.com">
+                            @* <span class="pull-right label label-primary">182</span> *@
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                             <span>Mailbox</span>
                         </a>
@@ -51,7 +51,7 @@
                                         @Html.ActionLink("+ Add Account", "Register", "Account")
                                     </li>
                                     <li>
-                                        <a href="#">+ List account</a>
+                                        @Html.ActionLink("+ List Account", "Index", "Account")
                                     </li>
                                 </ul>
                             </li>
@@ -78,17 +78,17 @@
                                 </ul>
                             </li>
 
-                            <li class="nav-parent">
-                                <a>- Request</a>
-                                <ul class="nav nav-children">
-                                    <li>
-                                        @Html.ActionLink("+ Add Request", "Create", "Requests")
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink("+ List Request", "Index", "Requests")
-                                    </li>
-                                </ul>
-                            </li>
+                            @* <li class="nav-parent"> *@
+                            @*     <a>- Request</a> *@
+                            @*     <ul class="nav nav-children"> *@
+                            @*         <li> *@
+                            @*             @Html.ActionLink("+ Add Request", "Create", "Requests") *@
+                            @*         </li> *@
+                            @*         <li> *@
+                            @*             @Html.ActionLink("+ List Request", "Index", "Requests") *@
+                            @*         </li> *@
+                            @*     </ul> *@
+                            @* </li> *@
                         </ul>
                     </li>
                     <li class="nav-parent">
@@ -98,7 +98,7 @@
                         </a>
                         <ul class="nav nav-children">
                             <li>
-                                <a href="#">- List request</a>
+                                @Html.ActionLink("- Request Manager", "Facility", "Requests")
                             </li>
 
                         </ul>
@@ -111,9 +111,11 @@
                         </a>
                         <ul class="nav nav-children">
                             <li>
-                                <a href="#">- List request</a>
+                                @Html.ActionLink("- Request Manager", "Assginee", "Requests")
                             </li>
-
+                            <li>
+                                @Html.ActionLink("- Confirm Request", "ConfirmReturneds", "Requests")
+                            </li>
                         </ul>
                     </li>
 

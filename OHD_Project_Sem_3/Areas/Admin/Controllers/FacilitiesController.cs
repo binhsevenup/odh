@@ -123,7 +123,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             }
 
             ViewBag.FacilityCategory_Id = new SelectList(db.FacilityCategories, "FacilityCategory_Id", "FacilityCategory_Name", facility.FacilityCategory_Id);
-            Warning("Please enter full information.", true);
+//            Warning("Please enter full information.", true);
             return View(facility);
         }
 
@@ -203,10 +203,21 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+            if (id == null)
+            {
+                return HttpNotFound("Record Not Found!");
+            }
+
+            var existFacility = db.Facilities.Find(id);
+
+            if (existFacility == null)
+            {
+                return HttpNotFound("Record Not Found!");
+            }
             if (ModelState.IsValid)
             {
-                Facility facility = db.Facilities.Find(id);
-                db.Facilities.Remove(facility);
+                existFacility.Status = Facility.FancilitySatus.Delete;
+                existFacility.Updated_At = DateTime.Now;
                 db.SaveChanges();
                 Success("Delete success!", true);
                 return RedirectToAction("Index");

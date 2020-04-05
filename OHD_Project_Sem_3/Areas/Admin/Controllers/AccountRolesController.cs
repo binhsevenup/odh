@@ -11,6 +11,7 @@ using PagedList;
 namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 {
 //    [Authorize(Roles = "Admin")]
+
     public class AccountRolesController : BaseController
     {
         private MyContext dbContext = new MyContext();
@@ -60,6 +61,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             }
             int pageSize = 10;
             int pageNumber = (page ?? 1);
+
             return View(roles.ToPagedList(pageNumber, pageSize));
         }
 

@@ -9,6 +9,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 {
     public class BaseController : Controller
     {
+      
         // GET: Admin/Base
         public void Success(string message, bool dismissable = false)
         {

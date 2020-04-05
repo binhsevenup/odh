@@ -1,6 +1,7 @@
 ﻿@* @model IEnumerable<OHD_Project_Sem_3.Areas.Admin.Models.Facility> *@
 
 @model PagedList.IPagedList<OHD_Project_Sem_3.Areas.Admin.Models.Facility>
+@using OHD_Project_Sem_3.Areas.Admin.Models
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -25,7 +26,7 @@
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
                 <li>
-                    <a href="index.html">
+                    <a href="/Admin/Requests/Create">
                         <i class="fa fa-home"></i>
                     </a>
                 </li>
@@ -37,7 +38,7 @@
     </header>
 }
 <div style="margin-top: 150px; padding: 0 30px 0 50px">
-    <h2 class="text-center" style="margin-bottom: 30px; margin-right: 100px">List Facility</h2>
+    <h2 class="text-center" style="margin-bottom: 30px; margin-right: 100px"><b>List Facility</b></h2>
     <hr />
     <br />
     <br />
@@ -62,7 +63,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.ActionLink("Category", "Index", 
+                @Html.ActionLink("Category", "Index",
                     new { sortOrder = ViewBag.NameCa, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
@@ -73,17 +74,17 @@
                 Description
             </th>
             <th>
-                @Html.ActionLink("Created At", "Index", 
+                @Html.ActionLink("Created At", "Index",
                     new { sortOrder = ViewBag.CreatedFa, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.ActionLink("Updated At", "Index", 
+                @Html.ActionLink("Updated At", "Index",
                     new { sortOrder = ViewBag.UpdatedFa, currentFilter = ViewBag.CurrentFilter })
 
             </th>
             <th>
-            @Html.ActionLink("Status", "Index", 
-                new { sortOrder = ViewBag.StatusFa, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Status", "Index",
+                    new { sortOrder = ViewBag.StatusFa, currentFilter = ViewBag.CurrentFilter })
             <th>Action</th>
         </tr>
 
@@ -106,7 +107,20 @@
                     @Html.DisplayFor(modelItem => item.Updated_At)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @if (item.Status == Facility.FancilitySatus.Active)
+                    {
+                        <b style="color: #1e90ff">@Html.DisplayFor(modelItem => item.Status)</b>
+
+                    }
+                    else if (item.Status == Facility.FancilitySatus.Deactive)
+                    {
+                        <b style="color: #696969">@Html.DisplayFor(modelItem => item.Status)</b>
+                    }
+                    else
+                    {
+                        <b style="color: #a52a2a">@Html.DisplayFor(modelItem => item.Status)</b>
+
+                    }
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.FacilityId }) |

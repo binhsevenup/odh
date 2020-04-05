@@ -1,6 +1,7 @@
 ﻿@* @model IEnumerable<OHD_Project_Sem_3.Areas.Admin.Models.Account> *@
 
 @model PagedList.IPagedList<OHD_Project_Sem_3.Areas.Admin.Models.Account>
+@using OHD_Project_Sem_3.Areas.Admin.Models
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
@@ -11,12 +12,12 @@
 
 @section _Header
 {
-    @Html.Partial("_HeaderLayout");
+    @Html.Partial("_HeaderLayout")
 }
 
 @section _LeftMenu
 {
-    @Html.Partial("_LeftMenu");
+    @Html.Partial("_LeftMenu")
 }
 @section _headerPage
 {
@@ -26,7 +27,7 @@
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
                 <li>
-                    <a href="#">
+                    <a href="/Admin/Requests/Create">
                         <i class="fa fa-home"></i>
                     </a>
                 </li>
@@ -38,7 +39,7 @@
     </header>
 }
 <div style="margin-top: 150px; padding: 0 30px 0 50px">
-    <h2 class="text-center" style="margin-bottom: 30px;margin-right: 100px">List Facility</h2>
+    <h2 class="text-center" style="margin-bottom: 30px;margin-right: 100px"><b>List Account</b></h2>
     <hr />
     <br />
     <br />
@@ -52,20 +53,33 @@
             @using (Html.BeginForm("Index", "Account", FormMethod.Get))
             {
                 <p style="margin-left: 60%">
+                    @*                     @Html.TextBox("searchString", ViewBag.CurrentFilter as string, *@
+                    @*                         new { id = "SearchString" }) *@
                     @Html.TextBox("searchString", ViewBag.CurrentFilter as string)
                     <input type="submit" value="Search" />
                 </p>
             }
         </div>
     </div>
-
     <br />
-    @Html.Partial("_AlertMessage");
+    @Html.Partial("_AlertMessage")
     <table class="table">
         <tr>
             <th>
                 @Html.ActionLink("Full Name", "Index", "Account",
                     new { sortOrder = ViewBag.FullNameAcc, currentFilter = ViewBag.CurrentFilter }, null)
+            </th>
+            <th>
+                @Html.ActionLink("Email Address", "Index", "Account",
+                    new { sortOrder = ViewBag.EmailAcc, currentFilter = ViewBag.CurrentFilter }, null)
+            </th>
+            <th>
+                @Html.ActionLink("Role", "Index", "Account",
+                    new { sortOrder = ViewBag.RoleAcc, currentFilter = ViewBag.CurrentFilter }, null)
+            </th>
+            <th>
+                @Html.ActionLink("Category", "Index", "Account",
+                    new { sortOrder = ViewBag.CategoryAcc, currentFilter = ViewBag.CurrentFilter }, null)
             </th>
             <th>
                 @Html.ActionLink("Phone Number", "Index", "Account",
@@ -80,22 +94,9 @@
                     new { sortOrder = ViewBag.UpdatedAcc, currentFilter = ViewBag.CurrentFilter }, null)
             </th>
             <th>
-                @Html.ActionLink("Category", "Index", "Account",
-                    new { sortOrder = ViewBag.CategoryAcc, currentFilter = ViewBag.CurrentFilter }, null)
-            </th>
-            <th>
                 @Html.ActionLink("Status", "Index", "Account",
                     new { sortOrder = ViewBag.StatusAcc, currentFilter = ViewBag.CurrentFilter }, null)
             </th>
-            <th>
-                @Html.ActionLink("Role", "Index", "Account",
-                    new { sortOrder = ViewBag.RoleAcc, currentFilter = ViewBag.CurrentFilter }, null)
-            </th>
-            <th>
-                @Html.ActionLink("Email Address", "Index", "Account",
-                    new { sortOrder = ViewBag.EmailAcc, currentFilter = ViewBag.CurrentFilter }, null)
-            </th>
-
             <th>Action</th>
         </tr>
 
@@ -104,6 +105,15 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountRole.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FacilityCategory_Id)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Phone)
@@ -115,25 +125,28 @@
                     @Html.DisplayFor(modelItem => item.Update_At)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FacilityCategory_Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AccountRole.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
+                    @if (item.Status == Account.AccountStatus.Active)
+                    {
+                        <b style="color:#1e90ff">@Html.DisplayFor(modelItem => item.Status)</b>
+                    }
+                    else if (item.Status == Account.AccountStatus.Deactive)
+                    {
+                        <b style="color:#696969">@Html.DisplayFor(modelItem => item.Status)</b>
+                    }
+                    else
+                    {
+                        <b style="color:#a52a2a">@Html.DisplayFor(modelItem => item.Status)</b>
 
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
+                    }
+
+            </td>
+            <td>
+                <a href="#">Edit</a> |
+                <a href="#">Details</a> |
+                <a href="#">Delete</a>
+            </td>
+        </tr>
+    }
 
     </table>
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
