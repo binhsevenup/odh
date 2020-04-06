@@ -23,7 +23,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         private MyContext dbContext = new MyContext();
         private UserManager<Account> userManager;
         private AccountsAndFacilityCategory a = new AccountsAndFacilityCategory();
-        // GET: Admin/Account
+    
         public AccountController()
         {
             UserStore<Account> userStore = new UserStore<Account>(dbContext);
@@ -42,7 +42,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             return View(currentUser);
         }
 
-//        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -169,7 +169,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         }
 
 
-//        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Register()
         {
             a.FacilityCategories = dbContext.FacilityCategories.ToList();
