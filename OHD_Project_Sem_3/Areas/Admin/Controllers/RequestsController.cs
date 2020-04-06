@@ -28,7 +28,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             userManager = new UserManager<Account>(userStore);
         }
 
-        //        [Authorize]
+        [Authorize]
         public ActionResult Index(string sortOrder, string currentFilter, string search, int? page)
         {
 
@@ -116,7 +116,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             return View(request.Where(s => s.RequestorId == curentuserid).ToPagedList(pageNumber, pageSize));
         }
 
-        //        [Authorize]
+        [Authorize]
         public ActionResult Assginee(string sortOrder, string currentFilter, string search, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -196,7 +196,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         }
 
 
-        //        [Authorize]
+        [Authorize]
         public ActionResult DetailForAss(int id)
         {
             data2.Request = db.Requests.Find(id);
@@ -204,7 +204,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             Requests requests = db.Requests.Find(id);
             return View(data2);
         }
-        //        [Authorize]
+        [Authorize]
         public ActionResult ConfirmReturneds(string sortOrder, string currentFilter, string search, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -341,7 +341,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             return RedirectToAction("Assginee");
 
         }
-        //        [Authorize(Roles = "Facility-Heads")]
+        [Authorize(Roles = "Facility-Heads")]
         public ActionResult Facility(string sortOrder, string currentFilter, string search, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -416,7 +416,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
             return View(request.ToPagedList(pageNumber, pageSize));
         }
 
-        //        [Authorize(Roles = "Facility-Heads")]
+        [Authorize(Roles = "Facility-Heads")]
         public ActionResult DetailForFacility(int id)
         {
 
@@ -470,7 +470,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
 
 
         // GET: Admin/Requests/Details/5
-        //        [Authorize]
+        [Authorize]
         public ActionResult Details(int id)
         {
 
@@ -479,7 +479,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         }
 
         // GET: Admin/Requests/Create
-        //        [Authorize]
+        [Authorize]
         public ActionResult Create()
         {
             data.FacilityCategories = db.FacilityCategories.ToList();
@@ -546,7 +546,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         }
 
         // GET: Admin/Requests/Edit/5
-        //        [Authorize]
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Requests request = db.Requests.Find(id);
@@ -591,7 +591,7 @@ namespace OHD_Project_Sem_3.Areas.Admin.Controllers
         }
 
         // GET: Admin/Requests/Delete/5
-        //        [Authorize]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             Requests request = db.Requests.Find(id);
