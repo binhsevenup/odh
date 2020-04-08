@@ -198,4 +198,24 @@ input:-moz-placeholder { /* Firefox 18- */
  
      font-size: 13px 
  
- } 
+ }
+
+.headerfaq {
+	padding: 60px;
+	text-align: center;
+	background: #44B19E;
+	color: white;
+	font-size: 30px;
+	margin-right: 300px;
+}
+
+/* Page Content */
+.contentfaq {
+	padding: 20px;
+	margin-right: 300px;
+}
+
+.space {
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}

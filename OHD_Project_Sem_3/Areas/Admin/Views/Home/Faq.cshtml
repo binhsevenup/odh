@@ -8,6 +8,100 @@
     @Html.Partial("_HeaderLayout");
 }
 
-<div style="margin-top: 150px; padding: 0 30px 0 50px">
-    <h2> FAQ page</h2>
+<div class="headerfaq">
+    <h1><b>FAQS</b></h1>
+    <h3><b>Where to answer frequently questions</b></h3>
 </div>
+<br />
+<br />
+<div class="contentfaq">
+    <div id="accordion">
+        <div class="card space">
+            <div class="card-header" id="headingOne">
+                <h4 class="mb-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fa fa-question-circle"></i><b> What is Online Help Desk (OHD) system?</b>
+                </h4>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <p>
+                        OHD is a resource intended to provide the customer or end user with information and support related to school's facilities and services.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="card space">
+            <div class="card-header" id="heading2">
+                <h4 class="mb-0" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                    <i class="fa fa-question-circle"></i><b> Why do I have account and access rights? How to get the permission to access system?  </b>
+                </h4>
+            </div>
+
+            <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
+                <div class="card-body">
+                    <p>
+                        Only school's members like teacher, student, machinery repairer, guard, etc... could have an account to access OHD private site. 
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card space">
+            <div class="card-header" id="heading3">
+                <h4 class="mb-0" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                    <i class="fa fa-question-circle"></i><b> How the OHD system works?</b>
+                </h4>
+            </div>
+
+            <div id="collapse3" class="collapse show" aria-labelledby="heading3" data-parent="#accordion">
+                <div class="card-body">
+                    <p>
+                        We have three roles of users to run OHD system: <strong>Facility Heads</strong>, <strong>Assignees</strong> and <strong>End Users</strong>.
+                        Requests can be sent by every account and only Facility Head accounts have rights to check, approve it before send request to an Assignee account. Assignees will do the second check and finish request according to the message content.
+                        @* Each role has it's own authority. If you are Facility Head, you have to have to check every the validity of requests sent to system and assign them to one competency Assignee. If your account belongs to the role "student", you are an End User and only have rights to send request and check your sent requests. If your account belongs to the role "Lab Manager", you have to check every Lab's requests that Facility Heads assigned to you. *@
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card space">
+            <div class="card-header" id="heading4">
+                <h4 class="mb-0" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                    <i class="fa fa-question-circle"></i><b> What if my account doesn't belong to any Assignee roles?</b>
+                </h4>
+            </div>
+
+            <div id="collapse4" class="collapse show" aria-labelledby="heading4" data-parent="#accordion">
+                <div class="card-body">
+                    <p>
+                        In this case, you are an End User as well. All things you can do is sending requests and check your history list. If you are working at one of facility types and have no rights as an Assignee, contact us at this hotline *********** to change your account information.
+                        @* Each role has it's own authority. If you are Facility Head, you have to have to check every the validity of requests sent to system and assign them to one competency Assignee. If your account belongs to the role "student", you are an End User and only have rights to send request and check your sent requests. If your account belongs to the role "Lab Manager", you have to check every Lab's requests that Facility Heads assigned to you. *@
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        
+        @* <div class="card space"> *@
+        @*     <div class="card-header" id="heading5"> *@
+        @*         <h4 class="mb-0" data-toggle="collapse" data-target="#collapse5" aria-expanded="true" aria-controls="collapse5"> *@
+        @*             <i class="fa fa-question-circle"></i><b> What if my account doesn't belong to any Assignee roles?</b> *@
+        @*         </h4> *@
+        @*     </div> *@
+        @* *@
+        @*     <div id="collapse5" class="collapse show" aria-labelledby="heading5" data-parent="#accordion"> *@
+        @*         <div class="card-body"> *@
+        @*             <p> *@
+        @*                 In this case, you are an End User as well. All things you can do is sending requests and check your history list. If you are working at one of facility types and have no rights as an Assignee, contact us at this hotline *********** to change your account information. *@
+        @*                 $1$ Each role has it's own authority. If you are Facility Head, you have to have to check every the validity of requests sent to system and assign them to one competency Assignee. If your account belongs to the role "student", you are an End User and only have rights to send request and check your sent requests. If your account belongs to the role "Lab Manager", you have to check every Lab's requests that Facility Heads assigned to you. #1# *@
+        @*             </p> *@
+        @*         </div> *@
+        @*     </div> *@
+        @* </div> *@
+    </div>
+
+</div>
+@* <div style="margin-top: 150px; padding: 0 30px 0 50px"> *@
+@*      *@
+@* </div> *@
